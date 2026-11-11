@@ -1,4 +1,3 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>ChargerXpert</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -475,6 +474,118 @@ button.lni{border:0;background:none;color:inherit;padding:0;display:grid;place-i
 .tgl{flex:none;width:44px;height:26px;accent-color:#171717;margin-top:2px}
 .pill.skip{background:#eee;color:#666}
 .stkb img{width:128px;height:auto}.stkt img{width:64px;height:64px;object-fit:contain}.stkt{grid-template-columns:repeat(4,1fr);max-height:230px}
+
+/* ===== web map v2 ===== */
+.wtop{position:absolute;top:0;left:0;right:0;z-index:3;padding:12px 12px 30px;display:flex;flex-direction:column;gap:10px;background:linear-gradient(#fff 60%,rgba(255,255,255,0));pointer-events:none}.wtop>*{pointer-events:auto}
+.logo-m.big{width:40px;height:40px;border-radius:12px;display:inline-grid;place-items:center;background:var(--y);color:var(--ink);border:2px solid var(--ink)}
+.wsrch{display:flex;align-items:center;gap:8px;background:#fff;border-radius:14px;padding:0 14px;height:44px;box-shadow:0 2px 12px rgba(0,0,0,.14);color:#666}.wsrch input{flex:1;min-width:0;border:0;outline:0;background:none;font:inherit;font-size:15px;color:var(--ink)}
+.wtop .mchips{position:static;padding:0}
+.wleg{position:absolute;left:12px;right:70px;bottom:16px;background:#171717;color:#fff;border-radius:16px;padding:10px 12px;display:flex;gap:10px;align-items:center;box-shadow:0 6px 18px rgba(0,0,0,.3);z-index:2}
+.wleg .lgb{width:28px;height:28px;margin:0;vertical-align:0}.wi{border:0;background:rgba(255,255,255,.14);color:#fff;width:32px;height:32px;border-radius:50%;display:grid;place-items:center}
+.mapbox:has(.wtop) .mzoom{top:auto;bottom:16px}.mapbox:has(.wsh) .mzoom{bottom:auto;top:178px}
+.wstats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.wstats>div{background:#F5F5F0;border-radius:10px;padding:8px 4px;text-align:center;display:flex;flex-direction:column;justify-content:center;min-width:0}.wstats b{font:600 15px var(--fd)}.wstats small{font-size:10.5px;color:#777}
+.vbox2{display:flex;gap:10px;align-items:flex-start;background:var(--y-wash);border:1.5px solid var(--y);border-radius:14px;padding:10px}
+.vbar{height:7px;border-radius:4px;background:#F1E3AC;margin:6px 0 3px;overflow:hidden}.vbar i{display:block;height:100%;background:var(--ink);border-radius:4px}
+/* ===== iPhone camera ===== */
+.ios{flex:1;min-height:0;display:flex;flex-direction:column;background:#000;position:relative;color:#fff}
+.itop{flex:none;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 22px}.itop button{border:0;background:none;color:#fff;display:grid;place-items:center;width:34px;height:34px}
+.ivf{position:relative;flex:1;min-height:0;overflow:hidden;background:radial-gradient(120% 80% at 50% 20%,#4a4a46,#121212)}
+.feed{position:absolute;inset:0;transition:transform .35s ease;transform-origin:50% 45%}
+.ivf .chg{top:46px}.ivf .gnd{height:30%}
+.qdet{position:absolute;left:28px;top:162px;width:56px;height:56px;opacity:0;transform:scale(1.35);transition:opacity .25s,transform .25s;pointer-events:none}.qdet i{position:absolute;width:15px;height:15px;border:3px solid #FFD60A}
+.qdet i:nth-child(1){left:0;top:0;border-right:0;border-bottom:0;border-radius:8px 0 0 0}.qdet i:nth-child(2){right:0;top:0;border-left:0;border-bottom:0;border-radius:0 8px 0 0}.qdet i:nth-child(3){left:0;bottom:0;border-right:0;border-top:0;border-radius:0 0 0 8px}.qdet i:nth-child(4){right:0;bottom:0;border-left:0;border-top:0;border-radius:0 0 8px 0}
+.ios.det .qdet{opacity:1;transform:none}
+.ilink{position:absolute;left:14px;right:14px;bottom:62px;z-index:3;display:flex;align-items:center;gap:10px;border:0;border-radius:999px;padding:8px 14px 8px 10px;background:rgba(48,48,52,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:#fff;text-align:left;opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .25s .1s,transform .25s .1s}
+.ilink span{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.25}.ilink small{font-size:11px;opacity:.75}.ilink b{font-size:14.5px;font-weight:600}
+.ios.det .ilink{opacity:1;transform:none;pointer-events:auto}
+.idemo{position:absolute;top:8px;left:8px;right:8px;z-index:3;display:flex;gap:5px;align-items:center;background:rgba(0,0,0,.45);border-radius:999px;padding:4px 6px;font-size:10.5px;color:#ddd;overflow-x:auto;scrollbar-width:none}.idemo span{flex:none;padding:0 4px}.idemo button{flex:none;border:0;border-radius:999px;padding:3px 9px;background:rgba(255,255,255,.16);color:#fff;font:inherit;font-size:11px}.idemo button.on{background:#FFD60A;color:#000;font-weight:600}
+.izoom{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);display:flex;gap:4px;background:rgba(0,0,0,.35);border-radius:999px;padding:4px;z-index:3}.izoom button{border:0;background:none;color:#fff;min-width:30px;height:30px;border-radius:50%;font:500 12px var(--fd);padding:0 4px}.izoom button.on{background:rgba(0,0,0,.55);color:#FFD60A;font-weight:700;min-width:38px;height:38px;margin:-4px 0}
+.ibot{flex:none;padding:10px 0 14px;display:flex;flex-direction:column;gap:12px;background:#000}
+.imodes{display:flex;justify-content:center;gap:16px;font:600 11px var(--fd);letter-spacing:.04em;color:#ddd;white-space:nowrap;overflow:hidden}.imodes span.on{color:#FFD60A}
+.ishut{display:flex;align-items:center;justify-content:space-between;padding:0 28px}
+.ithumb{width:46px;height:46px;border-radius:10px;border:2px solid #444;background:linear-gradient(135deg,#6b6b66,#2a2a28);padding:0}
+.shut{width:74px;height:74px;border-radius:50%;border:4px solid #fff;background:none;padding:4px;display:grid;place-items:center}.shut i{display:block;width:100%;height:100%;border-radius:50%;background:#fff;transition:transform .1s}.shut:active i{transform:scale(.88)}
+.iflip{width:46px;height:46px;border-radius:50%;border:0;background:rgba(255,255,255,.16);color:#fff;display:grid;place-items:center}
+.ios.shot .flash{animation:fl .5s ease}
+.fsq{position:absolute;width:72px;height:72px;border:1.5px solid #FFD60A;pointer-events:none;animation:fsq 1s ease forwards;z-index:3}@keyframes fsq{0%{transform:scale(1.4);opacity:0}15%{opacity:1;transform:scale(1)}80%{opacity:1}100%{opacity:0}}
+.ios.scanning .flash{animation:fl .6s ease}
+@media(prefers-reduced-motion:reduce){.feed,.qdet,.ilink{transition:none}.fsq{animation:none;opacity:.8}}
+#cam .qdet{left:30px!important;top:165px!important;width:48px!important;height:48px!important;box-sizing:border-box}#cam .qdet i{width:13px!important;height:13px!important}
+
+/* ===== scan polish ===== */
+.cm{background:radial-gradient(120% 70% at 50% 25%,#55554f 0,#26261f 55%,#0b0b0a)}
+.cm::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:radial-gradient(90% 70% at 50% 40%,transparent 45%,rgba(0,0,0,.55))}
+.cm .camtop{align-items:center;justify-content:space-between;padding:0 14px}
+.cm .cbtn{width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.16);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;display:grid;place-items:center}
+.cm .cmhint{display:inline-flex;gap:6px;align-items:center;background:rgba(0,0,0,.5);color:#fff;border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:12px;padding:7px 12px}
+.cm .vf i{border-color:var(--y);width:30px;height:30px;border-width:4px;filter:drop-shadow(0 0 6px rgba(255,201,40,.6))}
+.cm .vf s{position:absolute;left:10px;right:10px;top:8%;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--y),transparent);box-shadow:0 0 12px 2px rgba(255,201,40,.7);animation:scl 2.4s ease-in-out infinite}
+@keyframes scl{0%,100%{top:8%}50%{top:92%}}
+.cmcap{position:absolute;left:0;right:0;top:calc(36px + 262px + 12px);text-align:center;z-index:3;font-size:12.5px;color:#fff;text-shadow:0 1px 4px #000}
+.cm .campick{padding:0 12px 16px}
+.cmgl{width:100%;background:rgba(20,20,18,.55);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:10px 10px 12px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.cmgl p{margin:0 0 8px;text-align:center;font-size:11.5px;color:#cfcfc6}
+.cm .campick .chips button{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:999px}.cm .campick .chips button.on{background:var(--y);color:var(--ink);border-color:var(--y);font-weight:700}
+.cm .scanbtn{width:72px;height:72px;box-shadow:0 0 0 6px rgba(255,201,40,.25),0 6px 18px rgba(0,0,0,.5);animation:pls 2s ease-out infinite}
+@keyframes pls{0%{box-shadow:0 0 0 0 rgba(255,201,40,.55),0 6px 18px rgba(0,0,0,.5)}70%,100%{box-shadow:0 0 0 14px rgba(255,201,40,0),0 6px 18px rgba(0,0,0,.5)}}
+@media(prefers-reduced-motion:reduce){.cm .vf s,.cm .scanbtn{animation:none}}
+.cmcap{left:50%!important;right:auto!important;transform:translateX(-50%);width:max-content;background:rgba(0,0,0,.6);border-radius:999px;padding:5px 12px;top:calc(36px + 262px + 18px)!important}
+
+/* ===== ChargerXpert result pages (UI flow) ===== */
+.cx{flex:1;min-height:0;display:flex;flex-direction:column;background:#fff}
+.cxh{flex:none;display:flex;align-items:center;gap:8px;background:#111;color:#fff;padding:8px 12px}
+.cxback{border:0;background:none;color:#fff;width:34px;height:34px;display:grid;place-items:center;flex:none}.cxback svg{transform:rotate(180deg)}
+.cxt{flex:1;min-width:0;text-align:center;margin-right:34px;line-height:1.25}.cxt b{display:block;font:600 17px var(--fd)}.cxt small{font-size:12px;opacity:.8}
+.cxlg{flex:1;display:flex;align-items:center;gap:8px;min-width:0}.cxlg b{display:block;font:700 18px/1.1 var(--fd);color:#fff}.cxlg small{display:block;font-size:11.5px;color:var(--y)}.cxlg .logo-m{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--y);color:#111}
+.cxlang{border:1px solid rgba(255,255,255,.35);background:none;color:#fff;border-radius:999px;padding:4px 10px;font-size:12.5px}.cxlang b{color:var(--y)}
+.cxb{flex:1;min-height:0;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:10px;background:#F6F6F2}.cxb>*{flex:none}
+.cxhero{display:flex;gap:12px;align-items:center;border-radius:18px;padding:14px;background:#DDF3CC;border:1.5px solid #BFE5A6}
+.cxhero.warn{background:#FFF1CC;border-color:#F3D27A}.cxhero.mist{background:#EEEEE9;border-color:#DCDCD4}
+.cxsh{width:56px;height:56px;flex:none;border-radius:18px;background:#2BA55A;color:#fff;display:grid;place-items:center;box-shadow:0 4px 10px rgba(43,165,90,.35)}.cxhero.warn .cxsh{background:#E8A800;box-shadow:0 4px 10px rgba(232,168,0,.35)}.cxhero.mist .cxsh{background:#8a8a82;box-shadow:none}
+.cxhero b{display:block;font:700 22px/1.2 var(--fd)}.cxhero em{display:block;font:700 14.5px var(--fd);font-style:normal;color:#1E8E4A;letter-spacing:.03em}.cxhero.warn em{color:#9A6A00}.cxhero.mist em{color:#666}.cxhero small{display:block;font-size:12.5px;color:#444;line-height:1.35}
+.cxhero.sm{padding:10px}.cxhero.sm .cxsh{width:46px;height:46px;border-radius:14px}.cxhero.sm b{font-size:16px}
+.cxcard{background:#fff;border:1px solid #E5E5DD;border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:2px}
+.cxunit{display:flex;gap:12px;align-items:center}.cxunit small{display:block;font-size:12px;color:#666}
+.cxthumb{flex:none;width:52px;height:64px;border-radius:12px;background:#ECECE6;display:grid;place-items:center}.cxthumb.sm{width:38px;height:46px;border-radius:10px}
+.cxid{display:block;font:700 22px/1.2 var(--fd);letter-spacing:.01em}
+.cxln{display:flex;gap:10px;align-items:flex-start;margin-top:8px;font-size:13.5px}.cxln svg{flex:none;color:#E8A800;margin-top:2px}.cxln small{color:#666}
+.cxdates{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.cxdates>div{background:#F6F6F2;border-radius:12px;padding:8px 10px;display:grid;grid-template-columns:22px 1fr;column-gap:6px;align-items:center}.cxdates>div.g{background:#F6EFC4}.cxdates span{grid-row:span 2;color:#555}.cxdates small{font-size:11.5px;color:#666}.cxdates b{font:600 14px var(--fd)}
+.cxsec{background:var(--y-wash);border-radius:10px;padding:6px 12px;border:1px solid #F3E2A0}.cxsec b{display:block;font:600 15px var(--fd)}.cxsec small{font-size:11.5px;color:#666}
+.cxcat{display:flex;gap:10px;align-items:center;background:#fff;border:1px solid #E5E5DD;border-radius:14px;padding:10px 12px;width:100%;text-align:left;font:inherit}
+.cxci{flex:none;width:40px;height:40px;border-radius:12px;background:#FFF3C4;color:#B27700;display:grid;place-items:center}
+.cxcn{flex:1;min-width:0}.cxcn b{display:block;font:600 14.5px var(--fd)}.cxcn small{font-size:12px;color:#666}
+.cxchip{display:inline-flex;gap:4px;align-items:center;border-radius:8px;padding:5px 9px;font:700 12.5px var(--fd);color:#fff;background:#2BA55A;flex:none}.cxchip.warn{background:#E8A800}
+.cxcv{color:#9a9a92;font-size:22px;line-height:1;flex:none}
+.cxbtn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;border-radius:14px;border:2px solid #111;font:600 15px var(--fd)}.cxbtn.y{background:var(--y)}.cxbtn.o{background:#fff;color:#111}
+.cxfoot{display:flex;flex-direction:column;gap:3px}.cxfoot p{margin:0;font-size:12px;color:#666;line-height:1.45}
+.cxtabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.cxtabs button{border:1.5px solid #E1E1D8;background:#fff;border-radius:14px;padding:8px 2px;display:flex;flex-direction:column;align-items:center;gap:1px;font:inherit;color:#444}.cxtabs button.on{background:var(--y);border-color:#E8A800;color:#111}.cxtabs b{font:600 12.5px var(--fd)}.cxtabs small{font-size:11px;opacity:.8}
+.cxlist{background:#fff;border:1px solid #E5E5DD;border-radius:14px;overflow:hidden}.cxit+.cxit{border-top:1px solid #EEEEE8}.cxit.on{background:#FFFCF0}
+.cxrow{display:flex;gap:10px;align-items:center;width:100%;padding:10px 12px;border:0;background:none;text-align:left;font:inherit}.cxk{flex:none;width:34px;font:600 12px var(--fd);color:#888}.cxn{flex:1;min-width:0}.cxn b{display:block;font:600 13.5px/1.3 var(--fd)}.cxn small{font-size:11.5px;color:#666;display:block}
+.cxrs{flex:none;display:inline-flex;gap:4px;align-items:center;font:600 13px var(--fd);color:#1E8E4A}.cxrs.warn{color:#9A6A00}.cxrs.bad{color:#C63636}.cxrs.n{color:#777}
+.cxdt{padding:0 12px 12px 56px}.cxdt p{margin:0 0 8px;font-size:12.5px;color:#444}.cxkv{display:grid;grid-template-columns:1fr 1fr;gap:6px}.cxkv>div{background:#F6F6F2;border-radius:8px;padding:6px 8px}.cxkv small{display:block;font-size:11px;color:#777}.cxkv b{font:600 12.5px var(--fd)}
+.cxpaper{background:#fff;border-radius:8px;padding:14px;box-shadow:0 6px 16px rgba(0,0,0,.15);display:flex;flex-direction:column;gap:6px}.cxph{display:flex;align-items:center;gap:6px}.cxph .logo-m{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;background:var(--y);color:#111}.cxpaper h4{margin:4px 0 0;text-align:center;font:600 14px var(--fd)}.cxpaper>small{text-align:center;color:#777}
+.cxpaper table{width:100%;border-collapse:collapse;font-size:12px}.cxpaper td{border:1px solid #D9D9D2;padding:4px 6px}.cxpaper td:first-child{width:42%;background:#F6F6F2}
+.cxpc{background:#E3F5D6;border-radius:6px;padding:4px 8px;font-size:11.5px;color:#1E6B38;display:flex;gap:6px;align-items:center}.cxpc.w{background:#FFF1CC;color:#7A5200}.cxpq{display:flex;justify-content:space-between;align-items:flex-end;margin-top:4px}
+.cxfile{display:flex;gap:10px;align-items:center;background:#fff;border-radius:12px;padding:10px;border:1px solid #E5E5DD}.cxfile small{display:block;font-size:11.5px;color:#777}.cxfile b{font-size:12.5px;word-break:break-all}.cxpdf{flex:none;background:#D93B3B;color:#fff;border-radius:6px;padding:8px 8px;font:700 11px var(--fd)}
+.cxhi{display:flex;gap:10px;align-items:center;width:100%;background:#fff;border:1px solid #E5E5DD;border-radius:14px;padding:10px 12px;font:inherit}.cxhi.cur{background:#E8F7DC;border-color:#BFE5A6}.cxhi small{font-size:12px;color:#666}
+.cxdot{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;color:#fff;background:#2BA55A}.cxdot.warn{background:#E8A800}
+.cxinfo{display:flex;gap:8px;background:#EEF3FF;color:#1F3FA6;border-radius:12px;padding:10px 12px;font-size:12.5px;line-height:1.45}.cxinfo svg{flex:none;margin-top:2px}
+/* station detail */
+.sph2{position:relative;height:170px;overflow:hidden;flex:none}.sph2 svg{display:block;width:100%;height:100%}
+.bm{display:inline-block;border-radius:8px;padding:4px 8px;font:700 14px/1 var(--fd);flex:none}.bm.el{background:#1F4FD8;color:#fff}.bm.el b{color:#FFD60A}.bm.bk{background:#16348f;color:#FFD60A}
+.sbn{width:100%;border:0;border-radius:14px;background:var(--y);color:var(--ink);display:flex;align-items:center;gap:10px;padding:9px 12px;font:inherit;text-align:left}.sbn small{font-size:11.5px;opacity:.85}
+.sbh{flex:none;width:38px;height:38px;border-radius:12px;background:#111;color:var(--y);display:grid;place-items:center}.sbh.sm{width:28px;height:28px;border-radius:9px}
+.sbq{flex:none;width:42px;height:42px;background:#fff;border-radius:7px;padding:3px}.sbq svg{display:block;width:100%;height:100%}.sbq.sm{width:32px;height:32px}
+.sact{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:6px}.sact button{border:1.5px solid #D7DCEA;background:#fff;border-radius:12px;padding:8px 2px;font:inherit;font-size:12px;display:flex;flex-direction:column;align-items:center;gap:3px;color:#1B2A5C}.sact .sp1{background:#1B2A5C;color:#fff;border-color:#1B2A5C}
+.xhd2{border:1px solid #E1E6F4;border-radius:14px;overflow:hidden}.xhd2t{display:flex;gap:10px;align-items:center;padding:10px}.xhd2t b{font:600 14.5px var(--fd)}
+.kwb{background:#EEF2FF;color:#1F3FA6;border-radius:6px;padding:1px 6px;font-size:11.5px;font-weight:600}
+.stt{flex:none;display:inline-flex;gap:5px;align-items:center;font:600 12px var(--fd)}.stt.ok{color:#1E8E4A}.stt.info{color:#2F6BFF}.stt.n{color:#888}
+.sd{display:inline-block;width:8px;height:8px;border-radius:50%;background:#aaa;margin-right:2px}.sd.ok{background:#2BA55A}.sd.info{background:#2F6BFF}.sd.n{background:#aaa}
+.ustrip{width:100%;border:0;border-top:1px solid #F3D27A;background:var(--y-wash);display:flex;gap:8px;align-items:center;padding:8px 10px;font:inherit}.ustrip b{font-size:12.5px;display:block}.ustrip small{font-size:11px;color:#555}
+.mcd{display:flex;gap:10px}.mph{flex:none;width:96px;height:76px;border-radius:10px;overflow:hidden}.mph svg{display:block;width:100%;height:100%}
+.msheet.wsh .sbn{margin:2px 0}
+.cxheads{display:flex;gap:8px}.cxheads button{flex:1;border:1.5px solid #E1E1D8;background:#fff;border-radius:12px;padding:8px 4px;font:600 13px var(--fd);color:#444}.cxheads button.on{background:#111;color:var(--y);border-color:#111}
+.cxid{font-size:18px!important;word-break:break-all}.cxunit small .mono{font-size:11.5px}
 </style>
 <div class="stagebg"><nav class="scenes" id="scenes" aria-label="เลือกฉาก"></nav><div class="stagewrap"><aside class="ctl" id="ctl"></aside><div class="device"><div class="sbar"><span id="clock">14:45</span><span class="sbi"><i></i><i></i><i></i><b></b></span></div><div class="screen"><div class="layer" id="chat-layer"></div><div class="layer" id="liff"></div><div id="modal-root"></div><div id="toast-root" class="toast-root" aria-live="polite"></div></div></div></div></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
@@ -498,6 +609,11 @@ const hhmm=()=>{const d=new Date();return String(d.getHours()).padStart(2,'0')+'
 const stamp=()=>TODAY+' '+hhmm();
 
 const ICONS={
+ search:'<circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/>',
+ plug:'<path d="M9 2v5M15 2v5M6 7h12v4a6 6 0 01-12 0zM12 17v5"/>',
+ chevu:'<path d="M6 15l6-6 6 6"/>',
+ target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/>',
+ shield:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
 bolt:'<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
 calc:'<rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="11" x2="8.01" y2="11"/><line x1="12" y1="11" x2="12.01" y2="11"/><line x1="16" y1="11" x2="16.01" y2="11"/><line x1="8" y1="15" x2="8.01" y2="15"/><line x1="12" y1="15" x2="12.01" y2="15"/><line x1="16" y1="15" x2="16.01" y2="15"/>',
 userplus:'<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/>',
@@ -706,7 +822,7 @@ function render(){
     area='public';html='<section class="sec"><div class="wrap"><div class="card stack"><h2>ไม่มีสิทธิ์เข้าถึงหน้านี้</h2><p class="mu">บทบาทปัจจุบันคือ <b>'+S.role+'</b> หน้านี้เปิดได้เฉพาะ '+v.roles.join(' / ')+' ข้อมูลของลูกค้าแต่ละรายแยกจากกัน และเจ้าหน้าที่เห็นเฉพาะงานที่ได้รับมอบหมาย</p>'+goBtn('กลับหน้าหลักของฉัน',HOME[S.role],'','y')+'</div></div></section>';v=VIEWS.landing;
   }else{area=v.dual&&S.role==='customer'?'customer':v.area;html=notice+v.fn(S.param)}
   const liff=$('#liff'),chat=$('#chat-layer'),old=$('#liffbody'),keep=old&&!S.top&&S._v===S.view?old.scrollTop:0;
-  $('#ctl').innerHTML=ctlHtml();{const dv=$('.device');if(dv)dv.dataset.sb=area==='line'||S.view==='x-elexa'||S.view==='x-report'||S.view==='x-station'?'w':S.view==='x-scan'?'k':'y'}$('#scenes').innerHTML=scenesHtml();$('#clock').textContent=hhmm();
+  $('#ctl').innerHTML=ctlHtml();{const dv=$('.device');if(dv)dv.dataset.sb=area==='line'||S.view==='x-elexa'||S.view==='x-report'||S.view==='x-station'?'w':S.view==='x-scan'||S.view.indexOf('cx-')===0?'k':'y'}$('#scenes').innerHTML=scenesHtml();$('#clock').textContent=hhmm();
   if(area==='line'||area==='base'){S.baseView=S.view;chat.innerHTML=html;liff.classList.remove('open');liff.innerHTML='';S._open=false}
   else{
     liff.innerHTML=liffHtml(area,html);
@@ -1079,13 +1195,14 @@ V('a-notifs','admin',()=>{
 
 /* ===== scenes: Elexa-style map feature, public web map, sticker scan, passport ===== */
 const SCENES=[['line','1','LINE OA · B2B'],['x-elexa','2','แอป Elexa · แมป'],['x-webmap','3','เว็บแมปสาธารณะ'],['x-scan','4','สแกนสติกเกอร์']];
-function scenesHtml(){const b0=S.baseView||'line',b=(b0==='x-report'||b0==='x-station')?'x-elexa':b0;return SCENES.map(s=>'<button class="'+(b===s[0]?'on':'')+'" data-go="'+s[0]+'"><b>'+s[1]+'</b>'+s[2]+'</button>').join('')}
+const scB=b0=>b0.indexOf('cx-')===0?(S.cxFrom==='x-scan'?'x-scan':S.cxFrom==='x-webmap'?'x-webmap':'x-elexa'):b0==='w-station'?'x-webmap':(b0==='x-report'||b0==='x-station')?'x-elexa':b0;
+function scenesHtml(){const b0=S.baseView||'line',b=scB(b0);return SCENES.map(s=>'<button class="'+(b===s[0]?'on':'')+'" data-go="'+s[0]+'"><b>'+s[1]+'</b>'+s[2]+'</button>').join('')}
 function ctlHtml(){
-  const b0=S.baseView||'line',b=(b0==='x-report'||b0==='x-station')?'x-elexa':b0;
+  const b0=S.baseView||'line',b=scB(b0);
   const T={line:['ฉาก 1 · LINE OA ของ B2B','เจ้าของสถานีใช้ LINE OA เปิดเว็บ (LIFF) ขอนัดตรวจ รับรายงาน และต่อสมาชิก กดเมนูด้านล่างของแชต หน้าเว็บจะเลื่อนขึ้นมา กด × เพื่อกลับไปแชต'],
     'x-elexa':['ฉาก 2 · ฟีเจอร์แมปในแอป Elexa','ภาพประกอบข้อเสนอ หมุดมี 3 แบบ: Elexa (น้ำเงิน), BackEN (ขาว) และสถานีอื่นที่ผ่านการตรวจโดยเรา (ดำ) สถานีที่มีผลตรวจจะมีเหรียญสายฟ้า กดชิป "ชาร์จมั่นใจ" เพื่อกรอง กดซ้ำเพื่อยกเลิก ลากแมปและกด + − เพื่อซูมได้'],
     'x-webmap':['ฉาก 3 · เว็บแมปสาธารณะ','ไม่ต้องล็อกอินหรือโหลดแอป แสดงเฉพาะสถานีที่มีผลตรวจ หมุดเป็นสายฟ้าแบบเดียว ไม่แบ่งเครือข่าย ลากและซูมได้ ค้นหาชื่อสถานีได้'],
-    'x-scan':['ฉาก 4 · สแกน QR ที่สติกเกอร์','เลือกตู้แล้วกดปุ่มสแกน (กล้องจริงใช้ในหน้านี้ไม่ได้ จึงจำลอง) จะเปิดหน้า Passport สำหรับผู้ใช้ EV แล้วกดต่อไปดูแมปได้ สติกเกอร์เป็นภาพแนวคิดของข้อเสนอ']};
+    'x-scan':['ฉาก 4 · สแกน QR ที่สติกเกอร์','เลือกตู้แล้วกดปุ่มสแกน (กล้องจริงใช้ในหน้านี้ไม่ได้ จึงจำลอง) จะเปิดหน้า Passport สำหรับผู้ใช้ EV ระบบจะเปิดหน้าผลตรวจ (สรุป → รายละเอียด 3 หมวด → รายงาน PDF → ประวัติ) ตามแบบ UI flow สติกเกอร์เป็นภาพแนวคิดของข้อเสนอ']};
   const t=T[b]||T.line;
   return '<div class="stack"><span class="pill y">Prototype · ข้อมูลทั้งหมดเป็นข้อมูลจำลอง</span><h1 style="font-size:26px">'+t[0]+'</h1><p class="mu">'+t[1]+'</p>'+
   '<div class="box">'+ic('bolt',16)+'<span>ลองดู: ABC Charging Station ยังไม่มีหมุดบนแมป เพราะครบกำหนดตรวจแล้ว ไปฉาก 1 เลือกบทบาท Inspector ปิดงาน JOB-2026-0001 แล้วกลับมาดูแมป หมุดดำที่มีเหรียญสายฟ้าจะขึ้น</span></div>'+
@@ -1097,8 +1214,9 @@ function ctlHtml(){
 const MON=['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
 const fmtMon=s=>{const d=d2(s);return String(d.getDate()).padStart(2,'0')+' '+MON[d.getMonth()]+' '+d.getFullYear()};
 const SCODE={'EV-CH-001':'001234','SR-01':'001235','GP-07':'001236','EX-01':'001237','BK-01':'001238','MP-03':'001239','EV-CH-002':'001240','EV-CH-101':'001241','BV-01':'001242','BV-02':'001243','GP-12':'001244','SR-03':'001245'};
+const cabId=cid=>{const m=typeof MAPST!=='undefined'&&MAPST.find(x=>x.charger===cid);return 'TH-EGAT-'+((m&&m.type)||'DC')+'-'+(SCODE[cid]||'009999')};
 function stickerSvg(cid,w){
-  const rec=lastRec(cid),code='TH-EGAT-DC-'+(SCODE[cid]||'009999'),vu=rec?fmtMon(rec.next):'—';
+  const rec=lastRec(cid),code=cabId(cid),vu=rec?fmtMon(rec.next):'—';
   const q=qrSvg(passUrl(cid)).replace('<svg','<svg x="32" y="280" width="56" height="56"');
   const F='font-family="Prompt,IBM Plex Sans Thai,sans-serif"';
   return '<svg viewBox="0 0 240 400" width="'+w+'" role="img" aria-label="สติกเกอร์ ก่อนชาร์จ ดูให้ชัด ตู้ '+esc(cid)+'" style="display:block;max-width:100%;height:auto">'+
@@ -1188,7 +1306,7 @@ function bindMap(){
   const mv=e=>{if(!st)return;const dx=e.clientX-st.x,dy=e.clientY-st.y;if(Math.abs(dx)+Math.abs(dy)>5)st.moved=true;if(!st.moved)return;const v=S.mv[st.key];v.tx=st.tx+dx/st.s;v.ty=st.ty+dy/st.s;const g=$('#mg');if(g)g.setAttribute('transform','translate('+v.tx+','+v.ty+') scale('+v.k+')')};
   const up=()=>{window.removeEventListener('pointermove',mv);if(st&&st.moved)S._noClick=Date.now();st=null};
   box.addEventListener('pointerdown',e=>{
-    if(e.target.closest('.msearch,.mchips,.msheet,.mzoom,.mlegend,.mfab,input,button'))return;
+    if(e.target.closest('.msearch,.mchips,.msheet,.mzoom,.mlegend,.mfab,.wtop,.wleg,input,button'))return;
     const key=box.dataset.mk;S.mv=S.mv||{};const v=S.mv[key]||(S.mv[key]={tx:0,ty:0,k:1});
     const r=box.getBoundingClientRect();st={x:e.clientX,y:e.clientY,tx:v.tx,ty:v.ty,s:Math.max(r.width/360,r.height/560),moved:false,key};
     window.addEventListener('pointermove',mv);window.addEventListener('pointerup',up,{once:true});
@@ -1196,11 +1314,11 @@ function bindMap(){
 }
 function fitWeb(list){
   const box=$('.mapbox');if(!box||!list.length)return false;
-  const r=box.getBoundingClientRect(),s=Math.max(r.width/360,r.height/560),vw=r.width/s,vh=r.height/s;
-  const xs=list.map(p=>p.x),ys=list.map(p=>p.y),bw=Math.max(...xs)-Math.min(...xs)+90,bh=Math.max(...ys)-Math.min(...ys)+140;
-  const k=Math.max(.8,Math.min(1.7,Math.min(vw/bw,vh/bh)));
-  const cx=(Math.min(...xs)+Math.max(...xs))/2,cy=(Math.min(...ys)-70+Math.max(...ys))/2;
-  S.mv=S.mv||{};S.mv.web={tx:180-cx*k,ty:280-cy*k,k};return true;
+  const r=box.getBoundingClientRect(),s=Math.max(r.width/360,r.height/560),vw=r.width/s,vh=r.height/s,top=170/s,bot=80/s;
+  const xs=list.map(p=>p.x),ys=list.map(p=>p.y),minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys);
+  const bw=maxX-minX+80,bh=maxY-minY+60,k=Math.max(.8,Math.min(1.7,Math.min(vw/bw,(vh-top-bot)/bh)));
+  const cx=(minX+maxX)/2,cy=(minY-50+maxY)/2,ty=(280-vh/2)+top+(vh-top-bot)/2;
+  S.mv=S.mv||{};S.mv.web={tx:180-cx*k,ty:ty-cy*k,k};return true;
 }
 function mapAfter(){
   bindMap();
@@ -1230,21 +1348,24 @@ V('x-elexa','base',()=>{
 },{after:()=>{const r=$('#mchips');if(r)r.scrollLeft=S.chipScroll||0;mapAfter()}});
 
 /* ---- scene 3: public web map ---- */
-const stSheet=(sel,v,web)=>'<div class="msheet"><div class="grab"></div><div class="row" style="flex-wrap:nowrap;align-items:flex-start;gap:12px"><div style="flex:1;min-width:0"><h3 style="font-size:19px;line-height:1.3">'+esc(sel.name)+'</h3><p class="note" style="margin-top:4px">'+ic('pin',14)+' '+esc(stAddr(sel))+' · '+sel.km+' กม.</p></div><button class="xb" data-act="pickSt" data-id="'+sel.id+'" aria-label="ปิด">'+ic('x',18)+'</button></div>'+
- '<div class="row" style="gap:6px"><span class="pill n">'+sel.type+' '+sel.kw+'</span>'+sel.cn.map(c=>'<span class="pill n">'+c+'</span>').join('')+'<span class="pill n">'+sel.ports+' หัว</span></div>'+
- '<div class="row" style="justify-content:space-between;flex-wrap:nowrap;font-size:13.5px"><span>เปิด <b>'+sel.hours+'</b></span><span style="color:#E8A800;font-weight:600">★ '+sel.rate+'</span></div>'+
- (v?'<div class="vbox"><span class="vbolt">'+ic('bolt',16)+'</span><div style="flex:1;min-width:0;line-height:1.35"><b style="font-size:13.5px">ตรวจโดย ChargerXpert</b><br><span class="note">ตรวจล่าสุด '+fmtS(v.date)+' · ครั้งต่อไป '+fmtS(v.next)+'</span></div><button class="btn y sm" data-act="openPass" data-id="'+sel.charger+'">ดูผลตรวจ</button></div>':'')+'</div>';
+const stSheet=(sel,v,web)=>{const dd=v?dayDiff(TODAY,v.next):0,pc=Math.max(4,Math.min(100,Math.round(dd/365*100)));
+ return '<div class="msheet wsh"><div class="grab"></div><div class="row" style="flex-wrap:nowrap;align-items:flex-start;gap:12px"><div class="sph sm">'+ic('bolt',26)+'</div><div style="flex:1;min-width:0"><h3 style="font-size:18px;line-height:1.3">'+esc(sel.name)+'</h3><p class="note" style="margin-top:2px">'+esc(stAddr(sel))+' · '+sel.km+' กม.</p></div><button class="xb" data-act="pickSt" data-id="'+sel.id+'" aria-label="ปิด">'+ic('x',18)+'</button></div>'+
+ '<div class="wstats"><div><b>'+sel.ports+'</b><small>หัวชาร์จ</small></div><div><b>'+sel.kw+'</b><small>'+sel.type+'</small></div><div><b style="color:#E8A800">★ '+sel.rate+'</b><small>คะแนน</small></div><div><b style="font-size:12.5px;line-height:1.25">'+sel.hours+'</b><small>เปิดให้บริการ</small></div></div>'+
+ '<div class="row" style="gap:6px">'+sel.cn.map(c=>'<span class="pill n">'+c+'</span>').join('')+'</div>'+
+ (v?'<div class="vbox2"><span class="vbolt">'+ic('bolt',16)+'</span><div style="flex:1;min-width:0"><b style="font-size:14px">ตรวจโดย ChargerXpert</b><p class="note">ตรวจล่าสุด '+fmtS(v.date)+' · ครั้งต่อไป '+fmtS(v.next)+'</p><div class="vbar" role="img" aria-label="ผลตรวจเหลืออีก '+dd+' วัน"><i style="width:'+pc+'%"></i></div><small class="note">อยู่ในรอบตรวจอีก '+dd+' วัน</small></div></div>':'')+
+ '<div class="row" style="flex-wrap:nowrap;gap:8px"><button class="btn y" style="flex:1.5" data-act="openPass" data-id="'+sel.charger+'">'+ic('shield',15)+'ดูผลตรวจ</button><button class="btn o" style="flex:1" data-act="nope" data-id="นำทาง (ฟีเจอร์ของแอปแผนที่)">'+ic('arrow',15)+'นำทาง</button></div></div>'};
 V('x-webmap','base',()=>{
   const q=(S.wq||'').trim().toLowerCase(),f=S.wType||'all';
   const list=MAPST.filter(st=>verifiedOf(st)&&(f==='all'||st.type.toLowerCase()===f)&&(!q||st.name.toLowerCase().includes(q)));
   if(S.sel&&!list.find(s=>s.id===S.sel))S.sel=null;
   const sel=list.find(s=>s.id===S.sel);
-  const chip=(id,l)=>'<button class="mchip'+(f===id?' on':'')+'" data-act="wt" data-id="'+id+'" aria-pressed="'+(f===id?'true':'false')+'">'+l+'</button>';
+  const chip=(id,l,i)=>'<button class="mchip'+(f===id?' on':'')+'" data-act="wt" data-id="'+id+'" aria-pressed="'+(f===id?'true':'false')+'">'+(i?ic(i,14):'')+l+'</button>';
   return '<div class="brow">'+ic('lock',13)+'<span>chargerxpert.example/map</span></div>'+
    '<div class="mapbox" data-mk="web">'+mapSvg(list,sel&&sel.id,'web',true)+
-   '<div class="msearch"><span class="logo-m" style="width:26px;height:26px;border-radius:8px;flex:none">'+ic('bolt',16)+'</span><input data-q="w" placeholder="ค้นหาสถานีที่ตรวจแล้ว" value="'+esc(S.wq||'')+'" aria-label="ค้นหาสถานี" autocomplete="off">'+ic('search',18)+'</div>'+
-   '<div class="mchips" style="top:62px">'+chip('all','ทั้งหมด')+chip('dc','DC')+chip('ac','AC')+'</div>'+
-   zoomUi('web')+(sel?'':'<div class="mlegend"><span class="lgb">'+ic('bolt',9)+'</span><span>สถานีที่มีผลตรวจ</span><b>'+list.length+' แห่ง</b></div>')+(sel?stSheet(sel,verifiedOf(sel),true):'')+'</div>';
+   '<div class="wtop"><div class="row" style="flex-wrap:nowrap;gap:10px;align-items:center"><span class="logo-m big">'+ic('bolt',22)+'</span><div style="flex:1;min-width:0;line-height:1.25"><b style="font:700 18px var(--fd)">ChargerXpert</b><br><small class="note">สถานีชาร์จที่ผ่านการตรวจสอบ</small></div><span class="pill k">'+list.length+' แห่ง</span></div>'+
+   '<div class="wsrch">'+ic('search',18)+'<input data-q="w" placeholder="ค้นหาชื่อสถานี" value="'+esc(S.wq||'')+'" aria-label="ค้นหาสถานี" autocomplete="off"></div>'+
+   '<div class="mchips">'+chip('all','ทั้งหมด')+chip('dc','DC','bolt')+chip('ac','AC','plug')+'</div></div>'+
+   zoomUi('web')+(sel?'':'<div class="wleg"><span class="lgb">'+ic('bolt',10)+'</span><span style="flex:1;line-height:1.3;font-size:12.5px"><b>สถานีที่มีผลตรวจ</b><br><small style="opacity:.75">ข้อมูล ณ '+fmtS(TODAY)+'</small></span><button class="wi" data-act="webInfo" aria-label="วิธีแสดงสถานีบนแมป">'+ic('alert',16)+'</button></div>')+(sel?stSheet(sel,verifiedOf(sel),true):'')+'</div>';
 },{after:()=>{
   const list=MAPST.filter(st=>verifiedOf(st));
   if(!mvOf('web')&&fitWeb(list)){render();return}
@@ -1252,12 +1373,12 @@ V('x-webmap','base',()=>{
 
 /* ---- scene 4: scan ---- */
 V('x-scan','base',()=>{
-  const opts=[['EV-CH-001','ABC Charging Station'],['SR-01','Sunrise Ratchada'],['GP-07','GreenPlug Bangna'],['EX-01','Elexa ห้วยขวาง']];
-  const sel=S.scanSel||'EV-CH-001';
-  return '<div class="cam" id="cam"><div class="camtop"><button class="cbtn" data-act="nope" data-id="ไฟฉาย (จำลอง)" aria-label="ไฟฉาย">'+ic('bolt',18)+'</button><span class="pill k">เล็งกล้องไปที่ QR บนสติกเกอร์</span><button class="cbtn" data-act="nope" data-id="เลือกรูปจากคลัง (จำลอง)" aria-label="รูปภาพ">'+ic('img',18)+'</button></div>'+
+  const opts=[['SR-01','Sunrise'],['GP-07','GreenPlug'],['EX-01','Elexa'],['EV-CH-001','ABC (หมดอายุ)']];
+  const sel=S.scanSel||'SR-01';
+  return '<div class="cam cm" id="cam"><div class="camtop"><button class="cbtn" data-act="nope" data-id="ไฟฉาย (จำลอง)" aria-label="ไฟฉาย">'+ic('bolt',18)+'</button><span class="pill k cmhint">'+ic('qr',14)+'เล็งกล้องไปที่ QR บนสติกเกอร์</span><button class="cbtn" data-act="nope" data-id="เลือกรูปจากคลัง (จำลอง)" aria-label="รูปภาพ">'+ic('img',18)+'</button></div>'+
    '<div class="gnd"></div><div class="chg"><div class="chg-top"></div><div class="chg-s"></div><div class="stkw">'+stickerSvg(sel,128)+'</div><div class="chg-c"></div><div class="chg-f"></div></div>'+
-   '<div class="vf"><i></i><i></i><i></i><i></i><u></u></div><div class="flash"></div>'+
-   '<div class="campick"><p class="note" style="color:#d4d4cc">เลือกตู้ที่ส่อง (เดโม)</p><div class="chips">'+opts.map(o=>'<button class="'+(sel===o[0]?'on':'')+'" data-act="scanPick" data-id="'+o[0]+'">'+o[0]+'</button>').join('')+'</div>'+
+   '<div class="vf"><i></i><i></i><i></i><i></i><u></u><s></s></div><div class="cmcap">ถือให้ QR อยู่ในกรอบ</div><div class="flash"></div>'+
+   '<div class="campick"><div class="cmgl"><p>เลือกตู้ที่ส่อง (เดโม)</p><div class="chips">'+opts.map(o=>'<button class="'+(sel===o[0]?'on':'')+'" data-act="scanPick" data-id="'+o[0]+'">'+o[1]+'</button>').join('')+'</div></div>'+
    '<button class="scanbtn" data-act="scanGo" aria-label="สแกน QR">'+ic('qr',26)+'<span>สแกน</span></button></div></div>';
 });
 
@@ -1315,7 +1436,7 @@ V('x-report','base',id=>{
   const tabs='<div class="xtabs" role="tablist"><button class="'+(tab==='sum'?'on':'')+'" data-act="xTab" data-id="sum" role="tab">สรุปผลการตรวจสอบ</button><button class="'+(tab==='his'?'on':'')+'" data-act="xTab" data-id="his" role="tab">ประวัติการตรวจสอบ</button></div>';
   let body='';
   if(tab==='sum'){
-    const code='TH-EGAT-DC-'+(SCODE[cid]||'009999'),banner='<div class="xban '+tone+'"><div class="xbk"><span class="xstk">'+stickerSvg(cid,54)+'</span><div><small class="mono" style="color:#6B7390">'+code+'</small><br><b>'+(valid?ov[0]:isLatest?'ผลตรวจหมดอายุแล้ว':'ผลตรวจครั้งก่อนหน้า')+'</b><p>'+(valid?'ตามเกณฑ์ตรวจสอบของ ChargerXpert':isLatest?'ยังไม่พบผลตรวจครั้งใหม่ในระบบ':'เป็นผลตรวจ ณ วันที่ระบุเท่านั้น')+'</p></div></div><div class="xdates"><div><small>วันที่ตรวจสอบ</small><b>'+fmtS(rec.date)+'</b></div><div><small>ใช้ได้ถึง</small><b>'+(valid?fmtS(rec.next):'—')+'</b></div></div></div>';
+    const code=cabId(cid),banner='<div class="xban '+tone+'"><div class="xbk"><span class="xstk">'+stickerSvg(cid,54)+'</span><div><small class="mono" style="color:#6B7390">'+code+'</small><br><b>'+(valid?ov[0]:isLatest?'ผลตรวจหมดอายุแล้ว':'ผลตรวจครั้งก่อนหน้า')+'</b><p>'+(valid?'ตามเกณฑ์ตรวจสอบของ ChargerXpert':isLatest?'ยังไม่พบผลตรวจครั้งใหม่ในระบบ':'เป็นผลตรวจ ณ วันที่ระบุเท่านั้น')+'</p></div></div><div class="xdates"><div><small>วันที่ตรวจสอบ</small><b>'+fmtS(rec.date)+'</b></div><div><small>ใช้ได้ถึง</small><b>'+(valid?fmtS(rec.next):'—')+'</b></div></div></div>';
     const res='<div class="xrow"><div class="xc xdon"><h4>ผลการตรวจสอบทั้งหมด</h4><div class="row" style="flex-wrap:nowrap;gap:10px;align-items:center">'+donutSvg(pc,oc,fc,items.filter(x=>x.s!=='na').length||1)+'<div class="xleg"><span><i style="background:#2BA55A"></i>ผ่าน <b>'+pc+'</b></span><span><i style="background:#F5B301"></i>ข้อสังเกต <b>'+oc+'</b></span><span><i style="background:#D64545"></i>ไม่ผ่าน <b>'+fc+'</b></span></div></div></div>'+
       '<div class="xc xgau"><h4>สัดส่วนรายการที่ผ่าน</h4>'+arcSvg(pct)+'<small>จาก '+tot+' รายการ ตรวจ '+rec.heads.length+' หัวชาร์จ</small></div></div>';
     const cat='<div class="xc"><div class="row" style="justify-content:space-between;flex-wrap:nowrap"><h4>ผลตรวจแยกหมวด</h4><span class="note">'+rec.docId+'</span></div><div class="xgrid">'+items.map(x=>{const s=statusPill(x.s);return '<div class="xt"><span class="xi">'+ic(x.ic,20)+'</span><b>'+x.l+'</b><span class="pill '+s[0]+'">'+s[1]+'</span></div>'}).join('')+'</div></div>';
@@ -1337,7 +1458,7 @@ V('x-report','base',id=>{
 const CH_ST=[['ว่าง','ok'],['กำลังชาร์จ','info'],['ว่าง','ok'],['กำลังชาร์จ','info'],['ว่าง','ok'],['ไม่พร้อมใช้งาน','n']];
 V('x-station','base',id=>{
   const st=MAPST.find(x=>x.id===(id||S.xSt))||MAPST[0];S.xSt=st.id;
-  const v=verifiedOf(st),n=Math.min(st.ports,6),code='TH-EGAT-DC-'+(SCODE[st.charger]||'009999');
+  const v=verifiedOf(st),n=Math.min(st.ports,6),code=cabId(st.charger);
   const heads=[...Array(n)].map((_,i)=>({i,kw:st.kw,type:st.type,cn:st.cn[i%st.cn.length],s:CH_ST[(i+st.id.length)%CH_ST.length]}));
   const cnt=k=>heads.filter(h=>h.s[0]===k).length;
   const hero='<div class="xhero"><div class="xhl">'+ic('bolt',42)+'</div><span class="xhn">'+esc(st.kind==='elexa'?'Elexa':st.kind==='backen'?'BackEN':st.name.split(' ')[0])+'</span><span class="xhc">1/6</span></div>';
@@ -1352,7 +1473,7 @@ V('x-station','base',id=>{
 });
 const SCENE_ACT={
   pickSt(el){const st=MAPST.find(x=>x.id===el.dataset.id);if(!st)return;const off=S.sel===st.id;S.sel=off?null:st.id;
-    if(!off){const key=S.baseView==='x-webmap'?'web':'elexa';S.mv=S.mv||{};const v=S.mv[key]||(S.mv[key]={tx:0,ty:0,k:1});v.tx=180-st.x*v.k;v.ty=190-st.y*v.k}
+    if(!off){const key=S.baseView==='x-webmap'?'web':'elexa';S.mv=S.mv||{};const v=S.mv[key]||(S.mv[key]={tx:0,ty:0,k:1});v.tx=180-st.x*v.k;v.ty=(S.baseView==='x-webmap'?215:190)-st.y*v.k}
     render()},
   mall(){S.mType='all';S.mOk=false;S.mq='';S.sel=null;render()},
   mt(el){S.mType=(S.mType||'all')===el.dataset.id?'all':el.dataset.id;render()},
@@ -1367,6 +1488,9 @@ const SCENE_ACT={
   xBack(){const b=S.baseView;if(b==='x-report'&&S.xFrom==='x-station')go('x-station',S.xSt);else go('x-elexa')},
   passHead(el){S.pHead=+el.dataset.id;render()},
   scanPick(el){S.scanSel=el.dataset.id;render()},
+  camZoom(el){const z=+el.dataset.id;S.camZoom=z;const f=document.querySelector('.feed');if(f)f.style.transform='scale('+z+')';document.querySelectorAll('.izoom button').forEach(b=>b.classList.toggle('on',+b.dataset.id===z))},
+  shutter(){const c=$('#cam');if(c){c.classList.remove('shot');void c.offsetWidth;c.classList.add('shot')}toast('บันทึกรูปลงคลังภาพ (จำลอง)')},
+  webInfo(){modal('สถานีบนแมปนี้เลือกอย่างไร','<div class="stack"><p>สถานีจะขึ้นบนแมปเมื่อครบทุกข้อ</p><ul style="padding-left:18px;line-height:1.9;margin:0"><li>เจ้าของสถานียินยอมให้แสดง</li><li>เจ้าของยังเป็นสมาชิก ChargerXpert</li><li>ผลตรวจล่าสุดยังอยู่ในรอบตรวจ</li></ul><p class="note">'+DISC2+'</p></div>')},
   scanGo(){const cam=$('#cam');if(cam)cam.classList.add('scanning');setTimeout(()=>{if(S.baseView==='x-scan'){S.pHead=0;go('passport',S.scanSel||'EV-CH-001')}},650)},
   nope(el){toast(el.dataset.id||'ฟีเจอร์เดิมของแอป')}
 };
@@ -1495,7 +1619,7 @@ async function recPage(rec){
     x.font=FN(400,12.5);x.fillStyle='#222';x.fillText('ความคลาดเคลื่อนของค่าพลังงาน (เทียบเครื่องวัดอ้างอิง)',58,y+18);x.textAlign='right';x.font=FN(600,12.5);x.fillText((h.dev>0?'+':'')+num(h.dev,2)+' %',736,y+18);x.textAlign='left';y+=40});
   if(rec.heads.length>2){x.font=FN(400,12);x.fillStyle='#777';x.fillText('และอีก '+(rec.heads.length-2)+' หัวชาร์จ ดูรายละเอียดในระบบ',48,y);y+=22}
   y=wrapT(x,'สรุป: '+rec.summary,48,y+4,698,19,FN(400,12.5),'#333',3);
-  const by=Math.max(y+14,960),code='TH-EGAT-DC-'+(SCODE[rec.chargerId]||'009999'),q=await loadSvg(qrSvg(passUrl(rec.chargerId)));
+  const by=Math.max(y+14,960),code=cabId(rec.chargerId),q=await loadSvg(qrSvg(passUrl(rec.chargerId)));
   if(q)x.drawImage(q,48,by,92,92);x.font=FN(600,11);x.fillStyle='#171717';x.fillText(code,48,by+108);
   wrapT(x,DISC2,166,by+12,580,17,FN(400,11),'#555',5);
   x.strokeStyle='#E6E6E0';x.beginPath();x.moveTo(48,1086);x.lineTo(746,1086);x.stroke();x.font=FN(400,10);x.fillStyle='#999';x.fillText('ChargerXpert · เอกสารจากโปรโตไทป์ ข้อมูลทั้งหมดเป็นข้อมูลจำลอง',48,1104);
@@ -1575,6 +1699,167 @@ Object.assign(SCENE_ACT,{
     PAY().push(rec);if(inv)db.company.payment='Pending';else applyPay(rec);audit((inv?'ออกใบแจ้งหนี้ ':'รับชำระ ')+id+' '+baht(q.total));S.payDone=rec;render()},
   renDone(){S.payDone=null;S.ren=null;go('membership')},
   confirmPay(el){const p=PAY().find(x=>x.id===el.dataset.id);if(!p)return;applyPay(p);audit('ยืนยันรับชำระ '+p.id);toast('ยืนยันรับชำระแล้ว ต่ออายุสมาชิกและส่ง LINE ให้ลูกค้า','ok');render()}
+});
+
+document.addEventListener('click',e=>{const v=e.target.closest&&e.target.closest('#vfd');if(!v||e.target.closest('button'))return;const r=v.getBoundingClientRect(),d=document.createElement('div');d.className='fsq';d.style.left=(e.clientX-r.left-36)+'px';d.style.top=(e.clientY-r.top-36)+'px';v.appendChild(d);setTimeout(()=>d.remove(),1000)});
+
+/* ===== ChargerXpert result pages (UI flow) + station detail (Elexa / public web) ===== */
+Object.assign(ICONS,{
+ gear:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>',
+ gauge:'<path d="M4 17a8 8 0 1116 0"/><path d="M12 17l4-5"/><circle cx="12" cy="17" r="1"/>',
+ heart:'<path d="M12 20s-7-4.5-7-10a4 4 0 017-2.5A4 4 0 0119 10c0 5.5-7 10-7 10z"/>',
+ phone:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/>',
+ share:'<circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/>',
+ img:'<rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/>',
+ star:'<path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6-5.4-3-5.4 3 1.1-6L3.2 9.4l6.1-.8z"/>'
+});
+const fmtB=s=>{if(!s)return '—';const d=d2(s);return d.getDate()+' '+TS[d.getMonth()]+' '+(d.getFullYear()+543)};
+const CXV=[['1.1','สภาพภายนอกของตู้','External Condition','ตรวจสภาพภายนอก รอยบิดงอ รอยแตก หรือรอยบุบ'],['1.2','หน้าจอและระบบควบคุม','HMI & Controls','หน้าจอแสดงผลและปุ่มควบคุม รวมถึง Emergency Stop'],['1.3','ระบบล็อกเชิงกล','Mechanical Locking','กลไกล็อกประตูตู้และระบบความปลอดภัยภายใน'],['1.4','การป้องกันฝุ่นและน้ำ','Dust & Water Protection','ซีลยางและร่องรอยการรั่วซึมของน้ำหรือฝุ่น'],['1.5','แผ่นกรองอากาศ','Air Filter','ความสะอาดของแผ่นกรองอากาศ'],['1.6','อุปกรณ์ภายใน','Internal Components','ขั้วต่อสายไฟและร่องรอยไหม้หรือความเสียหายภายใน'],['1.7','สายชาร์จและหัวชาร์จ','Cable & Connector','สภาพทางกายภาพของสายชาร์จและหัวชาร์จ']];
+const CXF=[['2.1','การทำงานในสภาวะปกติ','State Test','ตรวจการทำงานและการจ่ายประจุในสภาวะ Normal แยกตามหัวชาร์จ',''],['2.2','ตอบสนองเมื่อ CP ถูกตัด','CP Cut','ทดสอบการตอบสนองเมื่อ Control Pilot ถูกตัดหรือผิดปกติ',''],['2.3','ตอบสนองเมื่อ CP ลัดวงจร','CP Short','ทดสอบการตอบสนองเมื่อ Control Pilot ลัดวงจร',''],['2.4','ตอบสนองเมื่อสายดินขาด','PE Cut','ทดสอบการตอบสนองเมื่อ Protective Earth ขาด',''],['2.5','เฝ้าระวังความต้านทานฉนวน','IMD (Insulation Monitoring)','ตรวจระบบเฝ้าระวังความต้านทานฉนวน','> 100 kΩ'],['2.6','การหยุดชาร์จ','Stop Test','ตรวจ Normal Stop และ Emergency Stop แยกตามหัวชาร์จ',''],['2.7','การตัดวงจรเมื่อไฟรั่ว','RCD Test','ทดสอบอุปกรณ์ตัดไฟรั่ว (RCD)',''],['2.8','กระแสรั่วไหล','Leakage Current','ตรวจกระแสรั่วไหลขณะทดสอบ','≤ 30 mA'],['2.9','ความต้านทานสายดิน','Grounding Resistance','ตรวจความต้านทานของระบบสายดิน','≤ 5 Ω'],['2.10','ความต่อเนื่องของสายดิน','Grounding Continuity','ตรวจความต่อเนื่องของการต่อลงดิน','รอยืนยันเกณฑ์'],['2.11','ความต้านทานฉนวน','Isolation Resistance','วัดความต้านทานฉนวนที่ 500 Vdc','> 1 MΩ']];
+const CXA=[];[1].forEach(n=>[['Imin',375,25],['Imin',750,25],['I50% Imax',375,200],['I50% Imax',500,200],['Imax',450,300],['Imax',500,300]].forEach(p=>CXA.push({id:'3.'+(CXA.length+1),n:n,tp:p[0],v:p[1],a:p[2]})));
+const CXCAT=[['gear','หมวด 1','Visual','สภาพทางกายภาพ','Visual & Physical Inspection','eye',CXV.length,'รายการ'],['gear','หมวด 2','Functional','การทำงานและความปลอดภัย','Functional & Safety Testing','gear',CXF.length,'รายการ'],['gauge','หมวด 3','Accuracy','ความถูกต้องแม่นยำ','Accuracy Test','gauge',CXA.length,'จุดทดสอบ']];
+function cxResults(rec,hi){
+  const r={},rank={pass:0,na:0,obs:1,fail:2},map={body:'1.1',screen:'1.2',estop:'2.6',cable:'1.7',conn:'1.7',label:'1.1'};
+  const set=(k,v)=>{if(!r[k]||rank[v]>rank[r[k]])r[k]=v};
+  [rec.heads[hi]||rec.heads[0]].forEach(h=>{Object.keys(map).forEach(k=>{const x=(h.visual||{})[k];if(x&&x!=='pass'&&x!=='na')set(map[k],x)});if(Math.abs(h.dev||0)>1)CXA.forEach(a=>{if(a.tp==='Imax')set(a.id,'obs')})});
+  return k=>r[k]||'pass';
+}
+const cxCatItems=i=>i===0?CXV.map(x=>x[0]):i===1?CXF.map(x=>x[0]):CXA.map(x=>x.id);
+function unitsOf(st){
+  const n=Math.min(st.ports,6),vr=verifiedOf(st),vc=vr?Math.min(n,vr.heads.length):0,hpc=vr?Math.max(1,vr.heads.length):2,code=+(SCODE[st.charger]||'9999');
+  return [...Array(n)].map((_,i)=>{const dc=st.type==='DC',cn=st.cn[i%st.cn.length],kw=dc&&i%3===2&&st.cn.length>1?'50 kW':st.kw,k=Math.floor(i/hpc),no=i%hpc+1,
+    cab=k===0&&st.charger?cabId(st.charger):'TH-EGAT-'+st.type+'-'+String(code+k*7).padStart(6,'0');
+    return {i:i,no:no,cab:cab,cn:cn,kw:kw,type:st.type,ver:i<vc,id:cab+'-H'+no,cert:'CX-2026-'+String(code+i).padStart(6,'0'),s:CH_ST[(i+st.id.length)%CH_ST.length]}});
+}
+function cxChg(w){return '<svg viewBox="0 0 40 64" width="'+w+'" height="'+(w*1.6)+'" aria-hidden="true"><rect x="6" y="2" width="28" height="58" rx="6" fill="#23262B"/><rect x="10" y="8" width="20" height="14" rx="3" fill="#FFD60A"/><path d="M21 10l-4 6h3l-1 5 4-6h-3z" fill="#111"/><rect x="11" y="28" width="18" height="3" rx="1.5" fill="#555"/><rect x="11" y="35" width="18" height="3" rx="1.5" fill="#555"/><path d="M34 30c5 0 5 14 0 14" stroke="#23262B" stroke-width="2.4" fill="none"/></svg>'}
+function stPhoto(st,w,h){
+  const c=st.kind==='elexa'?['#1F4FD8','#fff']:st.kind==='backen'?['#16348f','#FFD60A']:['#262626','#FFD60A'],nm=esc(st.kind==='elexa'?'Elexa':st.kind==='backen'?'BackEN':(st.name.split(' ').slice(0,2).join(' ')));
+  return '<svg viewBox="0 0 300 150" width="'+w+'" height="'+h+'" preserveAspectRatio="xMidYMid slice" role="img" aria-label="ภาพประกอบสถานี (จำลอง)"><rect width="300" height="150" fill="#CFE2FA"/><rect y="0" width="300" height="60" fill="#B8D5F7"/><rect y="112" width="300" height="38" fill="#7C8089"/><rect y="126" width="300" height="3" fill="#fff" opacity=".55"/><rect x="34" y="36" width="232" height="26" rx="5" fill="'+c[0]+'"/><rect x="34" y="62" width="232" height="4" fill="#fff" opacity=".7"/><text x="150" y="55" text-anchor="middle" font-size="17" font-weight="700" fill="'+c[1]+'" font-family="Prompt,sans-serif">'+nm+'</text><rect x="48" y="66" width="7" height="46" fill="#E9ECF2"/><rect x="245" y="66" width="7" height="46" fill="#E9ECF2"/><g>'+[96,136,176].map(x=>'<rect x="'+x+'" y="84" width="20" height="28" rx="4" fill="#2A2D33"/><rect x="'+(x+4)+'" y="88" width="12" height="8" rx="2" fill="#FFD60A"/>').join('')+'</g></svg>';
+}
+const brandMark=st=>st.kind==='elexa'?'<span class="bm el">Ele<b>X</b></span>':st.kind==='backen'?'<span class="bm bk">BackEN</span>':'';
+function cxData(param){
+  const [cid,i0]=String(param||'EV-CH-001|0').split('|'),c=chargerOf(cid)||extraOf(cid);if(!c)return null;
+  const mst=MAPST.find(m=>m.charger===cid),idx=+i0||0,all=recsOf(cid),latest=all[0];if(!latest)return {c:c,cid:cid,none:true};
+  const rec=(S.xRec&&all.find(r=>r.docId===S.xRec))||latest,us=mst?unitsOf(mst):null,unit=(us&&us[idx])||{i:idx,no:idx+1,cab:cabId(cid),id:cabId(cid)+'-H'+(idx+1),cert:'CX-2026-'+(SCODE[cid]||'009999')};
+  const ms=S.passMem&&S.passMem!=='live'?S.passMem:(mst?stOwnerStatus(mst):ownerStatus(c)),isLatest=rec===latest,days=dayDiff(TODAY,rec.next),valid=isLatest&&ms==='Active'&&days>0;
+  return {c:c,cid:cid,idx:idx,mst:mst,unit:unit,rec:rec,all:all,latest:latest,isLatest:isLatest,days:days,valid:valid,ms:ms,res:cxResults(rec,idx),
+    name:(mst&&mst.name)||c.stationName||stationOf(c.station).name,addr:mst?stAddr(mst):(c.station?stationOf(c.station).address:''),oper:mst&&mst.kind!=='other'?(mst.kind==='elexa'?'Elexa':'BackEN'):(rec.customerName||'—')};
+}
+const cxHead=(title,sub,back)=>'<div class="cxh"><button class="cxback" data-act="'+(back||'cxBack')+'" aria-label="ย้อนกลับ">'+ic('arrow',22)+'</button><div class="cxt"><b>'+title+'</b>'+(sub?'<small>'+sub+'</small>':'')+'</div></div>';
+const cxLogo=back=>'<div class="cxh"><button class="cxback" data-act="'+back+'" aria-label="ย้อนกลับ">'+ic('arrow',22)+'</button><span class="cxlg"><span class="logo-m">'+ic('bolt',18)+'</span><span><b>ChargerXpert</b><small>ก่อนชาร์จ ดูให้ชัด</small></span></span><button class="cxlang" data-act="cxLang" aria-label="ภาษา"><b>TH</b> | EN</button></div>';
+function cxOvr(d){const rank={pass:0,obs:1,fail:2};let w='pass';[0,1,2].forEach(i=>cxCatItems(i).forEach(k=>{const x=d.res(k);if(rank[x]>rank[w])w=x}));return w}
+function cxCatStat(d,i){const ks=cxCatItems(i),p=ks.filter(k=>d.res(k)==='pass').length;return {p:p,t:ks.length,ok:p===ks.length}}
+const CXNONE='<div class="cx">'+'<div class="cxh"><button class="cxback" data-act="cxBack">'+ic('arrow',22)+'</button><div class="cxt"><b>ไม่พบข้อมูลการตรวจสอบ</b></div></div><div class="cxb"><div class="cxhero warn"><span class="cxsh">'+'!'+'</span><div><b>ไม่พบข้อมูลการตรวจสอบของเครื่องนี้</b><small>ตรวจสอบว่า QR ไม่ชำรุดหรือถูกปิดทับ และเทียบ Charger ID บนสติกเกอร์</small></div></div><button class="btn o block" data-act="nope" data-id="ส่งเรื่องแจ้งปัญหา QR แล้ว (จำลอง)">แจ้งปัญหา QR</button></div></div>';
+
+V('cx-sum','base',param=>{
+  const d=cxData(param);if(!d||d.none)return CXNONE;
+  const from=S.cxFrom||'x-scan',ov=cxOvr(d),pr=d.idx;
+  let tone,t1,t2,t3;
+  if(!d.isLatest){tone='mist';t1='ผลตรวจครั้งก่อนหน้า';t2='PREVIOUS RESULT';t3='เป็นผลตรวจ ณ วันที่ระบุเท่านั้น ไม่ใช่สถานะปัจจุบัน'}
+  else if(!d.valid){tone='warn';t1='ผลตรวจสอบหมดอายุแล้ว';t2='EXPIRED';t3=d.days<=0?'หมดอายุเมื่อ '+fmtB(d.rec.next)+' ยังไม่พบผลตรวจครั้งใหม่ในระบบ':'ผลตรวจครั้งล่าสุดยังไม่ได้อยู่ในแผนตรวจต่อเนื่อง'}
+  else if(ov==='pass'){tone='ok';t1='ผ่านการตรวจสอบ';t2='VERIFIED ACTIVE';t3='ครบทั้ง 3 หมวด | ผลตรวจยังมีผล'}
+  else{tone='warn';t1=OV[ov][0];t2='ตรวจพบรายการที่ต้องติดตาม';t3='ยังไม่ผ่านครบทุกรายการ จึงไม่แสดงเป็น Verified Active'}
+  const sh=tone==='ok'?ic('check',34):'<b style="font-size:30px;line-height:1">!</b>';
+  const cats=CXCAT.map((x,i)=>{const s=cxCatStat(d,i);x=x.slice();x[6]=s.t;return '<button class="cxcat" data-act="cxTab" data-id="'+i+'"><span class="cxci">'+ic(x[5],22)+'</span><span class="cxcn"><b>'+(i+1)+'. '+x[3]+'</b><small>'+x[4]+' ('+x[6]+' '+x[7]+')</small></span><span class="cxchip '+(s.ok?'ok':'warn')+'">'+(s.ok?ic('check',12)+' PASS':s.p+'/'+s.t)+'</span><span class="cxcv">›</span></button>'}).join('');
+  const dem=from==='x-scan'?'<div class="card mist stack" style="margin-top:4px"><p class="note">ตัวควบคุมเดโม (ไม่แสดงต่อผู้สแกนจริง)</p><div class="seg" role="radiogroup" aria-label="จำลองสถานะสมาชิก">'+[['live','ตามจริง'],['Active','Active'],['Expired','Expired'],['Cancelled','Cancelled']].map(o=>'<label><input type="radio" name="pm" value="'+o[0]+'" data-chg="passMem"'+(S.passMem===o[0]?' checked':'')+'><span>'+o[1]+'</span></label>').join('')+'</div><div class="chips">'+['EV-CH-001','SR-01','GP-07','EX-01'].map(x=>'<button class="'+(x===d.cid?'on':'')+'" data-act="cxOpen" data-from="x-scan" data-id="'+x+'|0">'+x+'</button>').join('')+'</div></div>':'';
+  return '<div class="cx">'+cxLogo('cxBack')+'<div class="cxb">'+
+   '<div class="cxhero '+tone+'"><span class="cxsh">'+sh+'</span><div><b>'+t1+'</b><em>'+t2+'</em><small>'+t3+'</small></div></div>'+
+   (d.mst?(function(){const us=unitsOf(d.mst).filter(u=>u.ver);return us.length>1?'<div class="cxheads" role="tablist" aria-label="เลือกหัวชาร์จ">'+us.map(u=>'<button class="'+(u.i===d.idx?'on':'')+'" role="tab" data-act="cxOpen" data-from="'+from+'" data-id="'+d.cid+'|'+u.i+'">หัวชาร์จ '+u.no+' · '+u.kw+'</button>').join('')+'</div>':''})():'')+'<div class="cxcard"><div class="cxunit"><span class="cxthumb">'+cxChg(30)+'</span><div style="flex:1;min-width:0"><small>หัวชาร์จ (Charging Head) · หัวที่ '+d.unit.no+'</small><b class="cxid">'+d.unit.id+'</b><small>ตู้ชาร์จ: <span class="mono">'+d.unit.cab+'</span> (ตรงกับสติกเกอร์)</small><small>Certificate ID: '+d.unit.cert+'</small></div></div>'+
+   '<div class="cxln">'+ic('pin',18)+'<div><small>สถานี:</small> <b>'+esc(d.name)+'</b></div></div><div class="cxln">'+ic('users',18)+'<div><small>ผู้ให้บริการ:</small> <b>'+esc(d.oper)+'</b></div></div>'+
+   '<div class="cxdates"><div><span>'+ic('cal',16)+'</span><small>วันที่ตรวจ</small><b>'+fmtB(d.rec.date)+'</b></div><div class="'+(d.valid?'g':'')+'"><span>'+ic('cal',16)+'</span><small>วันหมดอายุ</small><b>'+fmtB(d.rec.next)+'</b></div></div></div>'+
+   '<div class="cxsec"><b>ผลการตรวจสอบ 3 หมวด</b><small>Inspection Results (3 Categories)</small></div>'+cats+
+   '<button class="cxbtn y" data-act="cxTo" data-id="cx-rpt">'+ic('file',17)+'รายงานการตรวจล่าสุด (PDF)</button><button class="cxbtn o" data-act="cxTo" data-id="cx-his">'+ic('clock',17)+'ดูประวัติการตรวจทั้งหมด</button>'+
+   '<div class="cxfoot"><p>ผลนี้ครอบคลุมเฉพาะหัวชาร์จที่ระบุ ไม่ใช่การรับรองทุกหัวหรือทั้งสถานี</p><p>ข้อมูลล่าสุด ณ '+fmtB(TODAY)+' '+hhmm()+' น. · เลขที่รายงาน <span class="mono">'+d.rec.docId+'</span></p><p>'+DISC2+'</p><div class="row" style="gap:8px;margin-top:6px"><button class="btn o sm" data-act="'+(from==='x-elexa'?'xBackMap':'cxMap')+'">'+ic('map',14)+'ค้นหาสถานีบนแผนที่</button><button class="btn o sm" data-act="nope" data-id="ส่งเรื่องแจ้งปัญหาข้อมูลแล้ว (จำลอง)">'+ic('alert',14)+'แจ้งปัญหาข้อมูล</button></div></div>'+dem+'</div></div>';
+});
+V('cx-det','base',param=>{
+  const d=cxData(param);if(!d||d.none)return CXNONE;
+  const tab=S.cxTab||0,x=CXCAT[tab].slice(),st=cxCatStat(d,tab),open=S.cxOpenItem;
+  const tabs='<div class="cxtabs">'+CXCAT.map((c,i)=>'<button class="'+(i===tab?'on':'')+'" data-act="cxTab2" data-id="'+i+'"><span>'+ic(c[5],22)+'</span><b>'+c[1]+'</b><small>'+c[2]+'</small></button>').join('')+'</div>';
+  const sum='<div class="cxhero '+(st.ok?'ok':'warn')+' sm"><span class="cxsh">'+(st.ok?ic('check',30):'!')+'</span><div><b>'+x[1]+': '+x[3]+'</b><small>'+x[4]+'</small><em>'+(st.ok?'PASS':'ต้องติดตาม')+'</em><small>'+st.p+' / '+st.t+' '+x[7]+'ผ่าน</small></div></div>';
+  const row=(k,th,en,body)=>{const r=d.res(k),sp=statusPill(r),on=open===k;return '<div class="cxit'+(on?' on':'')+'"><button class="cxrow" data-act="cxItem" data-id="'+k+'" aria-expanded="'+on+'"><span class="cxk">'+k+'</span><span class="cxn"><b>'+th+'</b><small>'+en+'</small></span><span class="cxrs '+sp[0]+'">'+(r==='pass'?ic('check',15):'!')+' '+sp[1]+'</span></button>'+(on?'<div class="cxdt">'+body+'</div>':'')+'</div>'};
+  const hd=Math.max(1,d.rec.heads.length);
+  const kvr=(a,b)=>'<div><small>'+a+'</small><b>'+b+'</b></div>';
+  let list='';
+  if(tab===0)list=CXV.map(v=>row(v[0],v[1],v[2],'<p>'+v[3]+'</p><div class="cxkv">'+kvr('ผลตรวจ',VRES[d.res(v[0])]||'—')+kvr('วันที่ตรวจ',fmtB(d.rec.date))+kvr('หัวชาร์จ','หัวที่ '+d.unit.no)+'</div>')).join('');
+  if(tab===1)list=CXF.map(v=>row(v[0],v[1],v[2],'<p>'+v[3]+'</p><div class="cxkv">'+kvr('ผลตรวจ',VRES[d.res(v[0])]||'—')+kvr('เกณฑ์ที่เปิดเผย',v[4]||'ไม่เปิดเผยค่า')+kvr('วันที่ตรวจ',fmtB(d.rec.date))+kvr('หัวชาร์จ','หัวที่ '+d.unit.no)+'</div>')).join('');
+  if(tab===2)list=CXA.map(v=>row(v.id,'จุดทดสอบ '+v.tp,v.v+' V / '+v.a+' A · พลังงานเป้าหมาย 1.5 kWh','<p>จุดทดสอบความถูกต้องของการวัดพลังงานของหัวชาร์จนี้เทียบกับเครื่องวัดอ้างอิง</p><div class="cxkv">'+kvr('ผลตรวจ',VRES[d.res(v.id)]||'—')+kvr('หัวชาร์จ','หัวที่ '+d.unit.no)+kvr('แรงดัน / กระแส',v.v+' V / '+v.a+' A')+kvr('พลังงานเป้าหมาย','1.5 kWh')+kvr('ค่าคลาดเคลื่อนที่ยอมรับ','รอ EGAT ยืนยัน')+'</div>')).join('');
+  return '<div class="cx">'+cxHead('ผลการตรวจ (รายละเอียด)','Inspection Detail','cxBackSum')+'<div class="cxb">'+tabs+sum+'<div class="cxlist">'+list+'</div>'+
+   '<p class="note" style="padding:0 4px">แตะรายการเพื่อดูรายละเอียด แสดงเฉพาะข้อมูลที่อนุมัติให้เปิดเผย ค่าที่วัดได้และเกณฑ์ที่ยังไม่ยืนยันจะไม่แสดง</p><p class="note" style="padding:0 4px">'+DISC2+'</p></div></div>';
+});
+V('cx-rpt','base',param=>{
+  const d=cxData(param);if(!d||d.none)return CXNONE;
+  const fn='Inspection_Report_'+d.unit.id+'_'+d.rec.date.replace(/-/g,'')+'.pdf',ov=cxOvr(d),pass=ov==='pass';
+  const line=(a,b)=>'<tr><td>'+a+'</td><td>'+b+'</td></tr>';
+  const cr=CXCAT.map((c,i)=>{const s=cxCatStat(d,i);return '<div class="cxpc'+(s.ok?'':' w')+'">'+(s.ok?ic('check',11):'!')+' '+c[4].split(' ')[0]+(i===0?' & Physical':i===1?' & Safety':' Test')+': <b>'+(s.ok?'ผ่าน':s.p+'/'+s.t)+'</b></div>'}).join('');
+  return '<div class="cx">'+cxHead('รายงานการตรวจครั้งล่าสุด','Latest Inspection Report','cxBackSum')+'<div class="cxb" style="background:#EDEDE8">'+
+   '<div class="cxpaper"><div class="cxph"><span class="logo-m">'+ic('bolt',14)+'</span><b>ChargerXpert</b></div><h4>รายงานผลการตรวจสอบเครื่องชาร์จรถยนต์ไฟฟ้า</h4><small>(EV Charger Inspection Report)</small><table>'+line('ตู้ชาร์จ (Charger ID)','<span class="mono">'+d.unit.cab+'</span>')+line('หัวชาร์จ (Head ID)','<span class="mono">'+d.unit.id+'</span>')+line('Certificate ID:','<span class="mono">'+d.unit.cert+'</span>')+line('วันที่ตรวจสอบ:',fmtB(d.rec.date))+line('ผลตรวจสอบ:','<b style="color:'+(pass?'#1E8E4A':'#B27700')+'">'+(pass?'ผ่าน (PASS)':OV[ov][0])+'</b>')+'</table>'+cr+'<div class="cxpq"><div style="width:62px;height:62px">'+qrSvg(passUrl(d.cid))+'</div><small>หน้า 1</small></div></div>'+
+   '<div class="cxfile"><span class="cxpdf">PDF</span><div style="flex:1;min-width:0"><b>'+fn+'</b><small>เอกสารตัวอย่าง · ข้อมูลจำลอง</small></div></div>'+
+   '<button class="cxbtn y" data-act="xPdf" data-id="'+d.rec.docId+'">'+ic('down',18)+'ดาวน์โหลดรายงาน (PDF)</button><button class="cxbtn o" data-act="xPdf" data-id="'+d.rec.docId+'">'+ic('eye',18)+'เปิดดูรายงาน</button><p class="note" style="padding:0 4px">'+DISC2+'</p></div></div>';
+});
+V('cx-his','base',param=>{
+  const d=cxData(param);if(!d||d.none)return CXNONE;
+  const n=d.all.length;
+  return '<div class="cx">'+cxHead('ประวัติการตรวจสอบ','Inspection History','cxBackSum')+'<div class="cxb"><div class="cxcard"><div class="cxunit"><span class="cxthumb">'+cxChg(30)+'</span><div style="flex:1;min-width:0"><b class="cxid">'+d.unit.id+'</b><small>Certificate ID: '+d.unit.cert+'</small></div></div></div>'+
+   d.all.map((r,i)=>{const ok=OV[r.overall][1]==='ok',cur=i===0;return '<button class="cxhi'+(cur?' cur':'')+'" data-act="cxRec" data-id="'+r.docId+'"><span class="cxdot '+(ok?'ok':'warn')+'">'+(ok?ic('check',14):'!')+'</span><span style="flex:1;min-width:0;text-align:left"><b>ครั้งที่ '+(n-i)+(cur?' (ล่าสุด)':'')+'</b><small style="display:block;font-size:14px;color:#222;font-weight:600">'+fmtB(r.date)+'</small><small>เลขที่รายงาน: <span class="mono">'+r.docId+'</span></small></span><span class="cxchip '+(ok?'ok':'warn')+'">'+(ok?'ผ่าน':'ต้องติดตาม')+'</span><span class="cxcv">›</span></button>'}).join('')+
+   '<div class="cxinfo">'+ic('alert',16)+'<span>เก็บประวัติการตรวจสอบย้อนหลังเพื่อความโปร่งใสและตรวจสอบได้ (ระยะเวลาเก็บข้อมูลรอยืนยัน) ผลตรวจเดิมไม่ถูกลบเมื่อมีผลตรวจครั้งใหม่</span></div><p class="note" style="padding:0 4px">'+DISC2+'</p></div></div>';
+});
+
+/* ---- station detail: Elexa app + public web (same content, different shell) ---- */
+function stPage(st,web){
+  const v=verifiedOf(st),us=unitsOf(st),vn=us.filter(u=>u.ver).length,cnt=k=>us.filter(u=>u.s[0]===k).length,from=web?'x-webmap':'x-elexa';
+  const banner=v?'<button class="sbn" data-act="cxOpen" data-from="'+from+'" data-id="'+st.charger+'|0"><span class="sbh">'+ic('bolt',22)+'</span><span style="flex:1;min-width:0;text-align:left;line-height:1.3"><b>ผ่านการตรวจสอบ ChargerXpert</b><br><small>'+vn+' จาก '+us.length+' หัวชาร์จ · ใช้ได้ถึง '+fmtB(v.next)+'</small></span><span class="sbq">'+qrSvg(passUrl(st.charger))+'</span><span class="cxcv">›</span></button>':'';
+  const rev=Math.round(st.rate*110+st.km*7);
+  const top=web?'<div class="brow">'+ic('lock',13)+'<span>chargerxpert.example/map</span></div><div class="cxh"><button class="cxback" data-act="wBack" aria-label="ย้อนกลับ">'+ic('arrow',22)+'</button><span class="cxlg"><span class="logo-m">'+ic('bolt',18)+'</span><span><b>ChargerXpert</b><small>สถานีที่ผ่านการตรวจสอบ</small></span></span></div>':
+   '<div class="xh"><button class="xback" data-act="xBack" aria-label="ย้อนกลับ">'+ic('arrow',22)+'</button><b>รายละเอียดสถานีชาร์จ</b><button class="xback" data-act="nope" data-id="บันทึกสถานี (ฟีเจอร์เดิม)" aria-label="บันทึก">'+ic('heart',20)+'</button><button class="xback" data-act="nope" data-id="แชร์ (ฟีเจอร์เดิม)" aria-label="แชร์">'+ic('share',19)+'</button></div>';
+  return '<div class="xr">'+top+'<div class="xrb" style="padding:0;gap:0;background:#fff"><div class="sph2">'+stPhoto(st,360,170)+'<span class="xhc">1/6</span></div>'+
+   '<div style="padding:12px;display:flex;flex-direction:column;gap:10px"><div class="row" style="flex-wrap:nowrap;gap:10px;align-items:center">'+brandMark(st)+'<b class="xn" style="font-size:19px;flex:1;min-width:0">'+esc(st.name)+'</b></div><p class="note" style="margin-top:-6px">'+esc(stAddr(st))+'</p>'+
+   '<div class="row" style="gap:14px;font-size:13px;color:#444"><span style="color:#E8A800;font-weight:600">★ '+st.rate+' <small style="color:#888;font-weight:400">('+rev+')</small></span><span>'+ic('pin',13)+' '+st.km+' กม.</span><span>'+ic('clock',13)+' เปิดให้บริการ '+st.hours+'</span></div>'+banner+
+   '<div class="sact"><button class="sp1" data-act="nope" data-id="นำทาง (ฟีเจอร์เดิมของแอป)">'+ic('arrow',15)+'นำทาง</button><button data-act="nope" data-id="โทร (ฟีเจอร์เดิม)">'+ic('phone',15)+'โทรศัพท์</button><button data-act="nope" data-id="แชร์ (ฟีเจอร์เดิม)">'+ic('share',15)+'แชร์</button><button data-act="nope" data-id="แจ้งปัญหาสถานี (ฟีเจอร์เดิม)">'+ic('alert',15)+'แจ้งปัญหา</button></div>'+
+   '<div class="xtabs" style="grid-template-columns:repeat(4,1fr)">'+['หัวชาร์จ','ข้อมูลสถานี','บริการ','รีวิว'].map((t,i)=>'<button class="'+(i===0?'on':'')+'"'+(i?' data-act="nope" data-id="แท็บเดิมของแอป ไม่ได้อยู่ในข้อเสนอนี้"':'')+'>'+t+'</button>').join('')+'</div>'+
+   '<b style="color:#1B2A5C">หัวชาร์จที่ให้บริการ ('+us.length+')</b><div class="row" style="gap:12px;font-size:12px;color:#555"><span><i class="sd ok"></i>ว่าง '+cnt('ว่าง')+'</span><span><i class="sd info"></i>กำลังชาร์จ '+cnt('กำลังชาร์จ')+'</span><span><i class="sd n"></i>ไม่พร้อมใช้งาน '+cnt('ไม่พร้อมใช้งาน')+'</span></div>'+
+   us.map(u=>'<div class="xhd2"><div class="xhd2t"><span class="cxthumb sm">'+cxChg(22)+'</span><div style="flex:1;min-width:0"><b>'+st.type+' '+u.cn+'</b> <span class="kwb">'+u.kw+'</span><p class="note">หัวชาร์จ '+u.no+' · <span class="mono">'+u.id+'</span></p></div><span class="stt '+u.s[1]+'"><i class="sd '+u.s[1]+'"></i>'+u.s[0]+'</span></div>'+(u.ver?'<button class="ustrip" data-act="cxOpen" data-from="'+from+'" data-id="'+st.charger+'|'+u.i+'"><span class="sbh sm">'+ic('bolt',14)+'</span><span style="flex:1;min-width:0;text-align:left"><b>ผ่านการตรวจสอบ ChargerXpert</b><small>ใช้ได้ถึง '+fmtB(v.next)+'</small></span><span class="sbq sm">'+qrSvg(passUrl(st.charger))+'</span><span class="cxcv">›</span></button>':'')+'</div>').join('')+
+   (v?'<p class="note">ผลตรวจครอบคลุมเฉพาะหัวชาร์จที่ระบุเท่านั้น ไม่ใช่การรับรองทุกหัวหรือทั้งสถานี</p>':'')+'<p class="note">'+DISC2+'</p></div></div></div>';
+}
+V('x-station','base',id=>{const st=MAPST.find(x=>x.id===(id||S.xSt))||MAPST[0];S.xSt=st.id;return stPage(st,false)});
+V('w-station','base',id=>{const st=MAPST.find(x=>x.id===(id||S.wSt))||MAPST.find(x=>verifiedOf(x))||MAPST[0];S.wSt=st.id;return stPage(st,true)});
+
+/* ---- new map sheet (Elexa + web share the same card style) ---- */
+function mapCard(sel,v,web){
+  const us=unitsOf(sel),vn=us.filter(u=>u.ver).length,brand=web?'':brandMark(sel);
+  return '<div class="msheet wsh"><div class="grab"></div><div class="mcd"><div class="mph">'+stPhoto(sel,96,76)+'</div><div style="flex:1;min-width:0"><div class="row" style="flex-wrap:nowrap;gap:6px;align-items:center">'+brand+'<b style="font:600 16px/1.3 var(--fd);flex:1;min-width:0">'+esc(sel.name)+'</b><button class="xb" data-act="pickSt" data-id="'+sel.id+'" aria-label="ปิด">'+ic('x',18)+'</button></div><p class="note" style="margin:2px 0 4px">'+esc(stAddr(sel))+'</p><div class="row" style="gap:10px;font-size:12px;color:#444"><span style="color:#E8A800;font-weight:600">★ '+sel.rate+'</span><span>'+ic('pin',12)+' '+sel.km+' กม.</span><span>'+ic('clock',12)+' '+sel.hours+'</span></div></div></div>'+
+   (v?'<button class="sbn" data-act="cxOpen" data-from="'+(web?'x-webmap':'x-elexa')+'" data-id="'+sel.charger+'|0"><span class="sbh">'+ic('bolt',20)+'</span><span style="flex:1;min-width:0;text-align:left;line-height:1.3"><b>ผ่านการตรวจสอบ ChargerXpert</b><br><small>'+vn+' จาก '+us.length+' หัวชาร์จ · ใช้ได้ถึง '+fmtB(v.next)+'</small></span><span class="sbq">'+qrSvg(passUrl(sel.charger))+'</span></button>':'')+
+   '<div class="row" style="flex-wrap:nowrap;gap:8px"><button class="btn k" style="flex:1.2" data-act="nope" data-id="นำทาง (ฟีเจอร์เดิมของแอป)">'+ic('arrow',15)+'นำทาง</button><button class="btn o" style="flex:1" data-act="nope" data-id="แชร์ (ฟีเจอร์เดิม)">'+ic('share',14)+'แชร์</button><button class="btn o" style="flex:1.4;white-space:nowrap" data-act="'+(web?'wStn':'xStn')+'" data-id="'+sel.id+'">ดูรายละเอียด ›</button></div></div>';
+}
+(function(){
+  const e=VIEWS['x-elexa'],w=VIEWS['x-webmap'];
+  const wrap=(fn,web)=>()=>{
+    let h=fn();
+    const re=/<div class="msheet[^"]*">[\s\S]*?<\/div><\/div>(?=<nav|$)/;
+    const sel=MAPST.find(s=>s.id===S.sel);
+    if(sel&&(web||true)){const card=mapCard(sel,verifiedOf(sel),web),i=h.indexOf('<div class="msheet');if(i>=0){const j=web?h.lastIndexOf('</div>'):h.indexOf('</div><nav');h=h.slice(0,i)+card+h.slice(j)}}
+    return h;
+  };
+  e.fn=wrap(e.fn,false);w.fn=wrap(w.fn,true);
+})();
+
+/* ---- actions ---- */
+Object.assign(SCENE_ACT,{
+  cxOpen(el){const p=el.dataset.id.split('|');S.cxFrom=el.dataset.from||S.cxFrom||'x-elexa';S.xRec=null;S.cxTab=0;S.cxOpenItem=null;S.pHead=0;go('cx-sum',p[0]+'|'+(p[1]||0))},
+  openPass(el){S.cxFrom=S.baseView==='x-scan'?'x-scan':S.baseView==='x-elexa'||S.baseView==='x-station'?'x-elexa':'x-webmap';S.xRec=null;S.cxTab=0;S.cxOpenItem=null;go('cx-sum',el.dataset.id+'|0')},
+  xRpt(el){SCENE_ACT.cxOpen({dataset:{id:el.dataset.id+'|0',from:'x-elexa'}})},
+  cxTo(el){S.cxOpenItem=null;go(el.dataset.id,S.param)},
+  cxTab(el){S.cxTab=+el.dataset.id;S.cxOpenItem=null;go('cx-det',S.param)},
+  cxTab2(el){S.cxTab=+el.dataset.id;S.cxOpenItem=null;render()},
+  cxItem(el){S.cxOpenItem=S.cxOpenItem===el.dataset.id?null:el.dataset.id;render()},
+  cxRec(el){S.xRec=el.dataset.id;go('cx-sum',S.param)},
+  cxLang(){toast('สลับภาษา TH / EN (จำลอง)')},
+  cxBackSum(){go('cx-sum',S.param)},
+  cxBack(){S.xRec=null;const f=S.cxFrom||'x-scan',m=MAPST.find(x=>x.charger===String(S.param).split('|')[0]);
+    if(f==='x-elexa'&&m)go('x-station',m.id);else if(f==='x-webmap'&&m)go('w-station',m.id);else go(f)},
+  cxMap(){go('x-webmap')},xBackMap(){go('x-elexa')},
+  xStn(el){go('x-station',el.dataset.id)},wStn(el){go('w-station',el.dataset.id)},
+  xBack(){go('x-elexa')},wBack(){go('x-webmap')},
+  scanGo(){const cam=$('#cam');if(cam)cam.classList.add('scanning');setTimeout(()=>{if(S.baseView==='x-scan'){S.cxFrom='x-scan';S.xRec=null;S.cxTab=0;S.cxOpenItem=null;go('cx-sum',(S.scanSel||'SR-01')+'|0')}},650)}
 });
 
 /* ===== actions ===== */
@@ -1703,5 +1988,3 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 render();
 })();
 </script>
-
-</body></html>
