@@ -735,7 +735,7 @@ function seed(){
   roiHistory:[],forms:{}};
 }
 let db=seed();
-const S0=()=>({view:'line',param:null,role:null,after:null,selPkg:'std',formHead:0,hf:'all',cal:{y:2026,m:10},jobFilter:'all',dashMode:'month',closing:null,failLine:false,passMem:'live',lineStep:1,reg:null,roiName:'',est:{chargers:3,heads:6,yrs:3},roi:{role:'cpo',pkg:'std',chargers:3,heads:5,sess:4,kwhPer:25,price:8,days:365,dev:2,months:12,rec:100,share:30,visitPrice:12900}});
+const S0=()=>({view:'line',param:null,role:null,after:null,selPkg:'std',formHead:0,hf:'all',cal:{y:2026,m:10},jobFilter:'all',dashMode:'month',closing:null,failLine:false,passMem:'live',lineStep:1,reg:null,roiName:'',est:{chargers:3,heads:6,yrs:3},roi:{role:'cpo',pkg:'std',chargers:3,heads:6,sess:8,kwhPer:30,price:8,days:365,dev:3,months:12,rec:60,share:30,visitPrice:12900}});
 let S=S0();
 const USER={admin:'Pimchanok Admin',inspector:'John Inspector',customer:'คุณสมชาย ใจดี'};
 
@@ -882,14 +882,14 @@ const tiersOf=()=>pkgOf('std').tiers;
 const tierLbl=t=>t.b===null?t.a+' เครื่องขึ้นไป':(t.a===t.b?t.a+' เครื่อง':t.a+'–'+t.b+' เครื่อง');
 function tierQuote(n){n=Math.max(1,Math.round(+n||1));const t=tiersOf().find(t=>n>=t.a&&(t.b===null||n<=t.b)),quote=t.price===null,per=quote?23400:t.price;return {t,n,per,total:per*n,quote,label:tierLbl(t),disc:Math.round((1-per/24900)*1000)/10}}
 function roiCalc(r,perOv){
-  r=Object.assign({},r,{heads:Math.max(1,Math.round(+r.chargers||1))*2});
+  r=Object.assign({},r,{role:'cpo',heads:Math.max(1,Math.round(+r.chargers||1))*2});
   const q=tierQuote(r.chargers),per=perOv||q.per,member=per*q.n,pk={name:'แพ็กเกจตรวจสอบรายปี · '+q.label,price:member,inspections:2,covers:999,tier:q};
   const annual=r.heads*r.sess*r.kwhPer*r.price*r.days,monthly=annual/12;
   const lossAll=annual*r.dev/100*r.months/12,share=r.role==='host'?r.share/100:1,risk=lossAll*share,kept=risk*r.rec/100;
   const perVisit=r.visitPrice,diff=risk-perVisit,net=kept-member;
   const basis=annual*r.months/12;
   return {pk,q,per,monthly,annual,lossAll,risk,impact:kept,kept,member,perVisit,diff,net,roi:member?net/member*100:0,
-    breakEven:basis?perVisit/basis*100:0,avgMember:pk.inspections?member/pk.inspections:0,over:false};
+    breakEven:basis?perVisit/basis*100:0,breakEvenPkg:basis&&r.rec?member/(basis*r.rec/100)*100:0,avgMember:pk.inspections?member/pk.inspections:0,over:false};
 }
 const roiPct=n=>(n>=0?'':'−')+num(Math.abs(n),1)+'%';
 function roiOut(){
@@ -897,9 +897,9 @@ function roiOut(){
   const t=(cls,l,v,s)=>'<div class="rt '+cls+'"><span>'+l+'</span><b>'+v+'</b><small>'+s+'</small></div>';
   const cmp=tiersOf().map(k=>{const cur=k===c.q.t;return '<tr class="'+(cur?'cur':'')+'"><td><b>'+tierLbl(k)+'</b></td><td class="tn">'+(k.price===null?'เสนอราคาเฉพาะ':baht(k.price)+' บาท')+'</td><td class="tn">'+(k.price===null?'—':(k.price===24900?'—':'ลด '+num((1-k.price/24900)*100,1)+'%'))+'</td><td class="tn">'+(cur?(c.q.quote?'ประมาณ ':'')+baht(c.member):'—')+'</td></tr>'}).join('');
   const recCard='<div class="rdark" style="gap:8px"><div class="rsec" style="color:#fff"><b>แพ็กเกจที่แนะนำสำหรับ '+c.q.n+' เครื่อง</b></div><div class="rbig"><span>'+(c.q.quote?'ราคาต่อเครื่อง/ปี (ประมาณการ)':'ราคาต่อเครื่อง/ปี (รวม VAT)')+'</span><b>'+baht(c.q.per)+'</b></div><p class="rn">ช่วง '+c.q.label+(c.q.disc>0?' · ส่วนลดเทียบ 1 เครื่อง '+num(c.q.disc,1)+'%':'')+' · รวมต่อปี '+baht(c.member)+' · สัญญา 3 ปี รวม '+baht(c.member*3)+'</p><p class="rn">1 เครื่อง = 2 หัวชาร์จ · ตรวจ PM (หมวด 1–2) ทุก 6 เดือน · ตรวจ Accuracy (หมวด 3) ทุก 18 เดือน'+(S.role==='customer'?'':' · ไม่ต้องสมัครสมาชิกเพื่อดูผล')+'</p></div>';
-  return '<div class="rsec"><i>04</i><b>ผลการประเมินความคุ้มค่า</b></div>'+recCard+
+  return '<div class="rsec"><i>03</i><b>ผลการประเมินความคุ้มค่า</b></div>'+recCard+
   '<div class="g2" style="gap:10px">'+t('b','มูลค่าการชาร์จต่อปี',baht(c.annual),'จากข้อมูลที่กรอก')+t('r','รายได้ที่อาจสูญเสียทั้งสถานี',baht(c.lossAll),'ในช่วง '+r.months+' เดือน')+
-   t('y','ความเสี่ยงส่วนที่เกี่ยวข้องกับคุณ',baht(c.risk),r.role==='host'?'ตามส่วนแบ่งรายได้ '+r.share+'%':'ตามรูปแบบรายได้')+t('g','ค่าแพ็กเกจที่คุณจ่ายต่อปี',baht(c.member),c.q.n+' เครื่อง × '+baht(c.q.per)+(c.q.quote?' (ประมาณการ)':''))+'</div>'+
+   t('y','ความเสี่ยงของสถานีที่คุณดูแล',baht(c.risk),'จากรายได้ที่อาจสูญเสีย')+t('g','ค่าแพ็กเกจที่คุณจ่ายต่อปี',baht(c.member),c.q.n+' เครื่อง × '+baht(c.q.per)+(c.q.quote?' (ประมาณการ)':''))+'</div>'+
   '<div class="card stack"><div class="rsec"><i>A</i><b>เงินที่อาจสูญเสียจากมิเตอร์ vs ค่าตรวจรายครั้ง</b></div><p class="note">เปรียบเทียบมูลค่าความเสี่ยงจากมิเตอร์คลาดเคลื่อนกับค่าบริการตรวจสอบหนึ่งครั้ง</p>'+
    '<div class="g2" style="gap:10px"><div class="rt r"><span>รายได้ที่อาจสูญเสีย</span><b>'+baht(c.risk)+'</b></div><div class="rt b"><span>ค่าตรวจรายครั้ง</span><b>'+baht(c.perVisit)+'</b></div></div>'+
    '<div><p class="note">ส่วนต่างของมูลค่าความเสี่ยงกับค่าตรวจ</p><b style="font:600 22px var(--fd);color:'+(c.diff>=0?'var(--ok)':'var(--bad)')+'">'+(c.diff<0?'−':'')+num(Math.abs(c.diff))+' บาท</b></div>'+
@@ -908,6 +908,8 @@ function roiOut(){
   '<div class="rdark"><div class="rsec"><i>B</i><b>ROI แพ็กเกจที่แนะนำ ('+c.q.label+')</b></div><div class="rbig"><span>ROI ที่คาดการณ์ (Potential ROI)</span><b style="color:'+(c.roi>=0?'#6fe3a0':'#ff9b9b')+'">'+roiPct(c.roi)+'</b></div>'+
    '<div class="rbox"><div><span>มูลค่าที่อาจรักษาไว้ได้</span><b style="color:#6fe3a0">'+baht(c.kept)+'</b></div><div><span>ค่าแพ็กเกจต่อปีที่คุณจ่าย</span><b>'+baht(c.member)+'</b></div><hr><div><span><b>ผลประโยชน์สุทธิที่คาดการณ์</b></span><b style="color:'+(c.net>=0?'#6fe3a0':'#ff9b9b')+'">'+(c.net<0?'−':'')+baht(Math.abs(c.net))+'</b></div></div>'+
    '<p class="rn">'+(c.net>=0?'ภายใต้สมมติฐานนี้ มูลค่าที่อาจรักษาไว้ได้สูงกว่าค่าแพ็กเกจ':'ภายใต้สมมติฐานนี้ มูลค่าที่อาจรักษาไว้ได้ยังต่ำกว่าค่าแพ็กเกจ')+'</p><p class="rn">ใช้ค่าแพ็กเกจเต็มปี แม้เลือกความคลาดเคลื่อน '+r.months+' เดือน · สัญญา 3 ปี · ไม่รวมค่าแก้ไขมิเตอร์และค่าใช้จ่ายอื่น · ผลตอบแทนไม่รับประกัน</p></div>'+
+  '<div class="card stack"><div class="rsec"><i>C</i><b>ช่วงผลลัพธ์ตามสมมติฐาน</b></div><p class="note">ปรับเฉพาะสัดส่วนที่แก้ไขได้ ส่วนอื่นเท่าเดิม</p><div class="scroll"><table class="tbl rcmp"><thead><tr><th>กรณี</th><th>แก้ไขได้</th><th>มูลค่าที่อาจรักษาไว้</th><th>สุทธิ</th><th>ROI</th></tr></thead><tbody>'+[['ระมัดระวัง',40],['กลางๆ',60],['ดี',80]].map(x=>{const y=roiCalc(Object.assign({},r,{rec:x[1]}));return '<tr><td><b>'+x[0]+'</b></td><td class="tn">'+x[1]+'%</td><td class="tn">'+baht(y.kept)+'</td><td class="tn">'+(y.net<0?'−':'')+baht(Math.abs(y.net))+'</td><td class="tn">'+roiPct(y.roi)+'</td></tr>'}).join('')+'</tbody></table></div>'+
+   '<div class="rt y"><span>มิเตอร์อ่านต่ำกว่าจริงกี่ % จึงคุ้มค่าแพ็กเกจ?</span><b>'+(c.breakEvenPkg?num(c.breakEvenPkg,2)+'%':'—')+'</b><small>ที่สัดส่วนแก้ไขได้ '+r.rec+'% เป็นจุดเปรียบเทียบทางการเงิน ไม่ใช่เกณฑ์ความแม่นยำของมิเตอร์</small></div></div>'+
   (c.q.quote?'<div class="box warn">'+ic('alert',16)+'<span>ตั้งแต่ 11 เครื่องขึ้นไปเป็นการเสนอราคาเฉพาะ ผลนี้ใช้ราคาช่วง 6–10 เครื่องเป็นตัวประมาณ</span></div>':'')+
   '<div class="card"><h3>ราคาตามจำนวนเครื่อง</h3><div class="scroll"><table class="tbl rcmp"><thead><tr><th>จำนวนเครื่อง</th><th>ราคาต่อเครื่อง/ปี (รวม VAT)</th><th>ส่วนลด</th><th>รวมของคุณ</th></tr></thead><tbody>'+cmp+'</tbody></table></div><p class="note" style="margin-top:8px">ถ้าจ้างตรวจ PM รายครั้ง 2 ครั้ง/ปี × '+c.q.n+' เครื่อง = '+baht(c.perVisit*c.pk.inspections*c.q.n)+' เทียบแพ็กเกจ '+baht(c.member)+' ต่อปี · ราคาตัวอย่าง รอยืนยันต้นทุนธุรกิจ</p></div>'+
   '<div class="box">'+ic('alert',16)+'<span>ผลลัพธ์เป็นเพียงแบบจำลอง ยังไม่รวมค่าแก้ไขมิเตอร์และค่าใช้จ่ายเพิ่มเติม และไม่ใช่การรับประกันว่าจะรักษารายได้กลับมาได้ทั้งหมด</span></div>';
@@ -927,10 +929,9 @@ V('roi','public',()=>{
   if(mem){const qa=tierQuote(db.chargers.length);hist='<div class="card"><h3>เปรียบเทียบ ROI แยกสถานี</h3><div class="scroll"><table class="tbl"><thead><tr><th>สถานี</th><th>เครื่อง/หัว</th><th>มูลค่าที่อาจรักษาไว้</th><th>ค่าแพ็กเกจ</th><th>ROI</th></tr></thead><tbody>'+db.stations.map(st=>{const cs=db.chargers.filter(c=>c.station===st.id),hs=cs.length*2,x=roiCalc(Object.assign({},r,{chargers:cs.length,heads:hs}),qa.per);return '<tr><td>'+esc(st.name)+'</td><td class="tn">'+cs.length+'/'+hs+'</td><td class="tn">'+baht(x.kept)+'</td><td class="tn">'+baht(x.member)+'</td><td class="tn">'+roiPct(x.roi)+'</td></tr>'}).join('')+'</tbody></table></div><p class="note" style="margin-top:8px">ใช้ราคา '+baht(qa.per)+' ต่อเครื่อง (ช่วง '+qa.label+' ตามจำนวนเครื่องทั้งบัญชี) และสมมติฐานเดียวกับด้านซ้าย</p></div>'}
   if(mem&&db.roiHistory.length)hist+='<div class="card"><h3>ประวัติและการเปรียบเทียบ</h3><div class="scroll"><table class="tbl"><thead><tr><th>ชื่อ</th><th>วันที่</th><th>เครื่อง/หัว</th><th>ยอดชาร์จต่อปี</th><th>มูลค่าที่อาจรักษาไว้</th><th>ค่าแพ็กเกจ</th><th>ประวัติตรวจล่าสุด</th></tr></thead><tbody>'+db.roiHistory.map(h=>'<tr><td>'+esc(h.name)+'</td><td>'+fmtS(h.date)+'</td><td class="tn">'+h.r.chargers+'/'+h.r.heads+'</td><td class="tn">'+baht(h.c.annual)+'</td><td class="tn">'+baht(h.c.impact)+' <span class="mu">('+num(h.r.dev,2)+'%)</span></td><td class="tn">'+baht(h.c.member)+'</td><td>'+(h.doc?'<button class="btn sm ghostb" data-go="cert:'+h.doc+'">'+h.doc+'</button>':'<span class="mu">—</span>')+'</td></tr>').join('')+'</tbody></table></div></div>';
   const form='<form class="card stack" onsubmit="return false"><div class="rhead"><small>CHARGERXPERT</small><h3>Interactive ROI Calculator</h3><p>ประเมินรายได้ที่อาจสูญเสียจากมิเตอร์คลาดเคลื่อน เปรียบเทียบค่าตรวจรายครั้ง และคำนวณ ROI ของแพ็กเกจรายปี</p></div>'+
-   '<div class="rsec"><i>01</i><b>คุณเป็นผู้ใช้งานประเภทไหน?</b></div><div class="g2" style="gap:10px">'+card('role','cpo','CPO','ผู้ให้บริการสถานีชาร์จ')+card('role','host','Site Host','เจ้าของพื้นที่ติดตั้งสถานี')+'</div>'+
-   (mem?'<div class="rsec"><i>02</i><b>เครื่องของคุณ</b></div><div class="card mist" style="padding:12px 14px"><b>'+r.chargers+' เครื่อง = '+r.chargers*2+' หัวชาร์จ</b> <span class="note">จากบัญชีสมาชิก'+(S.roiStation?' · '+esc((stationOf(S.roiStation)||{}).name||''):' · ทุกสถานี')+' ระบบใช้แพ็กเกจและราคาของคุณให้อัตโนมัติ เลือกสถานีด้านล่างเพื่อคำนวณแยกสถานี</span></div>':'<div class="rsec"><i>02</i><b>จำนวนเครื่องชาร์จที่ต้องการตรวจ</b></div>'+inp('chargers','จำนวนเครื่องชาร์จ','เครื่อง','1','ระบบจะแนะนำแพ็กเกจและราคาตามจำนวนเครื่อง (1 เครื่องอาจมีหลายหัวชาร์จ)'))+
-   '<div class="rsec"><i>03</i><b>ข้อมูลสถานีชาร์จของคุณ</b></div><p class="note">กรอกข้อมูลจริงหรือปรับค่าตัวอย่างเพื่อดูผลลัพธ์ทันที</p>'+
-   '<div class="g2" style="gap:10px">'+('<div class="f"><span>จำนวนหัวชาร์จ</span><div class="card mist" style="padding:10px 12px"><b><span id="roi-hd">'+(Math.max(1,Math.round(+r.chargers||1))*2)+'</span> หัว</b> <span class="note">1 เครื่อง = 2 หัวชาร์จ</span></div></div>')+inp('sess','ครั้งชาร์จต่อหัว/วัน','ครั้ง','1','เช่น 4 ครั้งต่อวัน')+inp('kwhPer','ไฟฟ้าต่อการชาร์จ','kWh')+inp('price','ราคาขายไฟ','฿/kWh')+inp('days','วันเปิดบริการต่อปี','วัน','1')+(r.role==='host'?inp('share','ส่วนแบ่งรายได้ของเจ้าของพื้นที่','%','1','ใช้คิดความเสี่ยงส่วนที่เกี่ยวข้องกับคุณ'):'')+'</div>'+
+   (mem?'<div class="rsec"><i>01</i><b>เครื่องของคุณ</b></div><div class="card mist" style="padding:12px 14px"><b>'+r.chargers+' เครื่อง = '+r.chargers*2+' หัวชาร์จ</b> <span class="note">จากบัญชีสมาชิก'+(S.roiStation?' · '+esc((stationOf(S.roiStation)||{}).name||''):' · ทุกสถานี')+' ระบบใช้แพ็กเกจและราคาของคุณให้อัตโนมัติ เลือกสถานีด้านล่างเพื่อคำนวณแยกสถานี</span></div>':'<div class="rsec"><i>01</i><b>จำนวนเครื่องชาร์จที่ต้องการตรวจ</b></div>'+inp('chargers','จำนวนเครื่องชาร์จ','เครื่อง','1','ระบบจะแนะนำแพ็กเกจและราคาตามจำนวนเครื่อง (1 เครื่องอาจมีหลายหัวชาร์จ)'))+
+   '<div class="rsec"><i>02</i><b>ข้อมูลสถานีชาร์จของคุณ</b></div><p class="note">กรอกข้อมูลจริงหรือปรับค่าตัวอย่างเพื่อดูผลลัพธ์ทันที</p>'+
+   '<div class="g2" style="gap:10px">'+('<div class="f"><span>จำนวนหัวชาร์จ</span><div class="card mist" style="padding:10px 12px"><b><span id="roi-hd">'+(Math.max(1,Math.round(+r.chargers||1))*2)+'</span> หัว</b> <span class="note">1 เครื่อง = 2 หัวชาร์จ</span></div></div>')+inp('sess','ครั้งชาร์จต่อหัว/วัน','ครั้ง','1','เช่น 4 ครั้งต่อวัน')+inp('kwhPer','ไฟฟ้าต่อการชาร์จ','kWh')+inp('price','ราคาขายไฟ','฿/kWh')+inp('days','วันเปิดบริการต่อปี','วัน','1')+'</div>'+
    '<div class="rdark" style="gap:14px"><div class="rsec" style="color:#fff"><b>สมมติฐานความคลาดเคลื่อน</b></div>'+sl('dev','มิเตอร์อ่านต่ำกว่าความจริง',0,5,.1,'%')+
    '<div class="f"><span>ระยะเวลาที่มิเตอร์อาจคลาดเคลื่อน</span><div class="rseg">'+[3,6,12].map(m=>'<button type="button" class="'+(r.months===m?'on':'')+'" data-act="roiSet" data-id="months:'+m+'" aria-pressed="'+(r.months===m)+'">'+m+' เดือน</button>').join('')+'</div></div>'+
    sl('rec','สัดส่วนความสูญเสียที่อาจแก้ไขได้',0,100,5,'%')+'<p class="rn">เป็นการจำลองสถานการณ์ ไม่ใช่การยืนยันว่ามิเตอร์มีปัญหาหรือรับประกันการแก้ไข</p></div>'+
@@ -945,6 +946,7 @@ V('register','public',()=>{
   return '<section class="sec"><div class="wrap" style="max-width:720px"><h1>สมัครสมาชิก</h1><p class="mu" style="margin-bottom:20px">ขั้นตอน: ข้อมูลบริษัท → เลือกแพ็กเกจ → เชื่อมบัญชี LINE → เข้าใช้งาน</p><form class="card stack" data-submit="register">'+
   '<div class="g2">'+field('ชื่อบริษัท','company',db.company.name,{req:1})+field('ผู้ติดต่อ','contact',db.company.contact,{req:1})+field('อีเมล','email',db.company.email,{type:'email',req:1})+field('โทรศัพท์','phone',db.company.phone,{req:1})+'</div>'+field('รหัสผ่าน','pw','demo1234',{type:'password',req:1})+
   '<fieldset style="border:0;padding:0;margin:0"><legend style="font-weight:600;margin-bottom:8px">แพ็กเกจ</legend><div class="g3">'+db.packages.map(k=>'<label class="card flat" style="cursor:pointer;padding:14px"><span class="row"><input type="radio" name="pkg" value="'+k.id+'"'+(k.id===p?' checked':'')+'><b>'+k.name+'</b></span><span class="note">'+pkgPriceLine(k).join(' · ')+'</span></label>').join('')+'</div></fieldset>'+
+  '<div class="card flat stack" style="gap:8px"><label class="f">จำนวนเครื่องชาร์จที่ต้องการตรวจ<input class="in tn" type="number" min="1" step="1" name="chargers" data-est="chargers" value="'+S.est.chargers+'"><span class="note">1 เครื่อง = 2 หัวชาร์จ ระบบคิดราคาต่อเครื่องตามช่วงจำนวน</span></label><div id="est-out">'+estHtml()+'</div></div>'+
   '<label class="row" style="align-items:flex-start;font-size:13.5px"><input type="checkbox" required style="margin-top:4px">ยอมรับเงื่อนไขการให้บริการ และรับทราบว่าบริการนี้เป็นการตรวจสอบและจัดทำรายงานเท่านั้น</label><button class="btn y block" type="submit">สมัครและไปเชื่อมบัญชี LINE '+ic('arrow',16)+'</button><p class="note" style="text-align:center">มีบัญชีแล้ว? <button class="btn sm ghostb" type="button" data-go="login">เข้าสู่ระบบ</button></p></form></div></section>';
 });
 V('login','public',()=>{
@@ -1016,13 +1018,14 @@ V('schedule','customer',()=>{
   '<div class="stack"><div class="card"><div class="row" style="margin-bottom:12px"><button class="btn sm o" data-act="calNav" data-id="-1" aria-label="เดือนก่อน">‹</button><h3 style="margin:0">'+TM[m]+' '+y+'</h3><button class="btn sm o" data-act="calNav" data-id="1" aria-label="เดือนถัดไป">›</button></div><div class="cal">'+cells+'</div></div>'+
   grp.map(g=>{const l=jobs.filter(g[1]);return '<div class="card"><h3>'+g[0]+' <span class="mu" style="font:400 14px var(--fb)">('+l.length+')</span></h3>'+(l.length?'<div class="stack" style="gap:10px">'+l.map(card).join('')+'</div>':'<p class="mu">ไม่มีรายการ</p>')+'</div>'}).join('')+'</div>';
 },{roles:CUST});
+function estHtml(){const ec=S.est,e=estimate(pkgOf('std'),ec.chargers),q=tierQuote(ec.chargers);
+  return kv([['จำนวนเครื่อง',q.n+' เครื่อง ('+q.n*2+' หัวชาร์จ)'],['ช่วงราคา',q.label],['ราคาต่อเครื่อง/ปี',baht(e.per)+(e.pct?' <span class="note">(ลด '+e.pct+'% เทียบ 1 เครื่อง)</span>':'')+(e.quote?' <span class="note">(ประมาณการ)</span>':'')],['รวมต่อปี','<b>'+baht(e.total)+'</b>'],['รวมตลอดสัญญา 3 ปี','<b>'+baht(e.total*3)+'</b>']])+(e.quote?'<div class="box warn" style="margin-top:8px">'+ic('alert',16)+'<span>11 เครื่องขึ้นไปเป็นการเสนอราคาเฉพาะ ยอดนี้เป็นตัวประมาณ</span></div>':'')}
 V('membership','customer',()=>{
   const m=db.membership,p=pkgOf(m.pkg),ms=memStatus(),used=usedQuota(),ec=S.est;
-  const est=db.packages.map(k=>{const e=estimate(k,ec.chargers,ec.heads,ec.yrs);return '<tr><td><b>'+k.name+'</b></td><td>'+MODEL[k.model]+'</td><td class="tn">'+baht(e.base)+'</td><td class="tn">'+(e.pct?'−'+e.pct+'%':'—')+'</td><td class="tn"><b>'+baht(e.total)+'</b></td><td>'+(e.quote?pill('เสนอราคาเฉพาะ','warn'):pill('ครอบคลุม','ok'))+'</td></tr>'}).join('');
   return head('สมาชิก','สถานะสมาชิกและสิทธิ์ตรวจสอบ')+'<div class="stack"><div class="card"><div class="row" style="margin-bottom:12px"><h3 style="margin:0">'+esc(p.name)+'</h3>'+pill(ms,memKind(ms))+pill('ชำระเงิน: '+db.company.payment,db.company.payment==='Paid'?'ok':'warn')+'</div>'+kv([['วันเริ่มสมาชิก',fmt(m.start)],['วันหมดอายุ',fmt(m.end)],['สิทธิ์ตรวจตลอดสัญญา','PM ทุก 6 เดือน '+quota(p)+' ครั้ง · Accuracy Test 2 ครั้ง'],['PM ใช้แล้ว / คงเหลือ',used+' / '+Math.max(0,quota(p)-used)+' ครั้ง'],['การคิดราคา',MODEL[p.model]],['เงื่อนไข',esc(p.terms)]])+
   '<div class="row" style="margin-top:16px">'+(ms==='Active'?act('ต่ออายุสมาชิก','renew','','y sm','refresh')+act('ยกเลิกสมาชิก','cancelAsk','','o sm'):act('สมัครใช้งานอีกครั้ง','renew','','y sm','refresh'))+'</div></div>'+
   (ms!=='Active'?'<div class="box">'+ic('alert',16)+'<span>สมาชิกสถานะ '+ms+': ประวัติและรายงานเดิมยังอยู่ครบ แต่ไม่มีแผนตรวจสอบต่อเนื่องภายใต้สมาชิก และ QR Passport จะแสดงข้อความนี้ให้ผู้สแกนเห็น</span></div>':'')+
-  payHist()+'<div class="card"><h3>ประเมินราคาตามจำนวนเครื่อง</h3><div class="g2" style="max-width:420px">'+['chargers:เครื่องชาร์จ','heads:หัวชาร์จ','yrs:สัญญา (ปี)'].map(x=>{const a=x.split(':');return '<label class="f">'+a[1]+'<input class="in tn" type="number" min="1" data-est="'+a[0]+'" value="'+ec[a[0]]+'"></label>'}).join('')+'</div><div class="scroll" style="margin-top:12px"><table class="tbl"><thead><tr><th>แพ็กเกจ</th><th>วิธีคิดราคา</th><th>ราคาก่อนลด</th><th>ส่วนลด</th><th>ราคาต่อปี</th><th>การครอบคลุม</th></tr></thead><tbody id="est-out">'+est+'</tbody></table></div><p class="note">ราคาตัวอย่าง รอยืนยันต้นทุนธุรกิจ</p></div></div>';
+  payHist()+'<div class="card"><h3>ประเมินราคาตามจำนวนเครื่อง</h3><div style="max-width:320px"><label class="f">จำนวนเครื่องชาร์จ<input class="in tn" type="number" min="1" step="1" data-est="chargers" value="'+ec.chargers+'"><span class="note">1 เครื่อง = 2 หัวชาร์จ · สัญญา 3 ปี</span></label></div><div id="est-out" style="margin-top:12px">'+estHtml()+'</div><p class="note">ราคาตัวอย่าง รอยืนยันต้นทุนธุรกิจ</p></div></div>';
 },{roles:CUST});
 
 /* certificate + report */
@@ -1761,7 +1764,7 @@ function cxData(param){
     name:(mst&&mst.name)||c.stationName||stationOf(c.station).name,addr:mst?stAddr(mst):(c.station?stationOf(c.station).address:''),oper:mst&&mst.kind!=='other'?(mst.kind==='elexa'?'Elexa':'BackEN'):(rec.customerName||'—')};
 }
 const cxHead=(title,sub,back)=>'<div class="cxh"><button class="cxback" data-act="'+(back||'cxBack')+'" aria-label="ย้อนกลับ">'+ic('arrow',22)+'</button><div class="cxt"><b>'+title+'</b>'+(sub?'<small>'+sub+'</small>':'')+'</div></div>';
-const cxLogo=back=>'<div class="cxh"><button class="cxback" data-act="'+back+'" aria-label="ย้อนกลับ">'+ic('arrow',22)+'</button><span class="cxlg"><span class="logo-m">'+ic('bolt',18)+'</span><span><b>ChargerXpert</b><small>ก่อนชาร์จ ดูให้ชัด</small></span></span><button class="cxlang" data-act="cxLang" aria-label="ภาษา"><b>TH</b> | EN</button></div>';
+const cxLogo=back=>'<div class="cxh"><button class="cxback" data-act="'+back+'" aria-label="ย้อนกลับ">'+ic('arrow',22)+'</button><span class="cxlg"><span class="logo-m">'+ic('bolt',18)+'</span><span><b>ChargerXpert</b><small>ก่อนชาร์จ ดูให้ชัด</small></span></span></div>';
 function cxOvr(d){const rank={pass:0,obs:1,fail:2};let w='pass';[0,1,2].forEach(i=>cxCatItems(i).forEach(k=>{const x=d.res(k);if(rank[x]>rank[w])w=x}));return w}
 function cxCatStat(d,i){const ks=cxCatItems(i),p=ks.filter(k=>d.res(k)==='pass').length;return {p:p,t:ks.length,ok:p===ks.length}}
 const CXNONE='<div class="cx">'+'<div class="cxh"><button class="cxback" data-act="cxBack">'+ic('arrow',22)+'</button><div class="cxt"><b>ไม่พบข้อมูลการตรวจสอบ</b></div></div><div class="cxb"><div class="cxhero warn"><span class="cxsh">'+'!'+'</span><div><b>ไม่พบข้อมูลการตรวจสอบของเครื่องนี้</b><small>ตรวจสอบว่า QR ไม่ชำรุดหรือถูกปิดทับ และเทียบ Charger ID บนสติกเกอร์</small></div></div><button class="btn o block" data-act="issueOpen" data-k="qr">แจ้งปัญหา QR</button></div></div>';
@@ -1878,7 +1881,7 @@ Object.assign(SCENE_ACT,{xPdfU(el){openPdf('recU',el.dataset.id)},
 });
 
 /* ===== i18n (หน้าผลตรวจ TH/EN) + แจ้งปัญหา ===== */
-const isEn=()=>S.lang==='en'&&S.view&&S.view.indexOf('cx-')===0;
+const isEn=()=>false;
 const T=(th,en)=>isEn()?en:th;
 const ENM=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const EN_D=(function(){
@@ -2108,9 +2111,7 @@ function fieldChange(t){
 function onField(e){
   const t=e.target,d=t.dataset||{};
   if(d.roi){S.roi[d.roi]=parseFloat(t.value)||0;document.querySelectorAll('[data-lbl="'+d.roi+'"]').forEach(x=>x.textContent=S.roi[d.roi]);const hd=$('#roi-hd');if(hd)hd.textContent=Math.max(1,Math.round(+S.roi.chargers||1))*2;const o=$('#roi-out');if(o)o.innerHTML=roiOut();return}
-  if(d.est){S.est[d.est]=Math.max(1,parseInt(t.value,10)||1);const o=$('#est-out');if(o)o.innerHTML=db.packages.map(k=>{const x=estimate(k,S.est.chargers,S.est.heads,S.est.yrs);return '<tr><td><b>'+k.name+'</b></td><td>'+MODEL[k.model]+'</td><td class="tn">'+baht(x.base)+'</td><td class="tn">'+(x.pct?'−'+x.pct+'%':'—')+'</td><td class="tn"><b>'+baht(x.total)+'</b></td><td>'+(x.quote?pill('เสนอราคาเฉพาะ','warn'):pill('ครอบคลุม','ok'))+'</td></tr>'}).join('');return}
-  if(d.f){fieldChange(t);return}
-  if(e.type!=='change')return;
+  if(d.est){S.est[d.est]=Math.max(1,parseInt(t.value,10)||1);S.est.heads=S.est.chargers*2;const o=$('#est-out');if(o)o.innerHTML=estHtml();return}
   if(d.pk){const i=d.pk.indexOf('.'),id=d.pk.slice(0,i),path=d.pk.slice(i+1),p=pkgOf(id),isTxt=path==='model'||path==='terms';setPath(p,path,isTxt?t.value:(parseFloat(t.value)||0));toast('บันทึกแพ็กเกจ '+p.name+' แล้ว (ตัวอย่าง)','ok');return}
   if(d.chg&&CHG[d.chg])CHG[d.chg](t);
 }
