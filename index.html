@@ -591,8 +591,9 @@ button.lni{border:0;background:none;color:inherit;padding:0;display:grid;place-i
 .cxln .cxw{color:#a15c00}
 .logo-m,.logo-m.big,.msearch .logo-m,.cxlg .logo-m,.cxph .logo-m{background:#111;color:var(--y)}.cxlg .logo-m{border:1.5px solid var(--y)}.vbolt,.lgb{background:#111;color:var(--y);border-color:#111}
 .cxpaper.cxpimg{padding:0;overflow:hidden}.cxpimg img{display:block;width:100%;height:auto}
+.g1{display:grid;grid-template-columns:1fr;gap:16px}
 </style>
-<div class="stagebg"><nav class="scenes" id="scenes" aria-label="เลือกฉาก"></nav><div class="stagewrap"><aside class="ctl" id="ctl"></aside><div class="device"><div class="sbar"><span id="clock">14:45</span><span class="sbi"><i></i><i></i><i></i><b></b></span></div><div class="screen"><div class="layer" id="chat-layer"></div><div class="layer" id="liff"></div><div id="modal-root"></div><div id="toast-root" class="toast-root" aria-live="polite"></div></div></div></div></div>
+<div class="stagebg"><nav class="scenes" id="scenes" aria-label="เลือกส่วน"></nav><div class="stagewrap"><aside class="ctl" id="ctl"></aside><div class="device"><div class="sbar"><span id="clock">14:45</span><span class="sbi"><i></i><i></i><i></i><b></b></span></div><div class="screen"><div class="layer" id="chat-layer"></div><div class="layer" id="liff"></div><div id="modal-root"></div><div id="toast-root" class="toast-root" aria-live="polite"></div></div></div></div></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <script>
 (function(){
@@ -680,11 +681,14 @@ function seed(){
   const hd=n=>Array.from({length:n},(_,i)=>({id:'CCS2-0'+(i+1),type:'CCS2'}));
   return {
   company:{id:'C-001',name:'ABC Energy Co., Ltd.',contact:'คุณสมชาย ใจดี',phone:'081-234-5678',email:'somchai@abcenergy.example',payment:'Paid'},
-  membership:{pkg:'plus',start:'2026-09-01',end:'2029-08-31',status:'Active'},
+  membership:{pkg:'std',start:'2026-09-01',end:'2029-08-31',status:'Active'},
   lineLinked:true,
   packages:[
-    {id:'basic',name:'Basic',tag:'เหมาะกับธุรกิจที่มี 1-5 หัวชาร์จ',model:'bundle',price:27900,unit:0,covers:5,inspections:1,months:36,terms:'สัญญา 3 ปี ตรวจความปลอดภัยทางไฟฟ้า 1 ครั้งต่อปี ตรวจสภาพทั่วไปและอุปกรณ์ ทดสอบระบบไฟฟ้าตามขอบเขตที่กำหนด เก็บประวัติดิจิทัล',disc:[{yrs:3,pct:5},{yrs:5,pct:8}]},
-    {id:'plus',name:'Plus',tag:'เหมาะกับธุรกิจที่มี 6-20 หัวชาร์จ',model:'bundle',price:29900,unit:0,covers:20,inspections:2,months:36,terms:'สัญญา 3 ปี ตรวจ 2 ครั้งต่อปี เปรียบเทียบผลย้อนหลัง แผนบำรุงรักษาเชิงป้องกัน สรุปความเสี่ยงและคำแนะนำ',disc:[{yrs:3,pct:5},{yrs:5,pct:8}]}],
+    {id:'std',name:'แพ็กเกจตรวจสอบรายปี',tag:'1 เครื่องชาร์จ = 2 หัวชาร์จ · สัญญา 3 ปี',model:'per_charger',price:24900,unit:24900,covers:999,inspections:2,months:36,
+     terms:'สัญญา 3 ปี · Preventive Maintenance ทุก 6 เดือน 6 ครั้ง · Accuracy Test 2 ครั้งตลอดสัญญา (ทุก 18 เดือน) · Safety Inspection ตามขอบเขตที่กำหนด · รายงาน Digital Report',
+     tiers:[{a:1,b:1,price:24900},{a:2,b:2,price:24400},{a:3,b:5,price:23900},{a:6,b:10,price:23400},{a:11,b:null,price:null}],disc:[],
+     inc:['Preventive Maintenance ทุก 6 เดือน จำนวน 6 ครั้ง','Accuracy Test จำนวน 2 ครั้ง ตลอดสัญญา','Safety Inspection ตามขอบเขตที่กำหนด','ตรวจสอบสายชาร์จ หัวชาร์จ ระบบระบายความร้อน และสภาพภายนอก','ตรวจสอบระบบป้องกันทางไฟฟ้าตามคู่มือผู้ผลิตและขอบเขตงาน','รายงานผลการตรวจสอบแบบ Digital Report','LINE OA สำหรับนัดหมาย ติดตามบริการ และรับการแจ้งเตือน'],
+     exc:['ไม่รวมอะไหล่และการซ่อมใหญ่','ไม่รวมความเสียหายจากอุบัติเหตุหรือการใช้งานผิดประเภท','การเข้าซ่อมฉุกเฉินแยกตามเงื่อนไข SLA','จำกัดพื้นที่ให้บริการและระยะทางที่รวมในราคา']}],
   stations:[
     {id:'S-001',name:'ABC Charging Station',address:'88/12 ถ.พระราม 9 แขวงห้วยขวาง เขตห้วยขวาง กรุงเทพฯ 10310',contact:'คุณวิชัย (ผู้จัดการสถานี) 089-555-0142'},
     {id:'S-002',name:'ABC Charging Rayong',address:'120 ถ.สุขุมวิท ต.เนินพระ อ.เมือง จ.ระยอง 21000',contact:'คุณมาลี 086-410-7723'}],
@@ -693,13 +697,13 @@ function seed(){
     {id:'EV-CH-002',station:'S-001',brand:'Zenvolt',model:'ZV-120 DC Fast',serial:'ZV120-2406-0042',power:'120 kW',heads:hd(2)},
     {id:'EV-CH-101',station:'S-002',brand:'Zenvolt',model:'ZV-60 DC Fast',serial:'ZV60-2405-0311',power:'60 kW',heads:hd(2)}],
   customers:[
-    {id:'C-002',name:'Sunrise Mobility Co., Ltd.',pkg:'basic',status:'Active',end:'2027-03-14',stations:2,chargers:3,heads:6,payment:'Paid',contact:'คุณปรีชา 082-300-1188'},
-    {id:'C-003',name:'GreenPlug Thailand',pkg:'plus',status:'Active',end:'2027-06-30',stations:6,chargers:18,heads:40,payment:'Paid',contact:'คุณนภา 081-777-4410'},
-    {id:'C-004',name:'Metro EV Park',pkg:'plus',status:'Active',end:'2026-11-28',stations:1,chargers:6,heads:12,payment:'Pending',contact:'คุณกิตติ 085-220-9031'},
-    {id:'C-005',name:'Lanna Charge Co., Ltd.',pkg:'basic',status:'Expired',end:'2026-09-30',stations:1,chargers:2,heads:4,payment:'Overdue',contact:'คุณอรุณ 089-601-2277'},
-    {id:'C-006',name:'Bangkok Volt Services',pkg:'plus',status:'Active',end:'2026-12-05',stations:3,chargers:7,heads:14,payment:'Paid',contact:'คุณศิริพร 080-455-1209'},
-    {id:'C-007',name:'Huai Khwang Charge Co., Ltd.',pkg:'basic',status:'Active',end:'2027-05-31',stations:1,chargers:1,heads:4,payment:'Paid',contact:'คุณวีระ 086-100-2001'},
-    {id:'C-008',name:'Dindaeng Power Co., Ltd.',pkg:'basic',status:'Active',end:'2027-04-30',stations:1,chargers:1,heads:2,payment:'Paid',contact:'คุณมาลี 086-100-2002'}],
+    {id:'C-002',name:'Sunrise Mobility Co., Ltd.',pkg:'std',status:'Active',end:'2027-03-14',stations:2,chargers:3,heads:6,payment:'Paid',contact:'คุณปรีชา 082-300-1188'},
+    {id:'C-003',name:'GreenPlug Thailand',pkg:'std',status:'Active',end:'2027-06-30',stations:6,chargers:18,heads:40,payment:'Paid',contact:'คุณนภา 081-777-4410'},
+    {id:'C-004',name:'Metro EV Park',pkg:'std',status:'Active',end:'2026-11-28',stations:1,chargers:6,heads:12,payment:'Pending',contact:'คุณกิตติ 085-220-9031'},
+    {id:'C-005',name:'Lanna Charge Co., Ltd.',pkg:'std',status:'Expired',end:'2026-09-30',stations:1,chargers:2,heads:4,payment:'Overdue',contact:'คุณอรุณ 089-601-2277'},
+    {id:'C-006',name:'Bangkok Volt Services',pkg:'std',status:'Active',end:'2026-12-05',stations:3,chargers:7,heads:14,payment:'Paid',contact:'คุณศิริพร 080-455-1209'},
+    {id:'C-007',name:'Huai Khwang Charge Co., Ltd.',pkg:'std',status:'Active',end:'2027-05-31',stations:1,chargers:1,heads:4,payment:'Paid',contact:'คุณวีระ 086-100-2001'},
+    {id:'C-008',name:'Dindaeng Power Co., Ltd.',pkg:'std',status:'Active',end:'2027-04-30',stations:1,chargers:1,heads:2,payment:'Paid',contact:'คุณมาลี 086-100-2002'}],
   staff:[
     {id:'U-1',name:'Pimchanok Admin',role:'Admin',phone:'02-555-0100',email:'pimchanok@chargerxpert.example'},
     {id:'U-2',name:'John Inspector',role:'Inspector',phone:'081-900-1201',email:'john@chargerxpert.example'},
@@ -722,7 +726,7 @@ function seed(){
     heads:[mkHead('CCS2-01',{volt:'401.2',amp:'119.5',earth:'0.38',temp:'39.8',ref:'50.00',disp:'50.21'}),mkHead('CCS2-02',{volt:'400.8',amp:'120.1',earth:'0.41',temp:'40.6',ref:'50.00',disp:'50.30'})],
     observations:'',notes:'',photos:[svgPhoto('ป้ายเครื่อง EV-CH-001')],version:1,versions:[{v:1,date:'2026-05-03',by:'Napat Inspector',reason:'ออกเอกสารครั้งแรก'}],d3:'2025-05-03',next12:'2026-11-03',next3:'2026-11-03',next:'2026-11-03',member:false}].concat(((function(){const mm={volt:'401.0',amp:'120.0',earth:'0.40',temp:'40.1',ref:'50.00',disp:'50.20'};const r=(docId,jobId,cid,cn,stn,ch,ser,date,insp,next)=>({docId,jobId,customerId:cid,customerName:cn,stationName:stn,chargerId:ch,serial:ser,date,time:'10:30',inspector:insp,overall:'pass',summary:'ตรวจ 2 หัวชาร์จตามรายการตรวจของบริษัท ไม่พบรายการไม่ผ่าน',findings:[],heads:[mkHead('CCS2-01',mm),mkHead('CCS2-02',mm)],observations:'',notes:'',photos:[],version:1,versions:[{v:1,date,by:insp,reason:'ออกเอกสารครั้งแรก'}],d3:date,next12:addM(date,6),next3:addM(date,18),next:addM(date,6),member:true});const base=[r('INS-2025-0044','JOB-2025-0044','C-002','Sunrise Mobility Co., Ltd.','Sunrise Ratchada','SR-01','ZV60-2401-0007','2025-12-02','John Inspector','2026-12-02'),r('INS-2025-0051','JOB-2025-0051','C-003','GreenPlug Thailand','GreenPlug Bangna','GP-07','ZV120-2402-0090','2025-12-18','Wipa Inspector','2026-12-18'),r('INS-2025-0062','JOB-2025-0062','C-007','Huai Khwang Charge Co., Ltd.','Elexa ห้วยขวาง','EX-01','ZV120-2411-0021','2026-01-15','Napat Inspector','2027-01-15'),r('INS-2025-0068','JOB-2025-0068','C-008','Dindaeng Power Co., Ltd.','BackEN ดินแดง','BK-01','ZV60-2412-0033','2026-02-10','John Inspector','2027-02-10'),r('INS-2025-0070','JOB-2025-0070','C-006','Bangkok Volt Services','Bangkok Volt Sathorn','BV-01','ZV60-2501-0101','2026-03-05','John Inspector','2027-03-05'),r('INS-2025-0071','JOB-2025-0071','C-006','Bangkok Volt Services','Bangkok Volt Ari','BV-02','ZV60-2501-0102','2026-04-12','Napat Inspector','2027-04-12'),r('INS-2025-0072','JOB-2025-0072','C-003','GreenPlug Thailand','GreenPlug Onnut','GP-12','ZV120-2502-0031','2026-05-20','Wipa Inspector','2026-12-20'),r('INS-2025-0073','JOB-2025-0073','C-002','Sunrise Mobility Co., Ltd.','Sunrise Thonglor','SR-03','ZV60-2503-0044','2026-06-08','John Inspector','2027-06-08'),r('INS-2025-0074','JOB-2025-0074','C-004','Metro EV Park','Metro EV Park Rama 3','MP-03','ZV60-2408-0031','2026-07-14','Napat Inspector','2027-07-14')];const older=[];base.forEach(b=>{if(['SR-01','GP-07','EX-01','BK-01','BV-01'].includes(b.chargerId)){[1,2].forEach(n=>{const y=+b.date.slice(0,4)-n,d=y+b.date.slice(4),nx=addM(d,18),sfx=b.docId.slice(9);const o=r('INS-'+y+'-'+sfx,'JOB-'+y+'-'+sfx,b.customerId,b.customerName,b.stationName,b.chargerId,b.serial,d,n===2?'Napat Inspector':b.inspector,nx);if(n===2){o.overall='obs';o.summary='พบข้อสังเกตเรื่องสภาพสายชาร์จ แนะนำให้เจ้าของสถานีตรวจซ้ำ';o.heads[1].visual.cable='obs'}older.push(o)})}});base.forEach(o=>{let d=o.date;while(addM(d,6)<=TODAY)d=addM(d,6);o.date=d;o.next12=addM(d,6);o.next3=addM(o.d3,18);o.next=o.next12<o.next3?o.next12:o.next3});return base.concat(older)})())),
   notifs:[
-    {id:'N-1',type:'welcome',time:'2026-09-01 09:12',status:'Sent',attempts:1,ref:'Professional',to:'ABC Energy Co., Ltd.',payload:{pkg:'Plus',end:'2029-08-31'}},
+    {id:'N-1',type:'welcome',time:'2026-09-01 09:12',status:'Sent',attempts:1,ref:'แพ็กเกจตรวจสอบรายปี',to:'ABC Energy Co., Ltd.',payload:{pkg:'แพ็กเกจตรวจสอบรายปี',end:'2029-08-31'}},
     {id:'N-2',type:'appt',time:'2026-10-27 10:05',status:'Sent',attempts:1,ref:'JOB-2026-0001',to:'ABC Energy Co., Ltd.',payload:{station:'ABC Charging Station',charger:'EV-CH-001',date:TODAY,time:'13:30',inspector:'John Inspector',jobId:'JOB-2026-0001'}},
     {id:'N-3',type:'remind',time:'2026-11-02 09:00',status:'Sent',attempts:1,ref:'JOB-2026-0001',to:'ABC Energy Co., Ltd.',payload:{station:'ABC Charging Station',charger:'EV-CH-001',date:TODAY,time:'13:30',inspector:'John Inspector',jobId:'JOB-2026-0001'}}],
   chat:[{kind:'text',from:'oa',text:'สวัสดีครับ ยินดีต้อนรับสู่ ChargerXpert กดเมนูด้านล่างเพื่อเริ่มใช้งานได้เลย',t:'2026-09-01 09:10'},{kind:'notif',nid:'N-1'},{kind:'notif',nid:'N-2'},{kind:'notif',nid:'N-3'}],
@@ -731,7 +735,7 @@ function seed(){
   roiHistory:[],forms:{}};
 }
 let db=seed();
-const S0=()=>({view:'line',param:null,role:null,after:null,selPkg:'plus',formHead:0,hf:'all',cal:{y:2026,m:10},jobFilter:'all',dashMode:'month',closing:null,failLine:false,passMem:'live',lineStep:1,reg:null,roiName:'',est:{chargers:3,heads:6,yrs:3},roi:{role:'cpo',pkg:'basic',chargers:3,heads:5,sess:4,kwhPer:25,price:8,days:365,dev:2,months:12,rec:100,share:30,visitPrice:12900}});
+const S0=()=>({view:'line',param:null,role:null,after:null,selPkg:'std',formHead:0,hf:'all',cal:{y:2026,m:10},jobFilter:'all',dashMode:'month',closing:null,failLine:false,passMem:'live',lineStep:1,reg:null,roiName:'',est:{chargers:3,heads:6,yrs:3},roi:{role:'cpo',pkg:'std',chargers:3,heads:5,sess:4,kwhPer:25,price:8,days:365,dev:2,months:12,rec:100,share:30,visitPrice:12900}});
 let S=S0();
 const USER={admin:'Pimchanok Admin',inspector:'John Inspector',customer:'คุณสมชาย ใจดี'};
 
@@ -758,13 +762,10 @@ function inspState(rec){
 }
 const quota=p=>p.inspections*Math.max(1,Math.round(p.months/12));
 function estimate(p,ch,hd,yrs){
-  const units=p.model==='per_head'?hd:ch;
-  const base=p.model==='bundle'?p.price:p.unit*units;
-  const t=[...p.disc].sort((a,b)=>b.yrs-a.yrs).find(t=>(yrs||0)>=t.yrs);
-  const pct=t?t.pct:0;
-  return {base,pct,total:base*(1-pct/100),units,over:hd>p.covers};
+  const q=tierQuote(ch),base=p.tiers[0].price*q.n,total=q.per*q.n,pct=Math.round((1-total/base)*1000)/10;
+  return {base,pct,total,units:q.n,per:q.per,quote:q.quote,over:false};
 }
-function pkgPriceLine(p){return p.model==='bundle'?[baht(p.price),'ต่อปี · ครอบคลุมสูงสุด '+p.covers+' หัวชาร์จ']:p.model==='per_head'?[baht(p.unit),'ต่อหัวชาร์จ ต่อปี']:[baht(p.unit),'ต่อเครื่องชาร์จ ต่อปี']}
+function pkgPriceLine(p){return [baht(p.tiers[0].price),'ต่อเครื่องชาร์จ ต่อปี (รวม VAT) · ลดตามจำนวนเครื่อง']}
 function audit(what){db.audit.unshift({t:stamp(),who:S.role?USER[S.role]:'ระบบ',what})}
 function pushLine(type,payload,o){
   o=o||{};
@@ -791,10 +792,10 @@ const selectF=(label,name,opts,val)=>'<label class="f">'+label+'<select class="i
 
 function modal(title,body,wide){
   $('#modal-root').innerHTML='<div class="ovl" data-bg="1"><div class="mdl'+(wide?' wide':'')+'" role="dialog" aria-modal="true" aria-label="'+esc(title)+'"><div class="mdl-h"><h3>'+esc(title)+'</h3><button class="x" data-act="mclose" aria-label="ปิด">'+ic('x',16)+'</button></div><div class="mdl-b">'+body+'</div></div></div>';
-  const f=$('#modal-root input:not([readonly]),#modal-root select,#modal-root textarea');if(f)f.focus();
+  i18nApply();const f=$('#modal-root input:not([readonly]),#modal-root select,#modal-root textarea');if(f)f.focus();
 }
 const closeModal=()=>{$('#modal-root').innerHTML=''};
-function toast(msg,kind){const t=document.createElement('div');t.className='toast '+(kind||'');t.textContent=msg;$('#toast-root').appendChild(t);setTimeout(()=>t.remove(),3800)}
+function toast(msg,kind){const t=document.createElement('div');t.className='toast '+(kind||'');t.textContent=(typeof isEn==='function'&&isEn()&&typeof trEn==='function')?trEn(msg):msg;$('#toast-root').appendChild(t);setTimeout(()=>t.remove(),3800)}
 
 /* QR */
 function fakeQr(t){
@@ -825,7 +826,7 @@ function render(){
   if(v.roles&&!S.role){S.after={view:S.view,param:S.param};v=VIEWS.login;S.view='login';notice='<div class="wrap" style="padding-top:12px"><div class="box">'+ic('lock',16)+'<span>กรุณาเข้าสู่ระบบก่อนเปิดหน้านี้ ระบบจะพาไปต่อให้อัตโนมัติ</span></div></div>'}
   if(v.roles&&S.role&&!v.roles.includes(S.role)){
     area='public';html='<section class="sec"><div class="wrap"><div class="card stack"><h2>ไม่มีสิทธิ์เข้าถึงหน้านี้</h2><p class="mu">บทบาทปัจจุบันคือ <b>'+S.role+'</b> หน้านี้เปิดได้เฉพาะ '+v.roles.join(' / ')+' ข้อมูลของลูกค้าแต่ละรายแยกจากกัน และเจ้าหน้าที่เห็นเฉพาะงานที่ได้รับมอบหมาย</p>'+goBtn('กลับหน้าหลักของฉัน',HOME[S.role],'','y')+'</div></div></section>';v=VIEWS.landing;
-  }else{area=v.dual&&S.role==='customer'?'customer':v.area;html=notice+v.fn(S.param)}
+  }else{area=v.dual&&S.role==='customer'?'customer':v.area;try{html=notice+v.fn(S.param)}catch(e){console.error(e);area='public';html='<section class="sec"><div class="wrap"><div class="card stack"><h2>หน้านี้แสดงผลไม่สำเร็จ</h2><p class="mu">ลองรีเซ็ตเดโมแล้วเปิดใหม่อีกครั้ง</p><button class="btn y sm" data-act="resetDemo">รีเซ็ตเดโม</button></div></div></section>'}}
   const liff=$('#liff'),chat=$('#chat-layer'),old=$('#liffbody'),keep=old&&!S.top&&S._v===S.view?old.scrollTop:0;
   $('#ctl').innerHTML=ctlHtml();{const dv=$('.device');if(dv)dv.dataset.sb=area==='line'||S.view==='x-elexa'||S.view==='x-report'||S.view==='x-station'?'w':S.view==='x-scan'||S.view.indexOf('cx-')===0?'k':'y'}$('#scenes').innerHTML=scenesHtml();$('#clock').textContent=hhmm();
   if(area==='line'||area==='base'){S.baseView=S.view;chat.innerHTML=html;liff.classList.remove('open');liff.innerHTML='';S._open=false}
@@ -837,6 +838,7 @@ function render(){
   S.top=false;S._v=S.view;
   if(v.after)v.after();
   document.querySelectorAll('[data-qr]').forEach(el=>{el.innerHTML=qrSvg(el.dataset.qr)});
+  i18nApply();
 }
 function liffHtml(area,html){
   const vv=VIEWS[S.view]||{},act2=vv.nav||S.view,dots='<svg class="ic" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="12" cy="19" r="1.7"/></svg>';
@@ -857,70 +859,78 @@ function liffHtml(area,html){
 
 /* ===== landing ===== */
 function pkgCard(p){
-  const feat=p.id==='plus',pl=pkgPriceLine(p);
-  return '<article class="pk '+(feat?'feat':'')+'"><div class="row"><h3>'+esc(p.name)+'</h3>'+(feat?'<span class="pill y">แนะนำ</span>':'')+'</div><p class="mu">'+esc(p.tag)+'</p><div class="pk-price"><b>'+pl[0]+'</b><small>'+pl[1]+'</small></div><ul>'+
-  '<li>'+ic('check',16)+'<span>'+MODEL[p.model]+'</span></li><li>'+ic('check',16)+'<span>สิทธิ์ตรวจ '+p.inspections+' ครั้งต่อปี</span></li><li>'+ic('check',16)+'<span>สัญญา '+(p.months/12)+' ปี</span></li>'+
-  '<li>'+ic('check',16)+'<span>ส่วนลดสัญญาระยะยาว '+p.disc.map(t=>'สัญญา '+t.yrs+' ปี ลด '+t.pct+'%').join(', ')+'</span></li><li>'+ic('check',16)+'<span>'+esc(p.terms)+'</span></li></ul>'+
-  act('เลือกแพ็กเกจ','pickPkg',p.id,feat?'y block':'o block')+'<p class="note">ราคาตัวอย่าง รอยืนยันต้นทุนธุรกิจ</p></article>';
+  const li=x=>'<li>'+ic('check',16)+'<span>'+esc(x)+'</span></li>',lx=x=>'<li>'+ic('alert',16)+'<span>'+esc(x)+'</span></li>';
+  const tb='<div class="scroll"><table class="tbl rcmp"><thead><tr><th>จำนวนเครื่อง</th><th>ต่อเครื่อง/ปี (รวม VAT)</th><th>ส่วนลด</th></tr></thead><tbody>'+p.tiers.map(t=>'<tr><td><b>'+tierLbl(t)+'</b></td><td class="tn">'+(t.price===null?'เสนอราคาเฉพาะ':baht(t.price))+'</td><td class="tn">'+(t.price===null||t.price===p.tiers[0].price?'—':'<span style="white-space:nowrap">ลด '+num((1-t.price/p.tiers[0].price)*100,1)+'%</span>')+'</td></tr>').join('')+'</tbody></table></div>';
+  return '<article class="pk" style="grid-column:1/-1"><div class="row"><h3>'+esc(p.name)+'</h3><span class="pill y">สัญญา 3 ปี</span></div><p class="mu">'+esc(p.tag)+'</p><div class="pk-price"><b>'+pkgPriceLine(p)[0]+'</b><small>'+pkgPriceLine(p)[1]+'</small></div>'+tb+
+  '<div class="g2" style="gap:20px;margin-top:6px"><div><h4 style="margin:0 0 8px">บริการตลอดสัญญา</h4><ul>'+p.inc.map(li).join('')+'</ul></div><div><h4 style="margin:0 0 8px">ขอบเขตที่ต้องระบุในสัญญา</h4><ul>'+p.exc.map(lx).join('')+'</ul></div></div>'+
+  act('สมัครแพ็กเกจนี้','pickPkg',p.id,'y block')+'<p class="note">ราคาตัวอย่าง รอยืนยันต้นทุนธุรกิจ</p></article>';
 }
 V('landing','public',()=>{
   const svc=[['clip','Charger Inspection','ตรวจสอบเครื่องชาร์จและหัวชาร์จตามรายการตรวจที่กำหนด'],['chart','Measurement & Assessment','บันทึกค่าที่ตรวจวัด ภาพถ่าย และข้อสังเกตแยกตามหัวชาร์จ'],['file','Digital Inspection Report','ใบบันทึกผลดิจิทัลและรายงาน PDF ฉบับเต็ม พร้อมเลขที่เอกสาร'],['qr','Inspection History Management','ประวัติการตรวจต่อเครื่อง กำหนดตรวจครั้งถัดไป และ QR Passport']];
   const how=['ลงทะเบียนและเพิ่มสถานี','เลือกแพ็กเกจหรือจองบริการ','นัดหมายตรวจสอบ','เจ้าหน้าที่เข้าตรวจสอบ','รับ Digital Inspection Certificate','ดูรายงานและประวัติผ่าน QR Code'];
   return '<section class="hero"><div class="wrap"><div><span class="pill y">LINE OA + Web Platform</span><h1 style="margin-top:16px">Professional EV Charger <em>Inspection</em></h1><p class="sub">ตรวจสอบ วิเคราะห์ และติดตามประวัติสถานีชาร์จ EV อย่างเป็นระบบ</p><div class="row">'+goBtn('ทดลองคำนวณ ROI ฟรี','roi','','k','calc')+goBtn('ดูแพ็กเกจสมาชิก','packages','','o','arrow')+'</div></div>'+
-  '<div class="pp" aria-label="ตัวอย่าง Digital Inspection Passport"><div class="pp-h"><span>Digital Inspection Passport</span><span class="mono">EV-CH-001</span></div><div class="pp-b"><dl class="kv" style="grid-template-columns:90px 1fr;font-size:13px"><dt>สถานี</dt><dd>ABC Charging Station</dd><dt>ตรวจล่าสุด</dt><dd>3 พฤศจิกายน 2026</dd><dt>เอกสาร</dt><dd class="mono">INS-2026-0001</dd><dt>ตรวจครั้งถัดไป</dt><dd>3 พฤศจิกายน 2027</dd></dl>'+qrBox('EV-CH-001')+'</div><p class="note" style="padding:0 18px 14px">'+DISC2+'</p></div></div></section>'+
+  '</div></section>'+
   '<section class="sec" id="services"><div class="wrap"><h2>บริการของเรา</h2><p class="mu" style="max-width:40em;margin-bottom:28px">'+SCOPE+'</p><div class="g4">'+svc.map(s=>'<div class="svc card flat"><div class="ico">'+ic(s[0],22)+'</div><h3>'+s[1]+'</h3><p class="mu">'+s[2]+'</p></div>').join('')+'</div></div></section>'+
   '<section class="sec mist" id="how"><div class="wrap"><h2>ขั้นตอนการให้บริการ</h2><ol class="how">'+how.map(h=>'<li>'+h+'</li>').join('')+'</ol></div></section>'+
-  '<section class="sec" id="packages"><div class="wrap"><h2>แพ็กเกจสมาชิก</h2><p class="mu" style="margin-bottom:24px">ราคาและสิทธิ์เป็นข้อมูลตัวอย่าง แก้ไขได้จากหลังบ้าน</p><div class="g3">'+db.packages.map(pkgCard).join('')+'</div></div></section>'+
+  '<section class="sec" id="packages"><div class="wrap"><h2>แพ็กเกจสมาชิก</h2><p class="mu" style="margin-bottom:24px">ราคาและสิทธิ์เป็นข้อมูลตัวอย่าง แก้ไขได้จากหลังบ้าน</p><div class="g1">'+db.packages.map(pkgCard).join('')+'</div></div></section>'+
   '<section class="sec mist"><div class="wrap card row" style="justify-content:space-between"><div><h2 style="font-size:24px">อยากรู้ว่าค่าตรวจคุ้มแค่ไหน</h2><p class="mu">กรอกยอดจำหน่ายไฟฟ้าและสมมติฐาน แล้วดูผลจำลองได้ทันที ไม่ต้องสมัครสมาชิก</p></div>'+goBtn('เปิด ROI Calculator','roi','','y','calc')+'</div></section>';
 });
-V('packages','public',()=>'<section class="sec"><div class="wrap"><h2>แพ็กเกจสมาชิก</h2><p class="mu" style="margin-bottom:24px">ราคาตัวอย่าง รอยืนยันต้นทุนธุรกิจ</p><div class="g3">'+db.packages.map(pkgCard).join('')+'</div></div></section>',{dual:true,nav:'membership'});
+V('packages','public',()=>'<section class="sec"><div class="wrap"><h2>แพ็กเกจสมาชิก</h2><p class="mu" style="margin-bottom:24px">ราคาตัวอย่าง รอยืนยันต้นทุนธุรกิจ</p><div class="g1">'+db.packages.map(pkgCard).join('')+'</div></div></section>',{dual:true,nav:'membership'});
 
 /* ===== ROI ===== */
-function roiCalc(r){
-  const pk=pkgOf(r.pkg),member=pk.price;
+const tiersOf=()=>pkgOf('std').tiers;
+const tierLbl=t=>t.b===null?t.a+' เครื่องขึ้นไป':(t.a===t.b?t.a+' เครื่อง':t.a+'–'+t.b+' เครื่อง');
+function tierQuote(n){n=Math.max(1,Math.round(+n||1));const t=tiersOf().find(t=>n>=t.a&&(t.b===null||n<=t.b)),quote=t.price===null,per=quote?23400:t.price;return {t,n,per,total:per*n,quote,label:tierLbl(t),disc:Math.round((1-per/24900)*1000)/10}}
+function roiCalc(r,perOv){
+  r=Object.assign({},r,{heads:Math.max(1,Math.round(+r.chargers||1))*2});
+  const q=tierQuote(r.chargers),per=perOv||q.per,member=per*q.n,pk={name:'แพ็กเกจตรวจสอบรายปี · '+q.label,price:member,inspections:2,covers:999,tier:q};
   const annual=r.heads*r.sess*r.kwhPer*r.price*r.days,monthly=annual/12;
   const lossAll=annual*r.dev/100*r.months/12,share=r.role==='host'?r.share/100:1,risk=lossAll*share,kept=risk*r.rec/100;
   const perVisit=r.visitPrice,diff=risk-perVisit,net=kept-member;
   const basis=annual*r.months/12;
-  return {pk,monthly,annual,lossAll,risk,impact:kept,kept,member,perVisit,diff,net,roi:member?net/member*100:0,
-    breakEven:basis?perVisit/basis*100:0,avgMember:pk.inspections?member/pk.inspections:0,over:r.heads>pk.covers};
+  return {pk,q,per,monthly,annual,lossAll,risk,impact:kept,kept,member,perVisit,diff,net,roi:member?net/member*100:0,
+    breakEven:basis?perVisit/basis*100:0,avgMember:pk.inspections?member/pk.inspections:0,over:false};
 }
 const roiPct=n=>(n>=0?'':'−')+num(Math.abs(n),1)+'%';
 function roiOut(){
   const r=S.roi,c=roiCalc(r);
   const t=(cls,l,v,s)=>'<div class="rt '+cls+'"><span>'+l+'</span><b>'+v+'</b><small>'+s+'</small></div>';
-  const cmp=db.packages.map(k=>{const x=roiCalc(Object.assign({},r,{pkg:k.id}));return '<tr class="'+(k.id===r.pkg?'cur':'')+'"><td><b>'+k.name+'</b></td><td class="tn">'+baht(k.price)+'/ปี</td><td class="tn">'+k.inspections+' ครั้ง</td><td class="tn">≤ '+k.covers+' หัว</td><td class="tn">'+roiPct(x.roi)+'</td></tr>'}).join('');
-  return '<div class="rsec"><i>04</i><b>ผลการประเมินความคุ้มค่า</b></div>'+
+  const cmp=tiersOf().map(k=>{const cur=k===c.q.t;return '<tr class="'+(cur?'cur':'')+'"><td><b>'+tierLbl(k)+'</b></td><td class="tn">'+(k.price===null?'เสนอราคาเฉพาะ':baht(k.price)+' บาท')+'</td><td class="tn">'+(k.price===null?'—':(k.price===24900?'—':'ลด '+num((1-k.price/24900)*100,1)+'%'))+'</td><td class="tn">'+(cur?(c.q.quote?'ประมาณ ':'')+baht(c.member):'—')+'</td></tr>'}).join('');
+  const recCard='<div class="rdark" style="gap:8px"><div class="rsec" style="color:#fff"><b>แพ็กเกจที่แนะนำสำหรับ '+c.q.n+' เครื่อง</b></div><div class="rbig"><span>'+(c.q.quote?'ราคาต่อเครื่อง/ปี (ประมาณการ)':'ราคาต่อเครื่อง/ปี (รวม VAT)')+'</span><b>'+baht(c.q.per)+'</b></div><p class="rn">ช่วง '+c.q.label+(c.q.disc>0?' · ส่วนลดเทียบ 1 เครื่อง '+num(c.q.disc,1)+'%':'')+' · รวมต่อปี '+baht(c.member)+' · สัญญา 3 ปี รวม '+baht(c.member*3)+'</p><p class="rn">1 เครื่อง = 2 หัวชาร์จ · ตรวจ PM (หมวด 1–2) ทุก 6 เดือน · ตรวจ Accuracy (หมวด 3) ทุก 18 เดือน'+(S.role==='customer'?'':' · ไม่ต้องสมัครสมาชิกเพื่อดูผล')+'</p></div>';
+  return '<div class="rsec"><i>04</i><b>ผลการประเมินความคุ้มค่า</b></div>'+recCard+
   '<div class="g2" style="gap:10px">'+t('b','มูลค่าการชาร์จต่อปี',baht(c.annual),'จากข้อมูลที่กรอก')+t('r','รายได้ที่อาจสูญเสียทั้งสถานี',baht(c.lossAll),'ในช่วง '+r.months+' เดือน')+
-   t('y','ความเสี่ยงส่วนที่เกี่ยวข้องกับคุณ',baht(c.risk),r.role==='host'?'ตามส่วนแบ่งรายได้ '+r.share+'%':'ตามรูปแบบรายได้')+t('g','ค่าแพ็กเกจที่คุณจ่ายต่อปี',baht(c.member),'ราคาแพ็กเกจรายปี '+c.pk.name)+'</div>'+
+   t('y','ความเสี่ยงส่วนที่เกี่ยวข้องกับคุณ',baht(c.risk),r.role==='host'?'ตามส่วนแบ่งรายได้ '+r.share+'%':'ตามรูปแบบรายได้')+t('g','ค่าแพ็กเกจที่คุณจ่ายต่อปี',baht(c.member),c.q.n+' เครื่อง × '+baht(c.q.per)+(c.q.quote?' (ประมาณการ)':''))+'</div>'+
   '<div class="card stack"><div class="rsec"><i>A</i><b>เงินที่อาจสูญเสียจากมิเตอร์ vs ค่าตรวจรายครั้ง</b></div><p class="note">เปรียบเทียบมูลค่าความเสี่ยงจากมิเตอร์คลาดเคลื่อนกับค่าบริการตรวจสอบหนึ่งครั้ง</p>'+
    '<div class="g2" style="gap:10px"><div class="rt r"><span>รายได้ที่อาจสูญเสีย</span><b>'+baht(c.risk)+'</b></div><div class="rt b"><span>ค่าตรวจรายครั้ง</span><b>'+baht(c.perVisit)+'</b></div></div>'+
    '<div><p class="note">ส่วนต่างของมูลค่าความเสี่ยงกับค่าตรวจ</p><b style="font:600 22px var(--fd);color:'+(c.diff>=0?'var(--ok)':'var(--bad)')+'">'+(c.diff<0?'−':'')+num(Math.abs(c.diff))+' บาท</b></div>'+
    '<div class="rt y"><span>มิเตอร์อ่านต่ำกว่าจริงกี่ % จึงมีมูลค่าความเสี่ยงเท่าค่าตรวจ?</span><b>'+num(c.breakEven,2)+'%</b><small>เป็นจุดเปรียบเทียบทางการเงิน ไม่ใช่เกณฑ์มาตรฐานความแม่นยำของมิเตอร์</small></div>'+
    '<p class="note">ส่วนต่างนี้ไม่ใช่กำไรหรือเงินที่ได้รับคืนจากการตรวจ และไม่ได้ยืนยันว่าการตรวจจะคุ้มค่าในทุกกรณี</p></div>'+
-  '<div class="rdark"><div class="rsec"><i>B</i><b>ROI แพ็กเกจ '+c.pk.name+'</b></div><div class="rbig"><span>ROI ที่คาดการณ์ (Potential ROI)</span><b style="color:'+(c.roi>=0?'#6fe3a0':'#ff9b9b')+'">'+roiPct(c.roi)+'</b></div>'+
+  '<div class="rdark"><div class="rsec"><i>B</i><b>ROI แพ็กเกจที่แนะนำ ('+c.q.label+')</b></div><div class="rbig"><span>ROI ที่คาดการณ์ (Potential ROI)</span><b style="color:'+(c.roi>=0?'#6fe3a0':'#ff9b9b')+'">'+roiPct(c.roi)+'</b></div>'+
    '<div class="rbox"><div><span>มูลค่าที่อาจรักษาไว้ได้</span><b style="color:#6fe3a0">'+baht(c.kept)+'</b></div><div><span>ค่าแพ็กเกจต่อปีที่คุณจ่าย</span><b>'+baht(c.member)+'</b></div><hr><div><span><b>ผลประโยชน์สุทธิที่คาดการณ์</b></span><b style="color:'+(c.net>=0?'#6fe3a0':'#ff9b9b')+'">'+(c.net<0?'−':'')+baht(Math.abs(c.net))+'</b></div></div>'+
    '<p class="rn">'+(c.net>=0?'ภายใต้สมมติฐานนี้ มูลค่าที่อาจรักษาไว้ได้สูงกว่าค่าแพ็กเกจ':'ภายใต้สมมติฐานนี้ มูลค่าที่อาจรักษาไว้ได้ยังต่ำกว่าค่าแพ็กเกจ')+'</p><p class="rn">ใช้ค่าแพ็กเกจเต็มปี แม้เลือกความคลาดเคลื่อน '+r.months+' เดือน · สัญญา 3 ปี · ไม่รวมค่าแก้ไขมิเตอร์และค่าใช้จ่ายอื่น · ผลตอบแทนไม่รับประกัน</p></div>'+
-  (c.over?'<div class="box warn">'+ic('alert',16)+'<span>จำนวนหัวชาร์จเกินที่แพ็กเกจ '+c.pk.name+' รองรับ ('+c.pk.covers+' หัว) ลองเปรียบเทียบกับแพ็กเกจ Plus</span></div>':'')+
-  '<div class="card"><h3>เปรียบเทียบแพ็กเกจ</h3><div class="scroll"><table class="tbl rcmp"><thead><tr><th>แพ็กเกจ</th><th>ราคา</th><th>ตรวจ</th><th>รองรับ</th><th>ROI</th></tr></thead><tbody>'+cmp+'</tbody></table></div><p class="note" style="margin-top:8px">ถ้าตรวจรายครั้ง '+num(c.pk.inspections)+' ครั้ง = '+baht(c.perVisit*c.pk.inspections)+' เทียบแพ็กเกจ '+baht(c.member)+' ต่อปี</p></div>'+
+  (c.q.quote?'<div class="box warn">'+ic('alert',16)+'<span>ตั้งแต่ 11 เครื่องขึ้นไปเป็นการเสนอราคาเฉพาะ ผลนี้ใช้ราคาช่วง 6–10 เครื่องเป็นตัวประมาณ</span></div>':'')+
+  '<div class="card"><h3>ราคาตามจำนวนเครื่อง</h3><div class="scroll"><table class="tbl rcmp"><thead><tr><th>จำนวนเครื่อง</th><th>ราคาต่อเครื่อง/ปี (รวม VAT)</th><th>ส่วนลด</th><th>รวมของคุณ</th></tr></thead><tbody>'+cmp+'</tbody></table></div><p class="note" style="margin-top:8px">ถ้าจ้างตรวจ PM รายครั้ง 2 ครั้ง/ปี × '+c.q.n+' เครื่อง = '+baht(c.perVisit*c.pk.inspections*c.q.n)+' เทียบแพ็กเกจ '+baht(c.member)+' ต่อปี · ราคาตัวอย่าง รอยืนยันต้นทุนธุรกิจ</p></div>'+
   '<div class="box">'+ic('alert',16)+'<span>ผลลัพธ์เป็นเพียงแบบจำลอง ยังไม่รวมค่าแก้ไขมิเตอร์และค่าใช้จ่ายเพิ่มเติม และไม่ใช่การรับประกันว่าจะรักษารายได้กลับมาได้ทั้งหมด</span></div>';
 }
 V('roi','public',()=>{
   const r=S.roi,mem=S.role==='customer';
+  if(mem&&!S.roiMem){S.roiMem=1;if(!S.roiStation){r.chargers=db.chargers.length;r.heads=db.chargers.reduce((a,c)=>a+c.heads.length,0)}}
   const inp=(k,l,u,st,hint)=>'<label class="f">'+l+'<span class="unit"><input class="in tn" type="number" min="0" step="'+(st||'any')+'" inputmode="decimal" data-roi="'+k+'" value="'+r[k]+'"><i>'+u+'</i></span>'+(hint?'<span class="note">'+hint+'</span>':'')+'</label>';
   const sl=(k,l,min,max,st,u)=>'<label class="f rsl"><span class="row" style="justify-content:space-between;flex-wrap:nowrap"><span>'+l+'</span><b class="ryv"><span data-lbl="'+k+'">'+r[k]+'</span>'+u+'</b></span><input type="range" min="'+min+'" max="'+max+'" step="'+st+'" value="'+r[k]+'" data-roi="'+k+'" aria-label="'+l+'"></label>';
   const card=(k,v,t,s,x)=>'<button type="button" class="rcard'+(r[k]===v?' on':'')+'" data-act="roiSet" data-id="'+k+':'+v+'" aria-pressed="'+(r[k]===v?'true':'false')+'"><b>'+t+(r[k]===v?' '+ic('check',14):'')+'</b><small>'+s+'</small>'+(x||'')+'</button>';
   const tools=mem?'<div class="card"><h3>เครื่องมือสำหรับสมาชิก</h3><div class="stack">'+
     '<label class="f">คำนวณแยกตามสถานี<select class="in" data-chg="roiStation"><option value="">เลือกสถานีเพื่อดึงจำนวนหัวชาร์จ</option>'+db.stations.map(s=>'<option value="'+s.id+'"'+(S.roiStation===s.id?' selected':'')+'>'+esc(s.name)+'</option>').join('')+'</select></label>'+
-    '<label class="f">ชื่อผลการคำนวณ<input class="in" id="roi-name" value="'+esc(S.roiName)+'" placeholder="เช่น ABC Charging Station ไตรมาส 4"></label><div class="row">'+act('บันทึกผลการคำนวณ','roiSave','','y sm','plus')+act('ดาวน์โหลดรายงาน PDF','dl','roi','o sm','down')+'</div></div></div>':
-    '<div class="card mist"><h3>'+ic('lock',16)+' สำหรับสมาชิก</h3><ul class="note" style="padding-left:18px;margin:0 0 14px;line-height:1.9"><li>บันทึกผลการคำนวณและดูประวัติ</li><li>คำนวณแยกตามสถานี เปรียบเทียบหลายสถานี</li><li>ดาวน์โหลดรายงาน PDF</li><li>เชื่อมผลคำนวณกับประวัติการตรวจสอบ</li></ul><div class="row">'+goBtn('สมัครสมาชิก','register','','y sm')+act('ส่งคำขอติดต่อกลับ','lead','','o sm','headset')+'</div></div>';
+    '<div class="box">'+ic('check',16)+'<span>'+(S.roiReal?'ค่าคลาดเคลื่อนในแบบจำลองมาจากผลตรวจจริงของคุณ ('+S.roiReal+' หัว)':'ใช้ค่าคลาดเคลื่อนจากผลตรวจ Accuracy จริงของคุณแทนค่าสมมติได้')+'</span></div>'+act('ใช้ค่าจากผลตรวจจริง','roiFromInspect','','o sm','gauge')+
+    '<label class="f">ชื่อผลการคำนวณ<input class="in" id="roi-name" value="'+esc(S.roiName)+'" placeholder="เช่น ABC Charging Station ไตรมาส 4"></label><div class="row">'+act('บันทึกผลการคำนวณ','roiSave','','y sm','plus')+act('ดูตัวอย่างรายงาน PDF','dl','roi','o sm','file')+'</div></div></div>':
+    '<div class="card mist"><h3>'+ic('lock',16)+' สำหรับสมาชิก</h3><ul class="note" style="padding-left:18px;margin:0 0 14px;line-height:1.9"><li>ใช้จำนวนเครื่องและราคาของคุณจากบัญชีโดยอัตโนมัติ ไม่ต้องกรอกเอง</li><li>คำนวณแยกตามสถานี และเปรียบเทียบ ROI ทุกสถานีในตารางเดียว</li><li>ดึงค่าคลาดเคลื่อนจากผลตรวจ Accuracy จริงของคุณมาแทนค่าสมมติ</li><li>บันทึกผลการคำนวณ ดูประวัติ และเชื่อมกับรายงานการตรวจ</li><li>ดูตัวอย่างรายงาน ROI เป็น PDF</li></ul><div class="row">'+goBtn('สมัครสมาชิก','register','','y sm')+act('ส่งคำขอติดต่อกลับ','lead','','o sm','headset')+'</div></div>';
   let hist='';
-  if(mem&&db.roiHistory.length)hist='<div class="card"><h3>ประวัติและการเปรียบเทียบ</h3><div class="scroll"><table class="tbl"><thead><tr><th>ชื่อ</th><th>วันที่</th><th>เครื่อง/หัว</th><th>ยอดชาร์จต่อปี</th><th>มูลค่าที่อาจรักษาไว้</th><th>ค่าแพ็กเกจ</th><th>ประวัติตรวจล่าสุด</th></tr></thead><tbody>'+db.roiHistory.map(h=>'<tr><td>'+esc(h.name)+'</td><td>'+fmtS(h.date)+'</td><td class="tn">'+h.r.chargers+'/'+h.r.heads+'</td><td class="tn">'+baht(h.c.annual)+'</td><td class="tn">'+baht(h.c.impact)+' <span class="mu">('+num(h.r.dev,2)+'%)</span></td><td class="tn">'+baht(h.c.member)+'</td><td>'+(h.doc?'<button class="btn sm ghostb" data-go="cert:'+h.doc+'">'+h.doc+'</button>':'<span class="mu">—</span>')+'</td></tr>').join('')+'</tbody></table></div></div>';
+  if(mem){const qa=tierQuote(db.chargers.length);hist='<div class="card"><h3>เปรียบเทียบ ROI แยกสถานี</h3><div class="scroll"><table class="tbl"><thead><tr><th>สถานี</th><th>เครื่อง/หัว</th><th>มูลค่าที่อาจรักษาไว้</th><th>ค่าแพ็กเกจ</th><th>ROI</th></tr></thead><tbody>'+db.stations.map(st=>{const cs=db.chargers.filter(c=>c.station===st.id),hs=cs.length*2,x=roiCalc(Object.assign({},r,{chargers:cs.length,heads:hs}),qa.per);return '<tr><td>'+esc(st.name)+'</td><td class="tn">'+cs.length+'/'+hs+'</td><td class="tn">'+baht(x.kept)+'</td><td class="tn">'+baht(x.member)+'</td><td class="tn">'+roiPct(x.roi)+'</td></tr>'}).join('')+'</tbody></table></div><p class="note" style="margin-top:8px">ใช้ราคา '+baht(qa.per)+' ต่อเครื่อง (ช่วง '+qa.label+' ตามจำนวนเครื่องทั้งบัญชี) และสมมติฐานเดียวกับด้านซ้าย</p></div>'}
+  if(mem&&db.roiHistory.length)hist+='<div class="card"><h3>ประวัติและการเปรียบเทียบ</h3><div class="scroll"><table class="tbl"><thead><tr><th>ชื่อ</th><th>วันที่</th><th>เครื่อง/หัว</th><th>ยอดชาร์จต่อปี</th><th>มูลค่าที่อาจรักษาไว้</th><th>ค่าแพ็กเกจ</th><th>ประวัติตรวจล่าสุด</th></tr></thead><tbody>'+db.roiHistory.map(h=>'<tr><td>'+esc(h.name)+'</td><td>'+fmtS(h.date)+'</td><td class="tn">'+h.r.chargers+'/'+h.r.heads+'</td><td class="tn">'+baht(h.c.annual)+'</td><td class="tn">'+baht(h.c.impact)+' <span class="mu">('+num(h.r.dev,2)+'%)</span></td><td class="tn">'+baht(h.c.member)+'</td><td>'+(h.doc?'<button class="btn sm ghostb" data-go="cert:'+h.doc+'">'+h.doc+'</button>':'<span class="mu">—</span>')+'</td></tr>').join('')+'</tbody></table></div></div>';
   const form='<form class="card stack" onsubmit="return false"><div class="rhead"><small>CHARGERXPERT</small><h3>Interactive ROI Calculator</h3><p>ประเมินรายได้ที่อาจสูญเสียจากมิเตอร์คลาดเคลื่อน เปรียบเทียบค่าตรวจรายครั้ง และคำนวณ ROI ของแพ็กเกจรายปี</p></div>'+
    '<div class="rsec"><i>01</i><b>คุณเป็นผู้ใช้งานประเภทไหน?</b></div><div class="g2" style="gap:10px">'+card('role','cpo','CPO','ผู้ให้บริการสถานีชาร์จ')+card('role','host','Site Host','เจ้าของพื้นที่ติดตั้งสถานี')+'</div>'+
-   '<div class="rsec"><i>02</i><b>เลือกแพ็กเกจตรวจสอบ</b></div><div class="g2" style="gap:10px">'+db.packages.map(k=>card('pkg',k.id,k.name,'<span class="rp">'+baht(k.price)+'</span> ต่อปี<br>ตรวจ '+k.inspections+' ครั้ง/ปี · สูงสุด '+k.covers+' หัวชาร์จ<br>สัญญา 3 ปี รวม '+baht(k.price*3))).join('')+'</div>'+
+   (mem?'<div class="rsec"><i>02</i><b>เครื่องของคุณ</b></div><div class="card mist" style="padding:12px 14px"><b>'+r.chargers+' เครื่อง = '+r.chargers*2+' หัวชาร์จ</b> <span class="note">จากบัญชีสมาชิก'+(S.roiStation?' · '+esc((stationOf(S.roiStation)||{}).name||''):' · ทุกสถานี')+' ระบบใช้แพ็กเกจและราคาของคุณให้อัตโนมัติ เลือกสถานีด้านล่างเพื่อคำนวณแยกสถานี</span></div>':'<div class="rsec"><i>02</i><b>จำนวนเครื่องชาร์จที่ต้องการตรวจ</b></div>'+inp('chargers','จำนวนเครื่องชาร์จ','เครื่อง','1','ระบบจะแนะนำแพ็กเกจและราคาตามจำนวนเครื่อง (1 เครื่องอาจมีหลายหัวชาร์จ)'))+
    '<div class="rsec"><i>03</i><b>ข้อมูลสถานีชาร์จของคุณ</b></div><p class="note">กรอกข้อมูลจริงหรือปรับค่าตัวอย่างเพื่อดูผลลัพธ์ทันที</p>'+
-   '<div class="g2" style="gap:10px">'+inp('heads','จำนวนหัวชาร์จ','หัว','1','รองรับสูงสุด '+pkgOf(r.pkg).covers+' หัว')+inp('sess','ครั้งชาร์จต่อหัว/วัน','ครั้ง','1','เช่น 4 ครั้งต่อวัน')+inp('kwhPer','ไฟฟ้าต่อการชาร์จ','kWh')+inp('price','ราคาขายไฟ','฿/kWh')+inp('days','วันเปิดบริการต่อปี','วัน','1')+(r.role==='host'?inp('share','ส่วนแบ่งรายได้ของเจ้าของพื้นที่','%','1','ใช้คิดความเสี่ยงส่วนที่เกี่ยวข้องกับคุณ'):'')+'</div>'+
+   '<div class="g2" style="gap:10px">'+('<div class="f"><span>จำนวนหัวชาร์จ</span><div class="card mist" style="padding:10px 12px"><b><span id="roi-hd">'+(Math.max(1,Math.round(+r.chargers||1))*2)+'</span> หัว</b> <span class="note">1 เครื่อง = 2 หัวชาร์จ</span></div></div>')+inp('sess','ครั้งชาร์จต่อหัว/วัน','ครั้ง','1','เช่น 4 ครั้งต่อวัน')+inp('kwhPer','ไฟฟ้าต่อการชาร์จ','kWh')+inp('price','ราคาขายไฟ','฿/kWh')+inp('days','วันเปิดบริการต่อปี','วัน','1')+(r.role==='host'?inp('share','ส่วนแบ่งรายได้ของเจ้าของพื้นที่','%','1','ใช้คิดความเสี่ยงส่วนที่เกี่ยวข้องกับคุณ'):'')+'</div>'+
    '<div class="rdark" style="gap:14px"><div class="rsec" style="color:#fff"><b>สมมติฐานความคลาดเคลื่อน</b></div>'+sl('dev','มิเตอร์อ่านต่ำกว่าความจริง',0,5,.1,'%')+
    '<div class="f"><span>ระยะเวลาที่มิเตอร์อาจคลาดเคลื่อน</span><div class="rseg">'+[3,6,12].map(m=>'<button type="button" class="'+(r.months===m?'on':'')+'" data-act="roiSet" data-id="months:'+m+'" aria-pressed="'+(r.months===m)+'">'+m+' เดือน</button>').join('')+'</div></div>'+
    sl('rec','สัดส่วนความสูญเสียที่อาจแก้ไขได้',0,100,5,'%')+'<p class="rn">เป็นการจำลองสถานการณ์ ไม่ใช่การยืนยันว่ามิเตอร์มีปัญหาหรือรับประกันการแก้ไข</p></div>'+
@@ -1008,8 +1018,8 @@ V('schedule','customer',()=>{
 },{roles:CUST});
 V('membership','customer',()=>{
   const m=db.membership,p=pkgOf(m.pkg),ms=memStatus(),used=usedQuota(),ec=S.est;
-  const est=db.packages.map(k=>{const e=estimate(k,ec.chargers,ec.heads,ec.yrs);return '<tr><td><b>'+k.name+'</b></td><td>'+MODEL[k.model]+'</td><td class="tn">'+baht(e.base)+'</td><td class="tn">'+(e.pct?'−'+e.pct+'%':'—')+'</td><td class="tn"><b>'+baht(e.total)+'</b></td><td>'+(e.over?pill('เกิน '+k.covers+' หัว','warn'):pill('ครอบคลุม','ok'))+'</td></tr>'}).join('');
-  return head('สมาชิก','สถานะสมาชิกและสิทธิ์ตรวจสอบ')+'<div class="stack"><div class="card"><div class="row" style="margin-bottom:12px"><h3 style="margin:0">'+esc(p.name)+'</h3>'+pill(ms,memKind(ms))+pill('ชำระเงิน: '+db.company.payment,db.company.payment==='Paid'?'ok':'warn')+'</div>'+kv([['วันเริ่มสมาชิก',fmt(m.start)],['วันหมดอายุ',fmt(m.end)],['สิทธิ์ตรวจตลอดสัญญา',quota(p)+' ครั้ง ('+p.inspections+' ครั้งต่อปี)'],['ใช้แล้ว / คงเหลือ',used+' / '+Math.max(0,quota(p)-used)+' ครั้ง'],['การคิดราคา',MODEL[p.model]],['เงื่อนไข',esc(p.terms)]])+
+  const est=db.packages.map(k=>{const e=estimate(k,ec.chargers,ec.heads,ec.yrs);return '<tr><td><b>'+k.name+'</b></td><td>'+MODEL[k.model]+'</td><td class="tn">'+baht(e.base)+'</td><td class="tn">'+(e.pct?'−'+e.pct+'%':'—')+'</td><td class="tn"><b>'+baht(e.total)+'</b></td><td>'+(e.quote?pill('เสนอราคาเฉพาะ','warn'):pill('ครอบคลุม','ok'))+'</td></tr>'}).join('');
+  return head('สมาชิก','สถานะสมาชิกและสิทธิ์ตรวจสอบ')+'<div class="stack"><div class="card"><div class="row" style="margin-bottom:12px"><h3 style="margin:0">'+esc(p.name)+'</h3>'+pill(ms,memKind(ms))+pill('ชำระเงิน: '+db.company.payment,db.company.payment==='Paid'?'ok':'warn')+'</div>'+kv([['วันเริ่มสมาชิก',fmt(m.start)],['วันหมดอายุ',fmt(m.end)],['สิทธิ์ตรวจตลอดสัญญา','PM ทุก 6 เดือน '+quota(p)+' ครั้ง · Accuracy Test 2 ครั้ง'],['PM ใช้แล้ว / คงเหลือ',used+' / '+Math.max(0,quota(p)-used)+' ครั้ง'],['การคิดราคา',MODEL[p.model]],['เงื่อนไข',esc(p.terms)]])+
   '<div class="row" style="margin-top:16px">'+(ms==='Active'?act('ต่ออายุสมาชิก','renew','','y sm','refresh')+act('ยกเลิกสมาชิก','cancelAsk','','o sm'):act('สมัครใช้งานอีกครั้ง','renew','','y sm','refresh'))+'</div></div>'+
   (ms!=='Active'?'<div class="box">'+ic('alert',16)+'<span>สมาชิกสถานะ '+ms+': ประวัติและรายงานเดิมยังอยู่ครบ แต่ไม่มีแผนตรวจสอบต่อเนื่องภายใต้สมาชิก และ QR Passport จะแสดงข้อความนี้ให้ผู้สแกนเห็น</span></div>':'')+
   payHist()+'<div class="card"><h3>ประเมินราคาตามจำนวนเครื่อง</h3><div class="g2" style="max-width:420px">'+['chargers:เครื่องชาร์จ','heads:หัวชาร์จ','yrs:สัญญา (ปี)'].map(x=>{const a=x.split(':');return '<label class="f">'+a[1]+'<input class="in tn" type="number" min="1" data-est="'+a[0]+'" value="'+ec[a[0]]+'"></label>'}).join('')+'</div><div class="scroll" style="margin-top:12px"><table class="tbl"><thead><tr><th>แพ็กเกจ</th><th>วิธีคิดราคา</th><th>ราคาก่อนลด</th><th>ส่วนลด</th><th>ราคาต่อปี</th><th>การครอบคลุม</th></tr></thead><tbody id="est-out">'+est+'</tbody></table></div><p class="note">ราคาตัวอย่าง รอยืนยันต้นทุนธุรกิจ</p></div></div>';
@@ -1034,14 +1044,14 @@ V('report','customer',id=>{
   const r=recAccess(id||(db.records[db.records.length-1]||{}).docId);if(!r)return head('ไม่พบเอกสาร');
   const ov=OV[r.overall],ph=n=>'<div class="ph2">'+logo()+'<span class="mono">'+r.docId+' · v'+r.version+'</span></div>',pf=n=>'<div class="pf"><span>ChargerXpert · Inspection Report</span><span>หน้า '+n+' จาก 3</span></div>';
   const headTbl=h=>'<h4>หัวชาร์จ <span class="mono">'+h.id+'</span> '+pill(VRES[h.result]||h.result,h.result==='pass'?'ok':h.result==='obs'?'warn':'bad')+'</h4><div class="scroll"><table class="tbl"><tbody>'+VIS.map(v=>'<tr><td>'+v[1]+'</td><td>'+(VRES[h.visual[v[0]]]||'—')+'</td></tr>').join('')+MEAS.map(m=>'<tr><td>'+m[1]+'</td><td class="tn">'+esc(h.m[m[0]])+' '+m[2]+'</td></tr>').join('')+'<tr><td>ความคลาดเคลื่อนของค่าพลังงาน</td><td class="tn"><b>'+(h.dev>0?'+':'')+num(h.dev,2)+'%</b></td></tr></tbody></table></div>';
-  return '<div class="row" style="margin-bottom:16px"><button class="btn sm ghostb" data-go="cert:'+r.docId+'">← Certificate</button><span class="sp"></span>'+act('ดาวน์โหลด PDF','dl',r.docId,'y sm','down')+'</div><p class="note" style="margin-bottom:12px">ตัวอย่างหน้ารายงาน PDF (3 หน้า)</p>'+
+  return '<div class="row" style="margin-bottom:16px"><button class="btn sm ghostb" data-go="cert:'+r.docId+'">← Certificate</button><span class="sp"></span>'+act('ดูตัวอย่าง PDF','dl',r.docId,'y sm','down')+'</div><p class="note" style="margin-bottom:12px">ตัวอย่างหน้ารายงาน PDF (3 หน้า)</p>'+
   '<section class="paper">'+ph(1)+'<h2>รายงานผลการตรวจสอบสถานีชาร์จ</h2>'+kv([['ลูกค้า',esc(r.customerName)],['สถานี',esc(r.stationName)],['Charger ID',r.chargerId+' ('+esc(r.serial)+')'],['วันที่ตรวจ',fmt(r.date)+' '+r.time],['ผู้ตรวจสอบ',esc(r.inspector)],['ตรวจครั้งถัดไป',fmt(r.next)]])+'<div><h4>สรุปผล '+pill(ov[0],ov[1])+'</h4><p>'+esc(r.summary)+'</p></div><div><h4>ข้อสังเกต</h4>'+(r.findings.length?'<ul style="margin:0;padding-left:20px">'+r.findings.map(f=>'<li>'+esc(f)+'</li>').join('')+'</ul>':'<p class="mu">ไม่พบข้อสังเกตเพิ่มเติม</p>')+(r.observations?'<p style="margin-top:8px">'+esc(r.observations)+'</p>':'')+'</div>'+pf(1)+'</section>'+
   '<section class="paper">'+ph(2)+r.heads.map(headTbl).join('')+pf(2)+'</section>'+
   '<section class="paper">'+ph(3)+'<div><h4>ภาพประกอบ</h4><div class="photos">'+(r.photos.length?r.photos.map(p=>'<figure><img src="'+p+'" alt="ภาพประกอบการตรวจ"></figure>').join(''):'<p class="mu">ไม่มีภาพ</p>')+'</div></div>'+(r.notes?'<div><h4>หมายเหตุ</h4><p>'+esc(r.notes)+'</p></div>':'')+'<div class="g2"><div class="card flat"><p class="note">ผู้ตรวจสอบ</p><p style="font:italic 22px var(--fd);margin:8px 0">'+esc(r.inspector)+'</p><p class="note">'+fmt(r.date)+'</p></div><div class="card flat">'+qrBox(r.chargerId)+'</div></div><div class="box">'+ic('alert',16)+'<span>'+DISC1+' '+SCOPE+'</span></div>'+pf(3)+'</section>';
 },{roles:ALLR,nav:'history'});
 V('qr','customer',id=>{
   const c=chargerOf(id||'EV-CH-001');if(!c)return head('ไม่พบเครื่อง');
-  return head('QR Code ประจำเครื่อง','พิมพ์ติดที่ตู้ชาร์จหรือเก็บไว้ในเอกสารสถานี')+'<div class="g2"><div class="card stack" style="align-items:center;text-align:center">'+stickerSvg(c.id,220)+'<h3 class="mono" style="margin:0">'+c.id+'</h3><p class="note">'+esc(stationOf(c.station).name)+'<br>'+passUrl(c.id)+'</p><div class="row">'+goBtn('จำลองสแกน','passport',c.id,'y','qr')+act('ดาวน์โหลดป้าย QR','dl','qr','o','down')+'</div></div><div class="card stack"><h3>เลือกเครื่อง</h3>'+db.chargers.map(x=>'<button class="btn '+(x.id===c.id?'k':'o')+'" data-go="qr:'+x.id+'">'+x.id+' · '+esc(stationOf(x.station).name)+'</button>').join('')+'<div class="box mist">'+ic('lock',16)+'<span>QR เปิดเฉพาะข้อมูลสาธารณะ ส่วนรายงานฉบับเต็มต้องเข้าสู่ระบบ</span></div></div></div>';
+  return head('QR Code ประจำเครื่อง','พิมพ์ติดที่ตู้ชาร์จหรือเก็บไว้ในเอกสารสถานี')+'<div class="g2"><div class="card stack" style="align-items:center;text-align:center">'+stickerSvg(c.id,220)+'<h3 class="mono" style="margin:0">'+c.id+'</h3><p class="note">'+esc(stationOf(c.station).name)+'<br>'+passUrl(c.id)+'</p><div class="row">'+goBtn('จำลองสแกน','passport',c.id,'y','qr')+act('ดูตัวอย่างป้าย QR','dl','qr','o','down')+'</div></div><div class="card stack"><h3>เลือกเครื่อง</h3>'+db.chargers.map(x=>'<button class="btn '+(x.id===c.id?'k':'o')+'" data-go="qr:'+x.id+'">'+x.id+' · '+esc(stationOf(x.station).name)+'</button>').join('')+'<div class="box mist">'+ic('lock',16)+'<span>QR เปิดเฉพาะข้อมูลสาธารณะ ส่วนรายงานฉบับเต็มต้องเข้าสู่ระบบ</span></div></div></div>';
 },{roles:CUST,nav:'stations'});
 
 
@@ -1188,13 +1198,11 @@ const payK=p=>p==='Paid'?'ok':p==='Pending'?'warn':'bad';
 V('a-customers','admin',()=>head('ลูกค้า','บริษัทและสถานะสมาชิก',act('เพิ่มลูกค้า','custForm','','y','plus'))+'<div class="card"><div class="scroll"><table class="tbl"><thead><tr><th>บริษัท</th><th>แพ็กเกจ</th><th>สมาชิก</th><th>สถานี/เครื่อง/หัว</th><th>การชำระเงิน</th><th></th></tr></thead><tbody>'+allCust().map(c=>'<tr><td><b>'+esc(c.name)+'</b><br><span class="note">'+esc(c.contact)+'</span></td><td>'+pkgOf(c.pkg).name+'</td><td>'+pill(c.status,memKind(c.status))+'<br><span class="note">ถึง '+fmtS(c.end)+'</span></td><td class="tn">'+c.stations+' / '+c.chargers+' / '+c.heads+'</td><td>'+pill(c.payment,payK(c.payment))+'</td><td><div class="row" style="flex-wrap:nowrap">'+act('ดู','custView',c.id,'sm y')+act('แก้ไข','custForm',c.id,'sm ghostb','edit')+'</div></td></tr>').join('')+'</tbody></table></div></div>',{roles:ADM});
 V('a-staff','admin',()=>head('เจ้าหน้าที่','กำหนด Role และดูประวัติการทำงาน',act('เพิ่มเจ้าหน้าที่','staffForm','','y','plus'))+'<div class="card"><div class="scroll"><table class="tbl"><thead><tr><th>ชื่อ</th><th>Role</th><th>ติดต่อ</th><th>งานค้าง</th><th>งานที่ปิดแล้ว</th></tr></thead><tbody>'+db.staff.map(s=>{const mine=db.jobs.filter(j=>j.inspector===s.name);return '<tr><td><b>'+esc(s.name)+'</b></td><td><select class="in" style="min-height:36px;padding:4px 8px" data-chg="staffRole" data-id="'+s.id+'" aria-label="Role ของ '+esc(s.name)+'"><option'+(s.role==='Admin'?' selected':'')+'>Admin</option><option'+(s.role==='Inspector'?' selected':'')+'>Inspector</option></select></td><td>'+esc(s.phone)+'<br><span class="note">'+esc(s.email)+'</span></td><td class="tn">'+mine.filter(j=>!['Report Issued','Completed'].includes(j.status)).length+'</td><td class="tn">'+mine.filter(j=>['Report Issued','Completed'].includes(j.status)).length+'</td></tr>'}).join('')+'</tbody></table></div></div><div class="card" style="margin-top:16px"><h3>ประวัติการทำงานล่าสุด</h3>'+db.audit.slice(0,8).map(a=>'<p class="note"><span class="mono">'+a.t+'</span> · '+esc(a.who)+' · '+esc(a.what)+'</p>').join('')+'</div>',{roles:ADM});
 V('a-members','admin',()=>{
-  const pk=db.packages.map(p=>'<div class="card stack" style="gap:10px"><h3 style="margin:0">'+p.name+'</h3>'+selectF('วิธีคิดราคา','x',[['bundle',MODEL.bundle],['per_head',MODEL.per_head],['per_charger',MODEL.per_charger]],p.model).replace('<select','<select data-pk="'+p.id+'.model"')+
-    '<div class="g2">'+[['price','ราคาแพ็กเกจ (฿)'],['unit','ราคาต่อหน่วย (฿)'],['covers','หัวชาร์จที่ครอบคลุม'],['inspections','สิทธิ์ตรวจ (ครั้งต่อปี)'],['months','ระยะสัญญา (เดือน)']].map(f=>'<label class="f">'+f[1]+'<input class="in tn" type="number" min="0" data-pk="'+p.id+'.'+f[0]+'" value="'+p[f[0]]+'"></label>').join('')+'</div>'+
-    '<div class="g2">'+p.disc.map((t,i)=>'<label class="f">ส่วนลดสัญญา (ปี / %)<span class="row" style="flex-wrap:nowrap"><input class="in tn" type="number" min="1" data-pk="'+p.id+'.disc.'+i+'.yrs" value="'+t.yrs+'"><input class="in tn" type="number" min="0" max="100" data-pk="'+p.id+'.disc.'+i+'.pct" value="'+t.pct+'"></span></label>').join('')+'</div><label class="f">เงื่อนไขการใช้สิทธิ์<textarea class="in" data-pk="'+p.id+'.terms">'+esc(p.terms)+'</textarea></label></div>').join('');
-  return head('สมาชิกและแพ็กเกจ','แก้ไขราคาและสิทธิ์ได้ที่นี่ ผลจะปรากฏในหน้าลูกค้าทันที')+'<div class="stack"><div class="box">'+ic('alert',16)+'<span>ราคาทั้งหมดเป็นข้อมูลตัวอย่าง ยังไม่ใช่ราคาจริง</span></div>'+payAdmin()+'<div class="g3">'+pk+'</div><div class="card"><h3>สมาชิกของลูกค้า</h3><div class="scroll"><table class="tbl"><thead><tr><th>บริษัท</th><th>แพ็กเกจ</th><th>สถานะ</th><th>หมดอายุ</th><th>LINE</th></tr></thead><tbody>'+allCust().map(c=>'<tr><td>'+esc(c.name)+'</td><td>'+pkgOf(c.pkg).name+'</td><td>'+pill(c.status,memKind(c.status))+'</td><td>'+fmtS(c.end)+'</td><td>'+(c.real?'<div class="row" style="flex-wrap:nowrap">'+act('แจ้งใกล้หมดอายุ','notifyExp',c.id,'sm o')+act('แจ้งต่ออายุ','notifyRenew',c.id,'sm o')+'</div>':'<span class="mu">—</span>')+'</td></tr>').join('')+'</tbody></table></div></div></div>';
+  const pk=db.packages.map(p=>'<div class="card stack" style="gap:10px"><h3 style="margin:0">'+p.name+'</h3><p class="note">ราคาต่อเครื่อง/ปี (รวม VAT) ตามจำนวนเครื่อง</p><div class="g2">'+p.tiers.filter(t=>t.price!==null).map((t,i)=>'<label class="f">'+tierLbl(t)+' (฿)<input class="in tn" type="number" min="0" data-pk="'+p.id+'.tiers.'+i+'.price" value="'+t.price+'"></label>').join('')+'<label class="f">ระยะสัญญา (เดือน)<input class="in tn" type="number" min="0" data-pk="'+p.id+'.months" value="'+p.months+'"></label></div><label class="f">เงื่อนไขการใช้สิทธิ์<textarea class="in" data-pk="'+p.id+'.terms">'+esc(p.terms)+'</textarea></label></div>').join('');
+  return head('สมาชิกและแพ็กเกจ','แก้ไขราคาและสิทธิ์ได้ที่นี่ ผลจะปรากฏในหน้าลูกค้าทันที')+'<div class="stack"><div class="box">'+ic('alert',16)+'<span>ราคาทั้งหมดเป็นข้อมูลตัวอย่าง ยังไม่ใช่ราคาจริง</span></div>'+payAdmin()+'<div class="g1">'+pk+'</div><div class="card"><h3>สมาชิกของลูกค้า</h3><div class="scroll"><table class="tbl"><thead><tr><th>บริษัท</th><th>แพ็กเกจ</th><th>สถานะ</th><th>หมดอายุ</th><th>LINE</th></tr></thead><tbody>'+allCust().map(c=>'<tr><td>'+esc(c.name)+'</td><td>'+pkgOf(c.pkg).name+'</td><td>'+pill(c.status,memKind(c.status))+'</td><td>'+fmtS(c.end)+'</td><td>'+(c.real?'<div class="row" style="flex-wrap:nowrap">'+act('แจ้งใกล้หมดอายุ','notifyExp',c.id,'sm o')+act('แจ้งต่ออายุ','notifyRenew',c.id,'sm o')+'</div>':'<span class="mu">—</span>')+'</td></tr>').join('')+'</tbody></table></div></div></div>';
 },{roles:ADM});
 V('a-notifs','admin',()=>{
-  const tp=[['welcome',{pkg:'Professional',end:'2027-08-31'}],['appt',{station:'ABC Charging Station',charger:'EV-CH-001',date:TODAY,time:'13:30',inspector:'John Inspector'}],['remind',{station:'ABC Charging Station',charger:'EV-CH-001',date:TODAY,time:'13:30'}],['report',{docId:'INS-2026-0001',station:'ABC Charging Station',charger:'EV-CH-001',heads:2,date:TODAY}],['expiring',{pkg:'Professional',end:'2026-12-05'}],['renew',{pkg:'Professional',end:'2027-08-31'}],['badge',{days:30,end:'2026-12-03',station:'ABC Charging Station'}],['monthly',{month:'ตุลาคม 2026',station:'ABC Charging Station',scans:124,views:860,navs:93}],['issue',{station:'ABC Charging Station',charger:'EV-CH-001',topic:'หน้าจอไม่แสดงสถานะการชาร์จ',date:TODAY}]];
+  const tp=[['welcome',{pkg:'แพ็กเกจตรวจสอบรายปี',end:'2027-08-31'}],['appt',{station:'ABC Charging Station',charger:'EV-CH-001',date:TODAY,time:'13:30',inspector:'John Inspector'}],['remind',{station:'ABC Charging Station',charger:'EV-CH-001',date:TODAY,time:'13:30'}],['report',{docId:'INS-2026-0001',station:'ABC Charging Station',charger:'EV-CH-001',heads:2,date:TODAY}],['expiring',{pkg:'แพ็กเกจตรวจสอบรายปี',end:'2026-12-05'}],['renew',{pkg:'แพ็กเกจตรวจสอบรายปี',end:'2027-08-31'}],['badge',{days:30,end:'2026-12-03',station:'ABC Charging Station'}],['monthly',{month:'ตุลาคม 2026',station:'ABC Charging Station',scans:124,views:860,navs:93}],['issue',{station:'ABC Charging Station',charger:'EV-CH-001',topic:'หน้าจอไม่แสดงสถานะการชาร์จ',date:TODAY}]];
   return head('LINE แจ้งเตือน','ประวัติการส่งและตัวอย่างข้อความ')+'<div class="stack"><div class="card"><h3>ประวัติการส่ง</h3><div class="scroll"><table class="tbl"><thead><tr><th>เวลา</th><th>ประเภท</th><th>อ้างอิง</th><th>ผู้รับ</th><th>สถานะ</th><th>ครั้ง</th><th></th></tr></thead><tbody>'+[...db.notifs].reverse().map(n=>'<tr><td class="mono">'+n.time+'</td><td>'+n.type+'</td><td class="mono">'+esc(n.ref)+'</td><td>'+esc(n.to)+'</td><td>'+pill(n.status,n.status==='Sent'?'ok':'bad')+(n.error?'<br><span class="note">'+esc(n.error)+'</span>':'')+'</td><td class="tn">'+n.attempts+'</td><td>'+(n.status==='Failed'?act('Retry','retry',n.id,'sm k','refresh'):'')+'</td></tr>').join('')+'</tbody></table></div></div>'+
   '<div class="card"><h3>ตัวอย่างข้อความทั้งหมด</h3><div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start;background:#EDEDE8;border-radius:14px;padding:16px">'+tp.map(t=>'<div style="width:min(100%,300px);display:flex;flex-direction:column">'+lineCard({type:t[0],payload:t[1],time:TODAY+' 14:21'}).replace(/data-go=/g,'data-x=').replace(/data-act=/g,'data-x=')+'</div>').join('')+'</div></div></div>';
 },{roles:ADM});
@@ -1205,14 +1213,14 @@ const scB=b0=>b0.indexOf('cx-')===0?(S.cxFrom==='x-scan'?'x-scan':S.cxFrom==='x-
 function scenesHtml(){const b0=S.baseView||'line',b=scB(b0);return SCENES.map(s=>'<button class="'+(b===s[0]?'on':'')+'" data-go="'+s[0]+'"><b>'+s[1]+'</b>'+s[2]+'</button>').join('')}
 function ctlHtml(){
   const b0=S.baseView||'line',b=scB(b0);
-  const T={line:['ฉาก 1 · LINE OA ของ B2B','เจ้าของสถานีใช้ LINE OA เปิดเว็บ (LIFF) ขอนัดตรวจ รับรายงาน และต่อสมาชิก กดเมนูด้านล่างของแชต หน้าเว็บจะเลื่อนขึ้นมา กด × เพื่อกลับไปแชต'],
-    'x-elexa':['ฉาก 2 · ฟีเจอร์แมปในแอป Elexa','ภาพประกอบข้อเสนอ หมุดมี 3 แบบ: Elexa (น้ำเงิน), BackEN (ขาว) และสถานีอื่นที่ผ่านการตรวจโดยเรา (ดำ) สถานีที่มีผลตรวจจะมีเหรียญสายฟ้า กดชิป "ชาร์จมั่นใจ" เพื่อกรอง กดซ้ำเพื่อยกเลิก ลากแมปและกด + − เพื่อซูมได้'],
-    'x-webmap':['ฉาก 3 · เว็บแมปสาธารณะ','ไม่ต้องล็อกอินหรือโหลดแอป แสดงเฉพาะสถานีที่มีผลตรวจ หมุดเป็นสายฟ้าแบบเดียว ไม่แบ่งเครือข่าย ลากและซูมได้ ค้นหาชื่อสถานีได้'],
-    'x-scan':['ฉาก 4 · สแกน QR ที่สติกเกอร์','เลือกตู้แล้วกดปุ่มสแกน (กล้องจริงใช้ในหน้านี้ไม่ได้ จึงจำลอง) จะเปิดหน้า Passport สำหรับผู้ใช้ EV ระบบจะเปิดหน้าผลตรวจ (สรุป → รายละเอียด 3 หมวด → รายงาน PDF → ประวัติ) ตามแบบ UI flow สติกเกอร์เป็นภาพแนวคิดของข้อเสนอ']};
+  const T={line:['ส่วนที่ 1 · LINE OA ของลูกค้าธุรกิจ','จำลองการใช้งานผ่านแชต LINE ของเจ้าของสถานี กดเมนูด้านล่างของแชตเพื่อขอนัดตรวจ ดูรายงาน และสมัครสมาชิก กด × เพื่อกลับมาที่แชต'],
+    'x-elexa':['ส่วนที่ 2 · แผนที่ในแอป Elexa','จำลองหน้าแผนที่ในแอป สถานีที่ผ่านการตรวจจะมีสัญลักษณ์สายฟ้าที่หมุด กด "ชาร์จมั่นใจ" เพื่อดูเฉพาะสถานีที่ตรวจแล้ว ลากแผนที่หรือกด + − เพื่อซูมได้'],
+    'x-webmap':['ส่วนที่ 3 · เว็บแผนที่สำหรับทุกคน','เปิดดูได้เลยโดยไม่ต้องล็อกอินหรือโหลดแอป แสดงเฉพาะสถานีที่ผ่านการตรวจ ค้นหาชื่อสถานี ลาก และซูมแผนที่ได้'],
+    'x-scan':['ส่วนที่ 4 · สแกน QR ที่สติกเกอร์','เลือกเครื่องชาร์จแล้วกดปุ่มสแกนเพื่อดูผลตรวจของเครื่องนั้น เหมือนที่ผู้ใช้ EV จะเห็นเมื่อสแกนสติกเกอร์จริง']};
   const t=T[b]||T.line;
   return '<div class="stack"><span class="pill y">Prototype · ข้อมูลทั้งหมดเป็นข้อมูลจำลอง</span><h1 style="font-size:26px">'+t[0]+'</h1><p class="mu">'+t[1]+'</p>'+
-  '<div class="box">'+ic('bolt',16)+'<span>ลองดู: ABC Charging Station ยังไม่มีหมุดบนแมป เพราะครบกำหนดตรวจแล้ว ไปฉาก 1 เลือกบทบาท Inspector ปิดงาน JOB-2026-0001 แล้วกลับมาดูแมป หมุดดำที่มีเหรียญสายฟ้าจะขึ้น</span></div>'+
-  '<label class="f">บทบาทที่กำลังใช้ (ฉาก 1)<select class="in" data-chg="role">'+[['','Guest (ยังไม่เข้าสู่ระบบ)'],['customer','Customer · ABC Energy'],['admin','Admin'],['inspector','Inspector · John']].map(o=>'<option value="'+o[0]+'"'+((S.role||'')===o[0]?' selected':'')+'>'+o[1]+'</option>').join('')+'</select></label>'+
+  '<div class="box">'+ic('bolt',16)+'<span>อยากเห็นหมุดใหม่บนแผนที่: เปิดส่วนที่ 1 เลือกบทบาท Inspector แล้วปิดงาน JOB-2026-0001 จากนั้นกลับมาดูแผนที่ จะเห็นหมุดของ ABC Charging Station</span></div>'+
+  '<label class="f">บทบาทที่ใช้อยู่ (ส่วนที่ 1)<select class="in" data-chg="role">'+[['','Guest (ยังไม่เข้าสู่ระบบ)'],['customer','Customer · ABC Energy'],['admin','Admin'],['inspector','Inspector · John']].map(o=>'<option value="'+o[0]+'"'+((S.role||'')===o[0]?' selected':'')+'>'+o[1]+'</option>').join('')+'</select></label>'+
   (b==='line'?'<p class="note"><b>ทดลองส่งแจ้งเตือน LINE</b></p><div class="row">'+act('เหรียญใกล้หมด','demoNotif','badge','o sm','bolt')+act('สรุปรายเดือน','demoNotif','monthly','o sm','chart')+act('ผู้ใช้แจ้งปัญหา','demoNotif','issue','o sm','alert')+act('ตั้งค่าแจ้งเตือน','nsetOpen','','ghostb sm','bell')+'</div>':'')+'<div class="row">'+act('แผนที่หน้าจอ','openMap','','o sm','map')+act('จำลองผู้ใช้ใหม่','newUser','','ghostb sm','userplus')+act('รีเซ็ตเดโม','resetDemo','','ghostb sm','refresh')+'</div></div>';
 }
 
@@ -1410,8 +1418,8 @@ V('passport','passport',id=>{
    (rec?'<div class="g2" style="grid-template-columns:1fr 1fr"><div class="stat"><b style="font-size:17px">'+fmtS(rec.date)+'</b><span>ตรวจล่าสุด</span></div><div class="stat"><b style="font-size:17px">'+(active?fmtS(rec.next):'ไม่มีกำหนด')+'</b><span>ตรวจครั้งต่อไป</span></div></div>':'')+body+
    '<div class="card stack"><h3 style="margin:0">สถานะสมาชิก (แยกจากผลตรวจ)</h3><div>'+pill(ms,memKind(ms))+'</div><p class="note">'+(active?'เจ้าของสถานีอยู่ในแผนตรวจต่อเนื่องกับ ChargerXpert':'ไม่มีแผนตรวจสอบต่อเนื่องภายใต้สมาชิก ผลตรวจเดิมยังเก็บไว้ครบ แต่ไม่ได้แสดงว่าอุปกรณ์ยังอยู่ภายใต้การตรวจสอบอย่างต่อเนื่อง')+'</p></div>'+
    '<p class="note">'+DISC2+'</p>'+
-   '<button class="btn y block" data-go="x-webmap">'+ic('map',16)+'ดูสถานีที่ตรวจแล้วใกล้ฉัน</button><button class="btn o block" data-act="nope" data-id="ส่งเรื่องถึงเจ้าหน้าที่ ChargerXpert แล้ว (จำลอง)">'+ic('alert',16)+'แจ้งปัญหาหรือข้อสงสัยเกี่ยวกับสถานีนี้</button>'+
-   '<div class="card mist stack"><p class="note">ตัวควบคุมเดโม (ไม่แสดงต่อผู้สแกนจริง)</p><div class="seg" role="radiogroup" aria-label="จำลองสถานะสมาชิก">'+[['live','ตามจริง'],['Active','Active'],['Expired','Expired'],['Cancelled','Cancelled']].map(o=>'<label><input type="radio" name="pm" value="'+o[0]+'" data-chg="passMem"'+(S.passMem===o[0]?' checked':'')+'><span>'+o[1]+'</span></label>').join('')+'</div><div class="chips">'+others.map(x=>'<button class="'+(x===c.id?'on':'')+'" data-go="passport:'+x+'">'+x+'</button>').join('')+'</div></div></div></div>';
+   '<button class="btn y block" data-go="x-webmap">'+ic('map',16)+'ดูสถานีที่ตรวจแล้วใกล้ฉัน</button><button class="btn o block" data-act="issueOpen" data-k="gen">'+ic('alert',16)+'แจ้งปัญหาหรือข้อสงสัยเกี่ยวกับสถานีนี้</button>'+
+   '</div></div>';
 });
 
 
@@ -1437,7 +1445,7 @@ V('x-report','base',id=>{
   const isLatest=rec===latest,active=(mst?stOwnerStatus(mst):'Active')==='Active',days=dayDiff(TODAY,rec.next),valid=isLatest&&active&&days>0;
   const ov=OV[rec.overall],tone=valid?(ov[1]==='ok'?'ok':ov[1]):isLatest?'warn':'mist';
   const items=aggItems(rec),cnt=k=>items.filter(x=>x.s===k).length,pc=cnt('pass'),oc=cnt('obs'),fc=cnt('fail'),tot=items.filter(x=>x.s!=='na').length||1,pct=Math.round(pc/tot*100);
-  const hdr='<div class="xh"><button class="xback" data-act="xBack" aria-label="กลับไปแผนที่">'+ic('arrow',22)+'</button><b>'+(tab==='sum'?'สรุปผลการตรวจสอบ':'ประวัติการตรวจสอบ')+'</b><button class="xdl" data-act="xPdf" data-id="'+rec.docId+'">'+ic('down',18)+'<span>ดาวน์โหลด<br>รายงาน (PDF)</span></button></div>';
+  const hdr='<div class="xh"><button class="xback" data-act="xBack" aria-label="กลับไปแผนที่">'+ic('arrow',22)+'</button><b>'+(tab==='sum'?'สรุปผลการตรวจสอบ':'ประวัติการตรวจสอบ')+'</b><button class="xdl" data-act="xPdf" data-id="'+rec.docId+'">'+ic('down',18)+'<span>ดูตัวอย่าง<br>รายงาน (PDF)</span></button></div>';
   const card='<div class="xcard"><div class="xph">'+ic('bolt',30)+'</div><div style="flex:1;min-width:0"><b class="xn">'+esc(name)+'</b><p class="note">'+esc(addr||stationOf(c.station).address)+'</p><div class="row" style="flex-wrap:nowrap;gap:8px;margin-top:6px"><button class="xloc" data-act="xBack">'+ic('pin',13)+'ดูตำแหน่งบนแผนที่</button>'+(mst?'<span class="xrate">★ '+mst.rate+'</span>':'')+'</div></div></div>';
   const tabs='<div class="xtabs" role="tablist"><button class="'+(tab==='sum'?'on':'')+'" data-act="xTab" data-id="sum" role="tab">สรุปผลการตรวจสอบ</button><button class="'+(tab==='his'?'on':'')+'" data-act="xTab" data-id="his" role="tab">ประวัติการตรวจสอบ</button></div>';
   let body='';
@@ -1452,7 +1460,7 @@ V('x-report','base',id=>{
     const trend='<div class="xc"><div class="row" style="justify-content:space-between;flex-wrap:nowrap"><h4>แนวโน้มประสิทธิภาพ (7 วันล่าสุด)</h4><span class="xlive">ตัวอย่าง</span></div><div class="xbars">'+bars+'</div></div>';
     const PH=[['ตัวเครื่องและตู้ภายนอก','#2E4A8F','grid'],['หน้าจอและป้ายข้อมูล','#1F3FA6','eye'],['สายชาร์จและหัวต่อ','#3B5FC0','link'],['การวัดค่าไฟฟ้า','#274C9C','chart']];
     const photos='<div class="xc"><div class="row" style="justify-content:space-between;flex-wrap:nowrap"><h4>ภาพประกอบการตรวจ ('+PH.length+')</h4><span class="xlive">ภาพตัวอย่าง</span></div><div class="xph4">'+PH.map(x=>'<div><div class="xpt" style="background:linear-gradient(135deg,'+x[1]+',#0f1f4d)">'+ic(x[2],30)+'</div><small>'+x[0]+'</small></div>').join('')+'</div></div>';
-    const insp='<div class="xc"><h4>ข้อมูลผู้ตรวจสอบ</h4><div class="xin"><div class="xinl">'+[['ผู้ตรวจ',esc(rec.inspector)],['หน่วยงาน','ChargerXpert'],['เลขที่เอกสาร','<span class="mono">'+rec.docId+'</span>'],['วันที่ตรวจ',fmtS(rec.date)]].map(x=>'<div class="xkv"><small>'+x[0]+'</small><b>'+x[1]+'</b></div>').join('')+'</div><div class="xinq"><div style="width:84px;height:84px">'+qrSvg(passUrl(cid))+'</div><small class="mono">'+code+'</small><small>'+(valid?'ใช้ได้ถึง '+fmtS(rec.next):'ผล ณ วันที่ตรวจ')+'</small></div></div><button class="btn y block" data-act="xPdf" data-id="'+rec.docId+'">'+ic('file',16)+'ดาวน์โหลดรายงาน (PDF)</button></div>';
+    const insp='<div class="xc"><h4>ข้อมูลผู้ตรวจสอบ</h4><div class="xin"><div class="xinl">'+[['ผู้ตรวจ',esc(rec.inspector)],['หน่วยงาน','ChargerXpert'],['เลขที่เอกสาร','<span class="mono">'+rec.docId+'</span>'],['วันที่ตรวจ',fmtS(rec.date)]].map(x=>'<div class="xkv"><small>'+x[0]+'</small><b>'+x[1]+'</b></div>').join('')+'</div><div class="xinq"><div style="width:84px;height:84px">'+qrSvg(passUrl(cid))+'</div><small class="mono">'+code+'</small><small>'+(valid?'ใช้ได้ถึง '+fmtS(rec.next):'ผล ณ วันที่ตรวจ')+'</small></div></div><button class="btn y block" data-act="xPdf" data-id="'+rec.docId+'">'+ic('file',16)+'ดูตัวอย่างรายงาน (PDF)</button></div>';
     body=banner+res+cat+live+trend+photos+insp+'<p class="note" style="padding:0 4px">'+DISC2+'</p>';
   }else{
     body='<div class="xtl">'+all.map(r=>{const o=OV[r.overall],ok=o[1]==='ok',d=d2(r.date);return '<div class="xti"><span class="xdot '+(ok?'ok':'warn')+'">'+ic(ok?'check':'alert',14)+'</span><div class="xtc"><div class="xtd"><b>'+d.getDate()+' '+TS[d.getMonth()]+' '+d.getFullYear()+'</b><small>'+DOWK[d.getDay()]+' '+r.time+'</small></div><div style="flex:1;min-width:0"><b class="'+(ok?'xok':'xwn')+'">'+(ok?'ผ่านการตรวจสอบ':'ต้องปรับปรุงบางรายการ')+'</b><p class="note">'+esc(r.summary)+'</p><p class="note">ผู้ตรวจ: '+esc(r.inspector)+'</p></div></div><div class="row" style="gap:8px;padding-left:34px"><button class="xmini" data-act="xRec" data-id="'+r.docId+'">ดูรายละเอียด '+ic('arrow',12)+'</button><button class="xmini" data-act="xPdf" data-id="'+r.docId+'">'+ic('file',13)+'รายงาน (PDF)</button></div></div>'}).join('')+'</div><p class="note" style="padding:0 4px">'+DISC2+'</p>';
@@ -1535,7 +1543,7 @@ function lineCard(n){
   else if(n.type==='monthly'){t='สรุปประจำเดือน '+esc(p.month);b='<p>'+esc(p.station)+' ในเดือนที่ผ่านมา</p>'+fr('สแกนสติกเกอร์',p.scans+' ครั้ง')+fr('ดูสถานีบนแมป',p.views+' ครั้ง')+fr('กดนำทาง',p.navs+' ครั้ง')+'<p class="note" style="margin-top:6px">ข้อมูลตัวอย่างในเดโม</p>';f=btn('ดูสถานีของฉัน','stations')}
   else if(n.type==='issue'){t='มีผู้ใช้ EV แจ้งปัญหาที่สถานี';b=fr('สถานี',esc(p.station))+fr('เครื่องชาร์จ',esc(p.charger))+fr('เรื่องที่แจ้ง',esc(p.topic))+fr('วันที่แจ้ง',fmtS(p.date))+'<p class="note" style="margin-top:6px">แจ้งผ่านหน้า Passport เป็นข้อมูลจากผู้ใช้ ยังไม่ได้ยืนยันว่าเกิดปัญหาจริง</p>';f=btn('ขอนัดตรวจซ้ำ','schedule')+btn('ดูตารางตรวจสอบ','schedule')}
   else{t='การตรวจสอบเสร็จเรียบร้อย';b='<p>การตรวจสอบสถานีชาร์จของคุณเสร็จเรียบร้อยแล้ว</p>'+fr('สถานี',esc(p.station))+fr('เครื่องชาร์จ',esc(p.charger))+fr('หัวชาร์จ',p.heads+' หัว')+fr('วันที่ตรวจ',fmtS(p.date))+fr('เลขที่เอกสาร','<span class="mono">'+esc(p.docId)+'</span>')+'<p class="note" style="margin-top:6px">รายงานผลการตรวจสอบพร้อมให้คุณเข้าชมแล้ว</p>';
-    f=btn('ดู Digital Certificate','cert:'+p.docId)+btn('ดูรายงานฉบับเต็ม','report:'+p.docId)+'<button data-act="dl" data-id="'+esc(p.docId)+'">ดาวน์โหลด PDF</button>'+btn('ดูประวัติการตรวจสอบ','history')}
+    f=btn('ดู Digital Certificate','cert:'+p.docId)+btn('ดูรายงานฉบับเต็ม','report:'+p.docId)+'<button data-act="dl" data-id="'+esc(p.docId)+'">ดูตัวอย่าง PDF</button>'+btn('ดูประวัติการตรวจสอบ','history')}
   return '<div class="lc"><div class="lc-h"><span class="lc-i">'+ic('bolt',15)+'</span><span><small>ChargerXpert</small><br>'+t+'</span></div><div class="lc-b">'+b+'</div><div class="lc-f">'+f+'</div></div>';
 }
 
@@ -1588,8 +1596,8 @@ V('line','line',()=>{
   return head+'<div class="chat" id="chat">'+out+'</div>'+bottom;
 },{after:()=>{const c=$('#chat');if(c)c.scrollTop=c.scrollHeight;const i=$('#lineinp');if(i)i.focus()}});
 Object.assign(SCENE_ACT,{
-  memberMenu(){if(S.role==='customer'){go('dashboard');return}if(db.lineLinked){S.role='customer';toast('ยินดีต้อนรับกลับ ตรวจพบบัญชีที่เชื่อม LINE แล้ว','ok');go('dashboard')}else go('register')},
-  newUser(){S.role=null;db.lineLinked=false;S.lineStep=1;toast('จำลองผู้ใช้ใหม่ ยังไม่เป็นสมาชิก กดเมนู ระบบสมาชิก เพื่อสมัคร');render()},
+  memberMenu(){if(S.role==='customer'){go('dashboard');return}if(db.lineLinked){S.role='customer';toast('ยินดีต้อนรับกลับ ตรวจพบบัญชีที่เชื่อม LINE แล้ว','ok');go('dashboard')}else go('landing')},
+  newUser(){S.role=null;db.lineLinked=false;S.lineStep=1;toast('จำลองผู้ใช้ใหม่ ยังไม่เป็นสมาชิก กดเมนู ระบบสมาชิก เพื่อดูบริการและสมัคร');render()},
   lineMode(el){S.lineMode=el.dataset.id;render()},
   richToggle(){S.richOpen=S.richOpen===false;render()},
   stkToggle(){S.stkOpen=!S.stkOpen;render()},
@@ -1632,13 +1640,13 @@ async function recPageOld(rec){
   return c}
 async function roiPage(){
   const r=S.roi,c0=roiCalc(r),[c,x]=newPage();pdfHead(x,'รายงานผลจำลอง ROI','ROI Calculator',TODAY,'ผู้ใช้งาน: '+(r.role==='host'?'Site Host':'CPO'));
-  const rows=[['แพ็กเกจ',c0.pk.name+' ('+baht(c0.pk.price)+' ต่อปี)'],['จำนวนหัวชาร์จ',r.heads+' หัว'],['ครั้งชาร์จต่อหัว/วัน',r.sess+' ครั้ง'],['ไฟฟ้าต่อการชาร์จ',r.kwhPer+' kWh'],['ราคาขายไฟ',r.price+' ฿/kWh'],['วันเปิดบริการต่อปี',r.days+' วัน'],['มิเตอร์อ่านต่ำกว่าจริง',r.dev+' %'],['ระยะเวลาที่คลาดเคลื่อน',r.months+' เดือน'],['สัดส่วนที่แก้ไขได้',r.rec+' %']];
+  const rows=[['แพ็กเกจที่แนะนำ',c0.pk.name+' · '+baht(c0.q.per)+'/เครื่อง/ปี รวม '+baht(c0.pk.price)+' ต่อปี'],['จำนวนเครื่องชาร์จ',c0.q.n+' เครื่อง (1 เครื่อง = 2 หัว) · สัญญา 3 ปี'],['รอบการตรวจ','PM (หมวด 1–2) ทุก 6 เดือน · Accuracy (หมวด 3) ทุก 18 เดือน'],['จำนวนหัวชาร์จ',r.heads+' หัว'],['ครั้งชาร์จต่อหัว/วัน',r.sess+' ครั้ง'],['ไฟฟ้าต่อการชาร์จ',r.kwhPer+' kWh'],['ราคาขายไฟ',r.price+' ฿/kWh'],['วันเปิดบริการต่อปี',r.days+' วัน'],['มิเตอร์อ่านต่ำกว่าจริง',r.dev+' %'],['ระยะเวลาที่คลาดเคลื่อน',r.months+' เดือน'],['สัดส่วนที่แก้ไขได้',r.rec+' %']];
   rows.forEach((cl,i)=>{const cx=48+(i%3)*232,cy=182+Math.floor(i/3)*46;x.font=FN(400,11.5);x.fillStyle='#777';x.fillText(cl[0],cx,cy);x.font=FN(600,14);x.fillStyle='#171717';x.fillText(cl[1],cx,cy+20)});
   const T=[['มูลค่าการชาร์จต่อปี',baht(c0.annual),'#E7EEF9','#16335F'],['รายได้ที่อาจสูญเสียทั้งสถานี',baht(c0.lossAll),'#FCE4E2','#A12B27'],['ความเสี่ยงส่วนที่เกี่ยวข้องกับคุณ',baht(c0.risk),'#FFF1CF','#7A5200'],['ค่าแพ็กเกจต่อปี',baht(c0.member),'#E5F2E8','#1E6B3A']];
   T.forEach((t,i)=>{const tx=48+(i%2)*355,ty=336+Math.floor(i/2)*86;rrect(x,tx,ty,343,76,12,t[2]);x.font=FN(400,12);x.fillStyle=t[3];x.fillText(t[0],tx+14,ty+26);x.font=FN(700,24);x.fillText(t[1],tx+14,ty+58)});
   let y=530;x.font=FN(700,16);x.fillStyle='#171717';x.fillText('เปรียบเทียบกับค่าตรวจรายครั้ง',48,y);y+=26;
   [['รายได้ที่อาจสูญเสีย',baht(c0.risk)],['ค่าตรวจรายครั้ง',baht(c0.perVisit)],['ส่วนต่าง',(c0.diff<0?'−':'')+baht(Math.abs(c0.diff))],['มิเตอร์อ่านต่ำกว่าจริงกี่ % จึงเท่าค่าตรวจ',num(c0.breakEven,2)+' %']].forEach(a=>{x.font=FN(400,13);x.fillStyle='#222';x.fillText(a[0],48,y);x.textAlign='right';x.font=FN(600,13);x.fillText(a[1],746,y);x.textAlign='left';x.strokeStyle='#E6E6E0';x.beginPath();x.moveTo(48,y+9);x.lineTo(746,y+9);x.stroke();y+=30});
-  rrect(x,48,y+16,698,150,14,'#16233B');x.fillStyle='#cdd6e6';x.font=FN(400,13);x.fillText('ROI ที่คาดการณ์ (Potential ROI) แพ็กเกจ '+c0.pk.name,70,y+46);x.font=FN(700,40);x.fillStyle=c0.roi>=0?'#6fe3a0':'#ff9b9b';x.fillText(roiPct(c0.roi),70,y+92);
+  rrect(x,48,y+16,698,150,14,'#16233B');x.fillStyle='#cdd6e6';x.font=FN(400,13);x.fillText('ROI ที่คาดการณ์ (Potential ROI) '+c0.pk.name,70,y+46);x.font=FN(700,40);x.fillStyle=c0.roi>=0?'#6fe3a0':'#ff9b9b';x.fillText(roiPct(c0.roi),70,y+92);
   x.font=FN(400,13);x.fillStyle='#fff';x.fillText('มูลค่าที่อาจรักษาไว้ได้  '+baht(c0.kept),70,y+122);x.fillText('ค่าแพ็กเกจต่อปี  '+baht(c0.member),340,y+122);x.fillText('สุทธิ  '+(c0.net<0?'−':'')+baht(Math.abs(c0.net)),560,y+122);
   wrapT(x,DISC3+' ใช้ค่าแพ็กเกจเต็มปี ไม่รวมค่าแก้ไขมิเตอร์และค่าใช้จ่ายอื่น ผลตอบแทนไม่รับประกัน',48,y+200,698,18,FN(400,11.5),'#555',4);
   x.strokeStyle='#E6E6E0';x.beginPath();x.moveTo(48,1086);x.lineTo(746,1086);x.stroke();x.font=FN(400,10);x.fillStyle='#999';x.fillText('ChargerXpert · ผลจำลองจากข้อมูลที่ผู้ใช้กรอก',48,1104);
@@ -1664,8 +1672,7 @@ async function openPdf(kind,id){
   let cv,name;
   if(kind==='roi'){cv=await roiPage();name='ChargerXpert-ROI-'+TODAY+'.pdf'}
   else{const rec=recOf(id);if(!rec){toast('ไม่พบเอกสาร','bad');return}cv=kind==='recU'?await recPage(rec):await recPageOld(rec);name=rec.docId+'.pdf'}
-  S._pdf={blob:makePdf([cv]),name};
-  modal('ตัวอย่างเอกสาร PDF','<div style="max-height:56vh;overflow:auto;border:1px solid #ddd;border-radius:8px"><img src="'+cv.toDataURL('image/jpeg',.9)+'" alt="ตัวอย่างหน้าแรกของเอกสาร" style="width:100%;display:block"></div><p class="note" style="margin:8px 0">'+esc(name)+' · 1 หน้า (A4)</p><button class="btn y block" data-act="dlSave">'+ic('down',16)+'ดาวน์โหลดไฟล์ PDF</button>',true)}
+  modal('ตัวอย่างเอกสาร PDF','<div style="max-height:56vh;overflow:auto;border:1px solid #ddd;border-radius:8px"><img src="'+cv.toDataURL('image/jpeg',.9)+'" alt="ตัวอย่างหน้าแรกของเอกสาร" style="width:100%;display:block"></div><p class="note" style="margin:8px 0">'+esc(name)+' · 1 หน้า (A4)</p>',true)}
 Object.assign(SCENE_ACT,{
   dl(el){const id=el.dataset.id||'';openPdf(id==='roi'?'roi':'rec',id)},
   xPdf(el){openPdf('rec',el.dataset.id)},
@@ -1692,9 +1699,9 @@ V('renew','customer',()=>{
    :r.method==='card'?'<div class="box">'+ic('shield',16)+'<span>ระบบจริงจะพาไปหน้าชำระเงินของผู้ให้บริการที่ได้มาตรฐาน เราไม่เก็บเลขบัตรในระบบนี้</span></div>'
    :'<div class="card">'+kv([['ออกใบแจ้งหนี้ในนาม',esc(db.company.name)],['เลขประจำตัวผู้เสียภาษี','0105500000000 (ตัวอย่าง)'],['กำหนดชำระ','ภายใน 7 วันนับจากวันออกใบแจ้งหนี้']])+'<p class="note" style="margin-top:8px">เหมาะกับบริษัทที่ชำระผ่านฝ่ายบัญชี สมาชิกจะต่ออายุเมื่อฝ่ายการเงินยืนยันว่าได้รับเงินแล้ว</p></div>';
   return head('ต่ออายุสมาชิก','เลือกแพ็กเกจ ระยะสัญญา และวิธีชำระเงิน')+'<div class="stack">'+
-   '<div class="rsec"><i>1</i><b>แพ็กเกจ</b></div><div class="g2" style="gap:10px">'+db.packages.map(k=>opt('pkg',k.id,k.name,baht(k.price)+' ต่อปี<br>สูงสุด '+k.covers+' หัว · ตรวจ '+k.inspections+' ครั้ง/ปี',r.pkg===k.id)).join('')+'</div>'+
-   '<div class="rsec"><i>2</i><b>ระยะสัญญา</b></div><div class="g2" style="grid-template-columns:repeat(3,1fr);gap:8px">'+[1,3,5].map(y=>{const t=pkgOf(r.pkg).disc.find(x=>x.yrs===y);return opt('yrs',y,y+' ปี',t?'ลด '+t.pct+'%':'ราคาเต็ม',r.yrs===y)}).join('')+'</div>'+
-   '<div class="card stack" style="gap:8px"><h3 style="margin:0">สรุปรายการ</h3>'+kv([['แพ็กเกจ',q.k.name],['ราคาต่อปีหลังส่วนลด',baht(q.e.total)+(q.e.pct?' <span class="note">(ลด '+q.e.pct+'%)</span>':'')],['ระยะสัญญา',r.yrs+' ปี'],['ต่ออายุจาก → ถึง',fmt(q.from)+' → '+fmt(q.end)]])+'<div class="row" style="justify-content:space-between;border-top:1px solid var(--rule);padding-top:10px"><b>รวมทั้งสัญญา</b><b style="font:700 22px var(--fd)">'+baht(q.total)+'</b></div>'+(q.e.over?'<div class="box warn">'+ic('alert',16)+'<span>จำนวนหัวชาร์จเกินที่แพ็กเกจนี้ครอบคลุม ลองเลือก Plus</span></div>':'')+'<p class="note">ราคาตัวอย่าง ยังไม่รวมภาษีและค่าธรรมเนียมการชำระเงิน บริการเป็นการตรวจสอบและรายงานผลเท่านั้น</p></div>'+
+   '<div class="rsec"><i>1</i><b>แพ็กเกจ</b></div><div class="g2" style="gap:10px">'+db.packages.map(k=>opt('pkg',k.id,k.name,'เริ่ม '+baht(k.tiers[0].price)+' ต่อเครื่อง/ปี<br>PM ทุก 6 เดือน · Accuracy Test ทุก 18 เดือน',r.pkg===k.id)).join('')+'</div>'+
+   '<div class="rsec"><i>2</i><b>ระยะสัญญา</b></div><div class="g2" style="gap:8px">'+[3].map(y=>opt('yrs',y,y+' ปี','ราคาตามจำนวนเครื่อง',true)).join('')+'</div>'+
+   '<div class="card stack" style="gap:8px"><h3 style="margin:0">สรุปรายการ</h3>'+kv([['แพ็กเกจ',q.k.name],['จำนวนเครื่อง',S.est.chargers+' เครื่อง ('+S.est.chargers*2+' หัวชาร์จ)'],['ราคาต่อปี',baht(q.e.total)+' <span class="note">('+baht(q.e.per)+' ต่อเครื่อง'+(q.e.pct?' · ลด '+q.e.pct+'%':'')+')</span>'],['ระยะสัญญา',r.yrs+' ปี'],['ต่ออายุจาก → ถึง',fmt(q.from)+' → '+fmt(q.end)]])+'<div class="row" style="justify-content:space-between;border-top:1px solid var(--rule);padding-top:10px"><b>รวมทั้งสัญญา</b><b style="font:700 22px var(--fd)">'+baht(q.total)+'</b></div>'+(q.e.quote?'<div class="box warn">'+ic('alert',16)+'<span>11 เครื่องขึ้นไปเป็นการเสนอราคาเฉพาะ ยอดนี้เป็นตัวประมาณ</span></div>':'')+'<p class="note">ราคาตัวอย่าง ยังไม่รวมภาษีและค่าธรรมเนียมการชำระเงิน บริการเป็นการตรวจสอบและรายงานผลเท่านั้น</p></div>'+
    '<div class="rsec"><i>3</i><b>วิธีชำระเงิน</b></div><div class="stack" style="gap:8px">'+Object.keys(PAYM).map(k=>opt('method',k,PAYM[k][0],PAYM[k][1],r.method===k)).join('')+'</div>'+pm+
    '<button class="btn y block" data-act="payNow">'+ic(r.method==='invoice'?'file':'lock',16)+(r.method==='invoice'?'ขอใบแจ้งหนี้ '+baht(q.total):'ชำระเงิน '+baht(q.total))+'</button></div>';
 },{roles:CUST});
@@ -1719,7 +1726,7 @@ Object.assign(ICONS,{
  img:'<rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.6"/><path d="M4 18l5-5 4 4 3-3 4 4"/>',
  star:'<path d="M12 3l2.7 5.6 6.1.8-4.5 4.2 1.1 6-5.4-3-5.4 3 1.1-6L3.2 9.4l6.1-.8z"/>'
 });
-const fmtB=s=>{if(!s)return '—';const d=d2(s);return d.getDate()+' '+TS[d.getMonth()]+' '+(d.getFullYear()+543)};
+const fmtB=s=>{if(!s)return '—';const d=d2(s);if(S.lang==='en'&&S.view&&S.view.indexOf('cx-')===0)return d.getDate()+' '+ENM[d.getMonth()]+' '+d.getFullYear();return d.getDate()+' '+TS[d.getMonth()]+' '+(d.getFullYear()+543)};
 const CXV=[['1.1','สภาพภายนอกของตู้','External Condition','ตรวจสภาพภายนอก รอยบิดงอ รอยแตก หรือรอยบุบ'],['1.2','หน้าจอและระบบควบคุม','HMI & Controls','หน้าจอแสดงผลและปุ่มควบคุม รวมถึง Emergency Stop'],['1.3','ระบบล็อกเชิงกล','Mechanical Locking','กลไกล็อกประตูตู้และระบบความปลอดภัยภายใน'],['1.4','การป้องกันฝุ่นและน้ำ','Dust & Water Protection','ซีลยางและร่องรอยการรั่วซึมของน้ำหรือฝุ่น'],['1.5','แผ่นกรองอากาศ','Air Filter','ความสะอาดของแผ่นกรองอากาศ'],['1.6','อุปกรณ์ภายใน','Internal Components','ขั้วต่อสายไฟและร่องรอยไหม้หรือความเสียหายภายใน'],['1.7','สายชาร์จและหัวชาร์จ','Cable & Connector','สภาพทางกายภาพของสายชาร์จและหัวชาร์จ']];
 const CXF=[['2.1','การทำงานในสภาวะปกติ','State Test','ตรวจการทำงานและการจ่ายประจุในสภาวะ Normal แยกตามหัวชาร์จ',''],['2.2','ตอบสนองเมื่อ CP ถูกตัด','CP Cut','ทดสอบการตอบสนองเมื่อ Control Pilot ถูกตัดหรือผิดปกติ',''],['2.3','ตอบสนองเมื่อ CP ลัดวงจร','CP Short','ทดสอบการตอบสนองเมื่อ Control Pilot ลัดวงจร',''],['2.4','ตอบสนองเมื่อสายดินขาด','PE Cut','ทดสอบการตอบสนองเมื่อ Protective Earth ขาด',''],['2.5','เฝ้าระวังความต้านทานฉนวน','IMD (Insulation Monitoring)','ตรวจระบบเฝ้าระวังความต้านทานฉนวน','> 100 kΩ'],['2.6','การหยุดชาร์จ','Stop Test','ตรวจ Normal Stop และ Emergency Stop แยกตามหัวชาร์จ',''],['2.7','การตัดวงจรเมื่อไฟรั่ว','RCD Test','ทดสอบอุปกรณ์ตัดไฟรั่ว (RCD)',''],['2.8','กระแสรั่วไหล','Leakage Current','ตรวจกระแสรั่วไหลขณะทดสอบ','≤ 30 mA'],['2.9','ความต้านทานสายดิน','Grounding Resistance','ตรวจความต้านทานของระบบสายดิน','≤ 5 Ω'],['2.10','ความต่อเนื่องของสายดิน','Grounding Continuity','ตรวจความต่อเนื่องของการต่อลงดิน','รอยืนยันเกณฑ์'],['2.11','ความต้านทานฉนวน','Isolation Resistance','วัดความต้านทานฉนวนที่ 500 Vdc','> 1 MΩ']];
 const CXA=[];[1].forEach(n=>[['Imin',375,25],['Imin',750,25],['I50% Imax',375,200],['I50% Imax',500,200],['Imax',450,300],['Imax',500,300]].forEach(p=>CXA.push({id:'3.'+(CXA.length+1),n:n,tp:p[0],v:p[1],a:p[2]})));
@@ -1757,7 +1764,7 @@ const cxHead=(title,sub,back)=>'<div class="cxh"><button class="cxback" data-act
 const cxLogo=back=>'<div class="cxh"><button class="cxback" data-act="'+back+'" aria-label="ย้อนกลับ">'+ic('arrow',22)+'</button><span class="cxlg"><span class="logo-m">'+ic('bolt',18)+'</span><span><b>ChargerXpert</b><small>ก่อนชาร์จ ดูให้ชัด</small></span></span><button class="cxlang" data-act="cxLang" aria-label="ภาษา"><b>TH</b> | EN</button></div>';
 function cxOvr(d){const rank={pass:0,obs:1,fail:2};let w='pass';[0,1,2].forEach(i=>cxCatItems(i).forEach(k=>{const x=d.res(k);if(rank[x]>rank[w])w=x}));return w}
 function cxCatStat(d,i){const ks=cxCatItems(i),p=ks.filter(k=>d.res(k)==='pass').length;return {p:p,t:ks.length,ok:p===ks.length}}
-const CXNONE='<div class="cx">'+'<div class="cxh"><button class="cxback" data-act="cxBack">'+ic('arrow',22)+'</button><div class="cxt"><b>ไม่พบข้อมูลการตรวจสอบ</b></div></div><div class="cxb"><div class="cxhero warn"><span class="cxsh">'+'!'+'</span><div><b>ไม่พบข้อมูลการตรวจสอบของเครื่องนี้</b><small>ตรวจสอบว่า QR ไม่ชำรุดหรือถูกปิดทับ และเทียบ Charger ID บนสติกเกอร์</small></div></div><button class="btn o block" data-act="nope" data-id="ส่งเรื่องแจ้งปัญหา QR แล้ว (จำลอง)">แจ้งปัญหา QR</button></div></div>';
+const CXNONE='<div class="cx">'+'<div class="cxh"><button class="cxback" data-act="cxBack">'+ic('arrow',22)+'</button><div class="cxt"><b>ไม่พบข้อมูลการตรวจสอบ</b></div></div><div class="cxb"><div class="cxhero warn"><span class="cxsh">'+'!'+'</span><div><b>ไม่พบข้อมูลการตรวจสอบของเครื่องนี้</b><small>ตรวจสอบว่า QR ไม่ชำรุดหรือถูกปิดทับ และเทียบ Charger ID บนสติกเกอร์</small></div></div><button class="btn o block" data-act="issueOpen" data-k="qr">แจ้งปัญหา QR</button></div></div>';
 
 V('cx-sum','base',param=>{
   const d=cxData(param);if(!d||d.none)return CXNONE;
@@ -1769,15 +1776,15 @@ V('cx-sum','base',param=>{
   else{tone='warn';t1=OV[ov][0];t2='ตรวจพบรายการที่ต้องติดตาม';t3='ยังไม่ผ่านครบทุกรายการ จึงไม่แสดงเป็น Verified Active'}
   const sh=tone==='ok'?ic('check',34):'<b style="font-size:30px;line-height:1">!</b>';
   let dd=0;const cats=CXCAT.map((x,i)=>{const s=cxCatStat(d,i);x=x.slice();x[6]=s.t;return '<button class="cxcat" data-act="cxTab" data-id="'+i+'"><span class="cxci">'+ic(x[5],22)+'</span><span class="cxcn"><b>'+(i+1)+'. '+x[3]+'</b><small>'+x[4]+' ('+x[6]+' '+x[7]+')</small><small class="cxdt'+((dd=dayDiff(TODAY,i<2?(d.rec.next12||d.rec.next):(d.rec.next3||d.rec.next)))<=30?' w':'')+'">'+(dd>0?'อีก '+dd+' วันจะหมดอายุ':'หมดอายุแล้ว')+'</small></span><span class="cxchip '+(s.ok?'ok':'warn')+'">'+(s.ok?ic('check',12)+' PASS':s.p+'/'+s.t)+'</span><span class="cxcv">›</span></button>'}).join('');
-  const dem=from==='x-scan'?'<div class="card mist stack" style="margin-top:4px"><p class="note">ตัวควบคุมเดโม (ไม่แสดงต่อผู้สแกนจริง)</p><div class="seg" role="radiogroup" aria-label="จำลองสถานะสมาชิก">'+[['live','ตามจริง'],['Active','Active'],['Expired','Expired'],['Cancelled','Cancelled']].map(o=>'<label><input type="radio" name="pm" value="'+o[0]+'" data-chg="passMem"'+(S.passMem===o[0]?' checked':'')+'><span>'+o[1]+'</span></label>').join('')+'</div><div class="chips">'+['EV-CH-001','SR-01','GP-07','EX-01'].map(x=>'<button class="'+(x===d.cid?'on':'')+'" data-act="cxOpen" data-from="x-scan" data-id="'+x+'|0">'+x+'</button>').join('')+'</div></div>':'';
+  const dem='';
   return '<div class="cx">'+cxLogo('cxBack')+'<div class="cxb">'+
    '<div class="cxhero '+tone+'"><span class="cxsh">'+sh+'</span><div><b>'+t1+'</b><em>'+t2+'</em><small>'+t3+'</small></div></div>'+
-   (d.mst?(function(){const us=unitsOf(d.mst).filter(u=>u.ver);return us.length>1?'<div class="cxheads" role="tablist" aria-label="เลือกหัวชาร์จ">'+us.map(u=>'<button class="'+(u.i===d.idx?'on':'')+'" role="tab" data-act="cxOpen" data-from="'+from+'" data-id="'+d.cid+'|'+u.i+'">หัวชาร์จ '+u.no+' · '+u.kw+'</button>').join('')+'</div>':''})():'')+'<div class="cxcard"><div class="cxunit"><span class="cxthumb">'+cxChg(30)+'</span><div style="flex:1;min-width:0"><small>หัวชาร์จ (Charging Head) · หัวที่ '+d.unit.no+'</small><b class="cxid">'+d.unit.id+'</b><small>ตู้ชาร์จ: <span class="mono">'+d.unit.cab+'</span></small><small>Certificate ID: '+d.unit.cert+'</small></div></div>'+
+   (d.mst?(function(){const us=unitsOf(d.mst).filter(u=>u.ver);return us.length>1?'<div class="cxheads" role="tablist" aria-label="เลือกหัวชาร์จ">'+us.map(u=>'<button class="'+(u.i===d.idx?'on':'')+'" role="tab" data-act="cxHead" data-id="'+d.cid+'|'+u.i+'">หัวชาร์จ '+u.no+' · '+u.kw+'</button>').join('')+'</div>':''})():'')+'<div class="cxcard"><div class="cxunit"><span class="cxthumb">'+cxChg(30)+'</span><div style="flex:1;min-width:0"><small>หัวชาร์จ (Charging Head) · หัวที่ '+d.unit.no+'</small><b class="cxid">'+d.unit.id+'</b><small>ตู้ชาร์จ: <span class="mono">'+d.unit.cab+'</span></small><small>Certificate ID: '+d.unit.cert+'</small></div></div>'+
    '<div class="cxln">'+ic('pin',18)+'<div><small>สถานี:</small> <b>'+esc(d.name)+'</b></div></div><div class="cxln">'+ic('users',18)+'<div><small>ผู้ให้บริการ:</small> <b>'+esc(d.oper)+'</b></div></div>'+
    (function(){const e=d.rec.next3||d.rec.next,n=dayDiff(TODAY,e);return '<div class="cxln">'+ic('cal',18)+'<div><small>สติกเกอร์:</small> <b class="'+(n<=30?'cxw':'')+'">'+(n>0?'อีก '+n+' วันจะหมดอายุ · '+fmtB(e):'หมดอายุแล้ว · '+fmtB(e))+'</b></div></div>'})()+'</div>'+
    '<div class="cxsec"><b>ผลการตรวจสอบ 3 หมวด</b><small>Inspection Results (3 Categories)</small></div>'+cats+
    '<button class="cxbtn y" data-act="cxTo" data-id="cx-rpt">'+ic('file',17)+'รายงานการตรวจล่าสุด (PDF)</button><button class="cxbtn o" data-act="cxTo" data-id="cx-his">'+ic('clock',17)+'ดูประวัติการตรวจทั้งหมด</button>'+
-   '<div class="cxfoot"><p>ผลนี้ครอบคลุมเฉพาะหัวชาร์จที่ระบุ ไม่ใช่การรับรองทุกหัวหรือทั้งสถานี</p><p>ข้อมูลล่าสุด ณ '+fmtB(TODAY)+' '+hhmm()+' น. · เลขที่รายงาน <span class="mono">'+d.rec.docId+'</span></p><p>'+DISC2+'</p><div class="row" style="gap:8px;margin-top:6px"><button class="btn o sm" data-act="'+(from==='x-elexa'?'xBackMap':'cxMap')+'">'+ic('map',14)+'ค้นหาสถานีบนแผนที่</button><button class="btn o sm" data-act="nope" data-id="ส่งเรื่องแจ้งปัญหาข้อมูลแล้ว (จำลอง)">'+ic('alert',14)+'แจ้งปัญหาข้อมูล</button></div></div>'+dem+'</div></div>';
+   '<div class="cxfoot"><p>ผลนี้ครอบคลุมเฉพาะหัวชาร์จที่ระบุ ไม่ใช่การรับรองทุกหัวหรือทั้งสถานี</p><p>ข้อมูลล่าสุด ณ '+fmtB(TODAY)+' '+hhmm()+' น. · เลขที่รายงาน <span class="mono">'+d.rec.docId+'</span></p><p>'+DISC2+'</p><div class="row" style="gap:8px;margin-top:6px"><button class="btn o sm" data-act="'+(from==='x-elexa'?'xBackMap':'cxMap')+'">'+ic('map',14)+'ค้นหาสถานีบนแผนที่</button><button class="btn o sm" data-act="issueOpen" data-k="head" data-id="'+d.cid+'|'+d.idx+'">'+ic('alert',14)+'แจ้งปัญหาข้อมูล</button></div></div>'+dem+'</div></div>';
 });
 V('cx-det','base',param=>{
   const d=cxData(param);if(!d||d.none)return CXNONE;
@@ -1802,7 +1809,7 @@ V('cx-rpt','base',param=>{
   return '<div class="cx">'+cxHead('รายงานการตรวจครั้งล่าสุด','Latest Inspection Report','cxBackSum')+'<div class="cxb" style="background:#EDEDE8">'+
    '<div class="cxpaper cxpimg"><img src="'+REPORT_IMG+'" alt="ตัวอย่างหน้าแรกของรายงานการตรวจสอบ"></div>'+
    '<div class="cxfile"><span class="cxpdf">PDF</span><div style="flex:1;min-width:0"><b>'+fn+'</b><small>เอกสารตัวอย่าง · ข้อมูลจำลอง</small></div></div>'+
-   '<button class="cxbtn y" data-act="xPdfU" data-id="'+d.rec.docId+'">'+ic('down',18)+'ดาวน์โหลดรายงาน (PDF)</button><button class="cxbtn o" data-act="xPdfU" data-id="'+d.rec.docId+'">'+ic('eye',18)+'เปิดดูรายงาน</button><p class="note" style="padding:0 4px">'+DISC2+'</p></div></div>';
+   '<button class="cxbtn y" data-act="xPdfU" data-id="'+d.rec.docId+'">'+ic('eye',18)+'เปิดดูรายงาน</button><p class="note" style="padding:0 4px">'+DISC2+'</p></div></div>';
 });
 V('cx-his','base',param=>{
   const d=cxData(param);if(!d||d.none)return CXNONE;
@@ -1822,10 +1829,10 @@ function stPage(st,web){
   return '<div class="xr">'+top+'<div class="xrb" style="padding:0;gap:0;background:#fff"><div class="sph2">'+stPhoto(st,360,170)+'<span class="xhc">1/6</span></div>'+
    '<div style="padding:12px;display:flex;flex-direction:column;gap:10px"><div class="row" style="flex-wrap:nowrap;gap:10px;align-items:center">'+brandMark(st)+'<b class="xn" style="font-size:19px;flex:1;min-width:0">'+esc(st.name)+'</b></div><p class="note" style="margin-top:-6px">'+esc(stAddr(st))+'</p>'+
    '<div class="row" style="gap:14px;font-size:13px;color:#444"><span style="color:#E8A800;font-weight:600">★ '+st.rate+' <small style="color:#888;font-weight:400">('+rev+')</small></span><span>'+ic('pin',13)+' '+st.km+' กม.</span><span>'+ic('clock',13)+' เปิดให้บริการ '+st.hours+'</span></div>'+banner+
-   '<div class="sact"><button class="sp1" data-act="nope" data-id="นำทาง (ฟีเจอร์เดิมของแอป)">'+ic('arrow',15)+'นำทาง</button><button data-act="nope" data-id="โทร (ฟีเจอร์เดิม)">'+ic('phone',15)+'โทรศัพท์</button><button data-act="nope" data-id="แชร์ (ฟีเจอร์เดิม)">'+ic('share',15)+'แชร์</button><button data-act="nope" data-id="แจ้งปัญหาสถานี (ฟีเจอร์เดิม)">'+ic('alert',15)+'แจ้งปัญหา</button></div>'+
+   '<div class="sact"><button class="sp1" data-act="nope" data-id="นำทาง (ฟีเจอร์เดิมของแอป)">'+ic('arrow',15)+'นำทาง</button><button data-act="nope" data-id="โทร (ฟีเจอร์เดิม)">'+ic('phone',15)+'โทรศัพท์</button><button data-act="nope" data-id="แชร์ (ฟีเจอร์เดิม)">'+ic('share',15)+'แชร์</button><button data-act="issueOpen" data-k="station" data-id="'+st.id+'">'+ic('alert',15)+'แจ้งปัญหา</button></div>'+
    '<div class="xtabs" style="grid-template-columns:repeat(4,1fr)">'+['หัวชาร์จ','ข้อมูลสถานี','บริการ','รีวิว'].map((t,i)=>'<button class="'+(i===0?'on':'')+'"'+(i?' data-act="nope" data-id="แท็บเดิมของแอป ไม่ได้อยู่ในข้อเสนอนี้"':'')+'>'+t+'</button>').join('')+'</div>'+
-   '<b style="color:#1B2A5C">หัวชาร์จที่ให้บริการ ('+us.length+')</b><div class="row" style="gap:12px;font-size:12px;color:#555"><span><i class="sd ok"></i>ว่าง '+cnt('ว่าง')+'</span><span><i class="sd info"></i>กำลังชาร์จ '+cnt('กำลังชาร์จ')+'</span><span><i class="sd n"></i>ไม่พร้อมใช้งาน '+cnt('ไม่พร้อมใช้งาน')+'</span></div>'+
-   us.map(u=>'<div class="xhd2"><div class="xhd2t"><span class="cxthumb sm">'+cxChg(22)+'</span><div style="flex:1;min-width:0"><b>'+st.type+' '+u.cn+'</b> <span class="kwb">'+u.kw+'</span><p class="note">หัวชาร์จ '+u.no+' · <span class="mono">'+u.id+'</span></p></div><span class="stt '+u.s[1]+'"><i class="sd '+u.s[1]+'"></i>'+u.s[0]+'</span></div>'+(u.ver?'<button class="ustrip" data-act="cxOpen" data-from="'+from+'" data-id="'+st.charger+'|'+u.i+'"><span class="sbh sm">'+ic('bolt',14)+'</span><span style="flex:1;min-width:0;text-align:left"><b>ผ่านการตรวจสอบ ChargerXpert</b><small>ใช้ได้ถึง '+fmtB(v.next)+'</small></span><span class="sbq sm">'+qrSvg(passUrl(st.charger))+'</span><span class="cxcv">›</span></button>':'')+'</div>').join('')+
+   '<b style="color:#1B2A5C">หัวชาร์จที่ให้บริการ ('+us.length+')</b>'+
+   us.map(u=>'<div class="xhd2"><div class="xhd2t"><span class="cxthumb sm">'+cxChg(22)+'</span><div style="flex:1;min-width:0"><b>'+st.type+' '+u.cn+'</b> <span class="kwb">'+u.kw+'</span><p class="note">หัวชาร์จ '+u.no+' · <span class="mono">'+u.id+'</span></p></div></div>'+(u.ver?'<button class="ustrip" data-act="cxOpen" data-from="'+from+'" data-id="'+st.charger+'|'+u.i+'"><span class="sbh sm">'+ic('bolt',14)+'</span><span style="flex:1;min-width:0;text-align:left"><b>ผ่านการตรวจสอบ ChargerXpert</b><small>ใช้ได้ถึง '+fmtB(v.next)+'</small></span><span class="sbq sm">'+qrSvg(passUrl(st.charger))+'</span><span class="cxcv">›</span></button>':'')+'</div>').join('')+
    (v?'<p class="note">ผลตรวจครอบคลุมเฉพาะหัวชาร์จที่ระบุเท่านั้น ไม่ใช่การรับรองทุกหัวหรือทั้งสถานี</p>':'')+'<p class="note">'+DISC2+'</p></div></div></div>';
 }
 V('x-station','base',id=>{const st=MAPST.find(x=>x.id===(id||S.xSt))||MAPST[0];S.xSt=st.id;return stPage(st,false)});
@@ -1852,6 +1859,7 @@ function mapCard(sel,v,web){
 
 /* ---- actions ---- */
 Object.assign(SCENE_ACT,{xPdfU(el){openPdf('recU',el.dataset.id)},
+  cxHead(el){S.cxOpenItem=null;S.pHead=+el.dataset.id.split('|')[1]||0;go('cx-sum',el.dataset.id)},
   cxOpen(el){const p=el.dataset.id.split('|');S.cxFrom=el.dataset.from||S.cxFrom||'x-elexa';S.xRec=null;S.cxTab=0;S.cxOpenItem=null;S.pHead=0;go('cx-sum',p[0]+'|'+(p[1]||0))},
   openPass(el){S.cxFrom=S.baseView==='x-scan'?'x-scan':S.baseView==='x-elexa'||S.baseView==='x-station'?'x-elexa':'x-webmap';S.xRec=null;S.cxTab=0;S.cxOpenItem=null;go('cx-sum',el.dataset.id+'|0')},
   xRpt(el){SCENE_ACT.cxOpen({dataset:{id:el.dataset.id+'|0',from:'x-elexa'}})},
@@ -1860,7 +1868,6 @@ Object.assign(SCENE_ACT,{xPdfU(el){openPdf('recU',el.dataset.id)},
   cxTab2(el){S.cxTab=+el.dataset.id;S.cxOpenItem=null;render()},
   cxItem(el){S.cxOpenItem=S.cxOpenItem===el.dataset.id?null:el.dataset.id;render()},
   cxRec(el){S.xRec=el.dataset.id;go('cx-sum',S.param)},
-  cxLang(){toast('สลับภาษา TH / EN (จำลอง)')},
   cxBackSum(){go('cx-sum',S.param)},
   cxBack(){S.xRec=null;const f=S.cxFrom||'x-scan',m=MAPST.find(x=>x.charger===String(S.param).split('|')[0]);
     if(f==='x-elexa'&&m)go('x-station',m.id);else if(f==='x-webmap'&&m)go('w-station',m.id);else go(f)},
@@ -1870,12 +1877,128 @@ Object.assign(SCENE_ACT,{xPdfU(el){openPdf('recU',el.dataset.id)},
   scanGo(){const cam=$('#cam');if(cam)cam.classList.add('scanning');setTimeout(()=>{if(S.baseView==='x-scan'){S.cxFrom='x-scan';S.xRec=null;S.cxTab=0;S.cxOpenItem=null;go('cx-sum',(S.scanSel||'SR-01')+'|0')}},650)}
 });
 
+/* ===== i18n (หน้าผลตรวจ TH/EN) + แจ้งปัญหา ===== */
+const isEn=()=>S.lang==='en'&&S.view&&S.view.indexOf('cx-')===0;
+const T=(th,en)=>isEn()?en:th;
+const ENM=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const EN_D=(function(){
+  const m={
+  'ไม่พบข้อมูลการตรวจสอบของเครื่องนี้':'No inspection data found for this charger',
+  'ไม่พบข้อมูลการตรวจสอบ':'No inspection data found',
+  'ตรวจสอบว่า QR ไม่ชำรุดหรือถูกปิดทับ และเทียบ Charger ID บนสติกเกอร์':'Check that the QR code is not damaged or covered, and compare the Charger ID on the sticker',
+  'แจ้งปัญหา QR':'Report a QR problem','ผลตรวจครั้งก่อนหน้า':'Previous result',
+  'เป็นผลตรวจ ณ วันที่ระบุเท่านั้น ไม่ใช่สถานะปัจจุบัน':'Result as of the stated date only, not the current status',
+  'ผลตรวจสอบหมดอายุแล้ว':'Inspection result expired','ยังไม่พบผลตรวจครั้งใหม่ในระบบ':'No newer inspection found in the system',
+  'ผลตรวจครั้งล่าสุดยังไม่ได้อยู่ในแผนตรวจต่อเนื่อง':'The latest result is not yet covered by the ongoing inspection plan',
+  'ผ่านการตรวจสอบ':'Inspection passed','ครบทั้ง 3 หมวด | ผลตรวจยังมีผล':'All 3 categories passed | Result still valid',
+  'ตรวจพบรายการที่ต้องติดตาม':'Items needing follow-up found','ยังไม่ผ่านครบทุกรายการ จึงไม่แสดงเป็น Verified Active':'Not all items passed, so this is not shown as Verified Active',
+  'ผ่านทุกรายการ':'All items passed','ผ่านพร้อมข้อสังเกต':'Passed with observations','พบรายการไม่ผ่าน':'Failed items found',
+  'ตัวควบคุมเดโม (ไม่แสดงต่อผู้สแกนจริง)':'Demo controls (not shown to real scanners)','จำลองสถานะสมาชิก':'Simulate membership status','ตามจริง':'Actual',
+  'เลือกหัวชาร์จ':'Select charging head','หัวชาร์จ (Charging Head) · หัวที่':'Charging Head · Head','ตู้ชาร์จ:':'Charger cabinet:','สถานี:':'Station:','ผู้ให้บริการ:':'Operator:','สติกเกอร์:':'Sticker:',
+  'ผลการตรวจสอบ 3 หมวด':'Inspection results, 3 categories','รายงานการตรวจล่าสุด (PDF)':'Latest inspection report (PDF)','ดูประวัติการตรวจทั้งหมด':'View full inspection history',
+  'ผลนี้ครอบคลุมเฉพาะหัวชาร์จที่ระบุ ไม่ใช่การรับรองทุกหัวหรือทั้งสถานี':'This result covers only the charging head shown, not every head or the whole station',
+  'ข้อมูลล่าสุด ณ':'Data as of','เลขที่รายงาน:':'Report no.:','เลขที่รายงาน':'Report no.','ค้นหาสถานีบนแผนที่':'Find stations on the map','แจ้งปัญหาข้อมูล':'Report a data problem',
+  'ข้อมูลนี้สะท้อนผลการตรวจสอบ ณ วันที่ระบุเท่านั้น ไม่ใช่การรับรองความปลอดภัยหรือการรับประกันการทำงานต่อเนื่อง':'This information reflects the inspection result as of the stated date only. It is not a safety certification or a guarantee of continued operation.',
+  'ต้องติดตาม':'Follow-up needed','ผลตรวจ':'Result','วันที่ตรวจ':'Inspection date','หัวที่':'Head','เกณฑ์ที่เปิดเผย':'Disclosed criteria','ไม่เปิดเผยค่า':'Value not disclosed',
+  'พลังงานเป้าหมาย 1.5 kWh':'Target energy 1.5 kWh','จุดทดสอบความถูกต้องของการวัดพลังงานของหัวชาร์จนี้เทียบกับเครื่องวัดอ้างอิง':'Test points checking this head’s energy measurement against a reference meter',
+  'แรงดัน / กระแส':'Voltage / Current','พลังงานเป้าหมาย':'Target energy','ค่าคลาดเคลื่อนที่ยอมรับ':'Accepted tolerance','รอ EGAT ยืนยัน':'Pending EGAT confirmation',
+  'ผลการตรวจ (รายละเอียด)':'Inspection Result (Details)',
+  'แตะรายการเพื่อดูรายละเอียด แสดงเฉพาะข้อมูลที่อนุมัติให้เปิดเผย ค่าที่วัดได้และเกณฑ์ที่ยังไม่ยืนยันจะไม่แสดง':'Tap an item for details. Only information approved for disclosure is shown; measured values and unconfirmed criteria are hidden.',
+  'รายงานการตรวจครั้งล่าสุด':'Latest Inspection Report','ตัวอย่างหน้าแรกของรายงานการตรวจสอบ':'Preview of the report’s first page','เอกสารตัวอย่าง · ข้อมูลจำลอง':'Sample document · mock data',
+  'เปิดดูรายงาน':'Open report','ประวัติการตรวจสอบ':'Inspection History','ล่าสุด)':'latest)',
+  'เก็บประวัติการตรวจสอบย้อนหลังเพื่อความโปร่งใสและตรวจสอบได้ (ระยะเวลาเก็บข้อมูลรอยืนยัน) ผลตรวจเดิมไม่ถูกลบเมื่อมีผลตรวจครั้งใหม่':'Inspection history is kept for transparency and auditability (retention period to be confirmed). Earlier results are not deleted when a new result is issued.',
+  'ก่อนชาร์จ ดูให้ชัด':'Check before you charge','ภาษา':'Language','ย้อนกลับ':'Back','ภาพประกอบสถานี (จำลอง)':'Station illustration (mock)',
+  'รอยืนยันเกณฑ์':'Criteria pending confirmation','หมวด 1':'Category 1','หมวด 2':'Category 2','หมวด 3':'Category 3','สภาพทางกายภาพ':'Visual & Physical','การทำงานและความปลอดภัย':'Functional & Safety','ความถูกต้องแม่นยำ':'Accuracy','จุดทดสอบ':'test points','รายการ':'items',
+  'ตัวอย่างเอกสาร PDF':'PDF document preview','ตัวอย่างหน้าแรกของเอกสาร':'Preview of the document’s first page','1 หน้า (A4)':'1 page (A4)','กำลังสร้างเอกสาร PDF…':'Creating PDF document…','บันทึกไฟล์เรียบร้อย':'File saved',
+  'วันจะหมดอายุ ·':'days until expiry ·','หมดอายุแล้ว ·':'Expired ·','หมดอายุแล้ว':'Expired','หัวชาร์จ':'Charging head','ผ่าน':'Pass',
+  'ตรวจสภาพภายนอก รอยบิดงอ รอยแตก หรือรอยบุบ':'Check the exterior for bends, cracks or dents','หน้าจอแสดงผลและปุ่มควบคุม รวมถึง Emergency Stop':'Display and control buttons, including Emergency Stop',
+  'กลไกล็อกประตูตู้และระบบความปลอดภัยภายใน':'Cabinet door lock and internal safety latches','ซีลยางและร่องรอยการรั่วซึมของน้ำหรือฝุ่น':'Rubber seals and signs of water or dust ingress','ความสะอาดของแผ่นกรองอากาศ':'Cleanliness of the air filter',
+  'ขั้วต่อสายไฟและร่องรอยไหม้หรือความเสียหายภายใน':'Wiring terminals and signs of burning or internal damage','สภาพทางกายภาพของสายชาร์จและหัวชาร์จ':'Physical condition of the charging cable and connector',
+  'ตรวจการทำงานและการจ่ายประจุในสภาวะ Normal แยกตามหัวชาร์จ':'Operation and charge delivery under normal state, per charging head','ทดสอบการตอบสนองเมื่อ Control Pilot ถูกตัดหรือผิดปกติ':'Response when Control Pilot is cut or abnormal',
+  'ทดสอบการตอบสนองเมื่อ Control Pilot ลัดวงจร':'Response when Control Pilot is short-circuited','ทดสอบการตอบสนองเมื่อ Protective Earth ขาด':'Response when Protective Earth is lost','ตรวจระบบเฝ้าระวังความต้านทานฉนวน':'Insulation monitoring system check',
+  'ตรวจ Normal Stop และ Emergency Stop แยกตามหัวชาร์จ':'Normal Stop and Emergency Stop, per charging head','ทดสอบอุปกรณ์ตัดไฟรั่ว (RCD)':'Residual-current device (RCD) test','ตรวจกระแสรั่วไหลขณะทดสอบ':'Leakage current during the test',
+  'ตรวจความต้านทานของระบบสายดิน':'Resistance of the grounding system','ตรวจความต่อเนื่องของการต่อลงดิน':'Continuity of the earth connection','วัดความต้านทานฉนวนที่ 500 Vdc':'Insulation resistance measured at 500 Vdc',
+  /* ฟอร์มแจ้งปัญหา */
+  'แจ้งปัญหา':'Report a problem'
+  };
+  const a=Object.keys(m).map(k=>[k,m[k]]);
+  CXV.concat(CXF).forEach(x=>a.push([x[1],x[2]]));
+  return a.sort((p,q)=>q[0].length-p[0].length);
+})();
+function trEn(s){
+  if(s==='ปิด')return 'Close';
+  s=s.replace(/อีก (\d+) วันจะหมดอายุ · /,'Expires in $1 days · ').replace(/อีก (\d+) วันจะหมดอายุ/,'Expires in $1 days')
+     .replace(/หมดอายุเมื่อ (.+?) ยังไม่พบผลตรวจครั้งใหม่ในระบบ/,'Expired on $1. No newer inspection found in the system')
+     .replace(/ครั้งที่ (\d+)/,'Inspection #$1').replace(/ น\. · เลขที่รายงาน/,' · Report no.');
+  for(const [k,v] of EN_D){if(s.indexOf(k)>=0)s=s.split(k).join(v)}
+  return s;
+}
+function i18nApply(){
+  document.querySelectorAll('.cxlang').forEach(b=>{b.innerHTML=S.lang==='en'?'TH | <b>EN</b>':'<b>TH</b> | EN';b.setAttribute('lang','en')});
+  if(!isEn())return;
+  [$('#chat-layer'),$('#modal-root')].forEach(r=>{if(!r)return;
+    const w=document.createTreeWalker(r,NodeFilter.SHOW_TEXT);let n;const L=[];while(n=w.nextNode())L.push(n);
+    L.forEach(n=>{const v=n.nodeValue;if(/[฀-๿]/.test(v)){const t=trEn(v);if(t!==v)n.nodeValue=t}});
+    r.querySelectorAll('[aria-label],[alt],[title]').forEach(e=>['aria-label','alt','title'].forEach(a=>{const v=e.getAttribute(a);if(v&&/[฀-๿]/.test(v))e.setAttribute(a,trEn(v))}))});
+  document.documentElement.lang='en';
+}
+/* ---- แจ้งปัญหา ---- */
+const ISS_TOP={
+  head:[['ข้อมูลผลตรวจไม่ตรงกับสภาพจริงที่เครื่อง','Inspection result does not match the actual charger'],['สติกเกอร์ชำรุด ถูกแกะ หรือสงสัยว่าเป็นของปลอม','Sticker is damaged, removed or looks counterfeit'],['หัวชาร์จใช้งานไม่ได้หรือผิดปกติ','Charging head not working or behaving abnormally'],['ข้อมูลสถานีหรือผู้ให้บริการไม่ถูกต้อง','Station or operator information is wrong'],['อื่น ๆ','Other']],
+  station:[['ข้อมูลสถานีไม่ถูกต้อง (ที่ตั้ง เวลา ราคา)','Station information is wrong (location, hours, price)'],['ข้อมูลผลตรวจ ChargerXpert ไม่ตรงกับหน้างาน','ChargerXpert result does not match the site'],['หัวชาร์จใช้งานไม่ได้หรือผิดปกติ','Charging head not working or behaving abnormally'],['อื่น ๆ','Other']],
+  qr:[['สแกน QR แล้วไม่พบข้อมูล','Scanned the QR but no data was found'],['สติกเกอร์ชำรุด ถูกปิดทับ หรือสงสัยว่าเป็นของปลอม','Sticker is damaged, covered or looks counterfeit'],['อื่น ๆ','Other']],
+  gen:[['ข้อมูลไม่ถูกต้อง','Information is wrong'],['สติกเกอร์สงสัยว่าเป็นของปลอม','Sticker looks counterfeit'],['อื่น ๆ','Other']]
+};
+function issueCtx(k,id){
+  if(k==='head'){const d=cxData(id);if(d&&!d.none)return {station:d.name,charger:d.cid,label:d.unit.id+' · '+d.name}}
+  if(k==='station'){const st=MAPST.find(x=>x.id===id);if(st)return {station:st.name,charger:st.charger||'',label:st.name}}
+  return {station:'',charger:'',label:''};
+}
+Object.assign(SCENE_ACT,{
+  cxLang(){S.lang=S.lang==='en'?'th':'en';render()},
+  issueOpen(el){
+    const k=el.dataset.k||'gen',cx=issueCtx(k,el.dataset.id||'');S.issue={k:k,id:el.dataset.id||'',ctx:cx};
+    const opts=(ISS_TOP[k]||ISS_TOP.gen).map((t,i)=>'<option value="'+i+'">'+esc(T(t[0],t[1]))+'</option>').join('');
+    modal(T('แจ้งปัญหา','Report a problem'),
+      (cx.label?'<p class="note" style="margin:0 0 10px">'+esc(T('เกี่ยวกับ: ','About: ')+cx.label)+'</p>':'')+
+      '<label class="f">'+esc(T('หัวข้อ','Topic'))+'<select class="in" id="is-topic"><option value="">'+esc(T('เลือกหัวข้อ…','Select a topic…'))+'</option>'+opts+'</select></label>'+
+      '<label class="f">'+esc(T('รายละเอียดเพิ่มเติม (ไม่บังคับ)','Details (optional)'))+'<textarea class="in" id="is-note" rows="3" maxlength="500"></textarea></label>'+
+      '<label class="f">'+esc(T('ช่องทางติดต่อกลับ (ไม่บังคับ)','Contact for follow-up (optional)'))+'<input class="in" id="is-contact" maxlength="80" placeholder="'+esc(T('เบอร์โทรหรืออีเมล','Phone or email'))+'"></label>'+
+      '<p class="note" id="is-err" style="color:#B3261E;min-height:18px;margin:2px 0"></p>'+
+      '<button class="btn y block" data-act="issueSend">'+esc(T('ส่งเรื่อง','Submit'))+'</button>');
+  },
+  issueSend(){
+    const v=($('#is-topic')||{}).value;
+    if(v===''||v==null){const e=$('#is-err');if(e)e.textContent=T('กรุณาเลือกหัวข้อ','Please select a topic');return}
+    const I=S.issue||{},lst=ISS_TOP[I.k]||ISS_TOP.gen,top=lst[+v],cx=I.ctx||{};
+    const list=db.issues||(db.issues=[]),id='RPT-2026-'+String(list.length+1).padStart(4,'0');
+    const note=(($('#is-note')||{}).value||'').trim(),contact=(($('#is-contact')||{}).value||'').trim();
+    list.push({id:id,time:stamp(),kind:I.k,station:cx.station,charger:cx.charger,topic:top[0],note:note,contact:contact});
+    audit('ผู้ใช้แจ้งปัญหา '+id+': '+top[0]+(cx.station?' ('+cx.station+')':''));
+    if(cx.charger==='EV-CH-001')pushLine('issue',{station:cx.station,charger:cx.charger,topic:top[0],date:TODAY,ref:cx.station});
+    modal(T('ส่งเรื่องแล้ว','Report sent'),
+      '<div style="text-align:center;padding:6px 0 4px"><div style="width:52px;height:52px;margin:0 auto 10px;border-radius:50%;background:#1E8E4A;color:#fff;display:grid;place-items:center">'+ic('check',28)+'</div>'+
+      '<b>'+esc(T('ทีมงาน ChargerXpert ได้รับเรื่องของคุณแล้ว','The ChargerXpert team has received your report'))+'</b>'+
+      '<p class="note" style="margin:6px 0">'+esc(T('เลขที่เรื่อง ','Reference no. '))+'<span class="mono">'+id+'</span></p>'+
+      '<p class="note" style="margin:6px 0">'+esc(T('เรื่องที่แจ้งไม่ใช่การร้องขอซ่อมและจะไม่เปลี่ยนสถานะผลตรวจโดยอัตโนมัติ ทีมงานจะตรวจสอบข้อมูลก่อน','This is not a repair request and does not change any inspection status automatically. The team will review the information first.'))+'</p></div>'+
+      '<button class="btn o block" data-act="mclose">'+esc(T('ปิด','Close'))+'</button>');
+    S.issue=null;
+  }
+});
+
+Object.assign(SCENE_ACT,{
+  roiFromInspect(){const cs=S.roiStation?db.chargers.filter(c=>c.station===S.roiStation):db.chargers,v=[];
+    cs.forEach(c=>{const r=lastRec(c.id);if(r)(r.heads||[]).forEach(h=>{if(typeof h.dev==='number')v.push(Math.abs(h.dev))})});
+    if(!v.length){toast('ยังไม่มีผลตรวจ Accuracy ที่นำมาคำนวณได้','bad');return}
+    const avg=v.reduce((a,b)=>a+b,0)/v.length;S.roi.dev=Math.min(5,Math.round(avg*100)/100);S.roiReal=v.length;render();toast('ใช้ค่าคลาดเคลื่อนเฉลี่ย '+S.roi.dev+'% จากผลตรวจจริง '+v.length+' หัว','ok')}
+});
+
 /* ===== actions ===== */
 const MAP=[
  ['LINE OA Rich Menu','line','','',''],['Landing Page','landing','','',''],['ROI Calculator','roi','','',''],['Membership Packages','packages','','',''],['Registration','register','','',''],['Login','login','','',''],['LINE Account Linking','link-line','','',''],
  ['Member Dashboard','dashboard','','customer',''],['My Stations','stations','','customer',''],['Charger Management','charger','EV-CH-001','customer',''],['Inspection History','history','','customer',''],['Inspection Schedule','schedule','','customer',''],['Membership Management (ลูกค้า)','membership','','customer',''],
  ['Admin Dashboard','a-dash','','admin',''],['Customer Management','a-customers','','admin',''],['Staff Management','a-staff','','admin',''],['Job Management','a-jobs','','admin',''],['Membership / Packages (Admin)','a-members','','admin',''],['Inspection Form','a-form','JOB-2026-0001','inspector',''],['Close Job Workflow','a-close','JOB-2026-0001','inspector',''],
- ['Digital Inspection Certificate','cert','__LAST','customer',''],['PDF Report Preview','report','__LAST','customer',''],['LINE Notification Preview','a-notifs','','admin',''],['QR Code Page','qr','EV-CH-001','customer',''],['Digital Inspection Passport','passport','EV-CH-001','',''],['ฉาก 2 · แมปในแอป Elexa','x-elexa','','',''],['ฉาก 3 · เว็บแมปสาธารณะ','x-webmap','','',''],['ฉาก 4 · สแกนสติกเกอร์','x-scan','','','']];
+ ['Digital Inspection Certificate','cert','__LAST','customer',''],['PDF Report Preview','report','__LAST','customer',''],['LINE Notification Preview','a-notifs','','admin',''],['QR Code Page','qr','EV-CH-001','customer',''],['Digital Inspection Passport','passport','EV-CH-001','',''],['ส่วน 2 · แมปในแอป Elexa','x-elexa','','',''],['ส่วน 3 · เว็บแมปสาธารณะ','x-webmap','','',''],['ส่วน 4 · สแกนสติกเกอร์','x-scan','','','']];
 function lastDoc(){const r=db.records.filter(x=>x.customerId==='C-001').sort((a,b)=>b.date.localeCompare(a.date)||b.docId.localeCompare(a.docId))[0];return r?r.docId:null}
 function openMap(){
   modal('แผนที่หน้าจอ','<p class="note">กดเพื่อกระโดดไปยังหน้าจอ ระบบสลับบทบาทให้อัตโนมัติ</p><div class="g2" style="gap:8px">'+MAP.map((m,i)=>'<button class="btn o" style="justify-content:flex-start;text-align:left" data-act="mapGo" data-id="'+i+'"><span class="mono mu">'+String(i+1).padStart(2,'0')+'</span>'+m[0]+'</button>').join('')+'</div>',true);
@@ -1984,8 +2107,8 @@ function fieldChange(t){
 }
 function onField(e){
   const t=e.target,d=t.dataset||{};
-  if(d.roi){S.roi[d.roi]=parseFloat(t.value)||0;document.querySelectorAll('[data-lbl="'+d.roi+'"]').forEach(x=>x.textContent=S.roi[d.roi]);const o=$('#roi-out');if(o)o.innerHTML=roiOut();return}
-  if(d.est){S.est[d.est]=Math.max(1,parseInt(t.value,10)||1);const o=$('#est-out');if(o)o.innerHTML=db.packages.map(k=>{const x=estimate(k,S.est.chargers,S.est.heads,S.est.yrs);return '<tr><td><b>'+k.name+'</b></td><td>'+MODEL[k.model]+'</td><td class="tn">'+baht(x.base)+'</td><td class="tn">'+(x.pct?'−'+x.pct+'%':'—')+'</td><td class="tn"><b>'+baht(x.total)+'</b></td><td>'+(x.over?pill('เกิน '+k.covers+' หัว','warn'):pill('ครอบคลุม','ok'))+'</td></tr>'}).join('');return}
+  if(d.roi){S.roi[d.roi]=parseFloat(t.value)||0;document.querySelectorAll('[data-lbl="'+d.roi+'"]').forEach(x=>x.textContent=S.roi[d.roi]);const hd=$('#roi-hd');if(hd)hd.textContent=Math.max(1,Math.round(+S.roi.chargers||1))*2;const o=$('#roi-out');if(o)o.innerHTML=roiOut();return}
+  if(d.est){S.est[d.est]=Math.max(1,parseInt(t.value,10)||1);const o=$('#est-out');if(o)o.innerHTML=db.packages.map(k=>{const x=estimate(k,S.est.chargers,S.est.heads,S.est.yrs);return '<tr><td><b>'+k.name+'</b></td><td>'+MODEL[k.model]+'</td><td class="tn">'+baht(x.base)+'</td><td class="tn">'+(x.pct?'−'+x.pct+'%':'—')+'</td><td class="tn"><b>'+baht(x.total)+'</b></td><td>'+(x.quote?pill('เสนอราคาเฉพาะ','warn'):pill('ครอบคลุม','ok'))+'</td></tr>'}).join('');return}
   if(d.f){fieldChange(t);return}
   if(e.type!=='change')return;
   if(d.pk){const i=d.pk.indexOf('.'),id=d.pk.slice(0,i),path=d.pk.slice(i+1),p=pkgOf(id),isTxt=path==='model'||path==='terms';setPath(p,path,isTxt?t.value:(parseFloat(t.value)||0));toast('บันทึกแพ็กเกจ '+p.name+' แล้ว (ตัวอย่าง)','ok');return}
