@@ -639,7 +639,7 @@ html[data-mode=line] .scenes{display:none}
 (function(){
 'use strict';
 const MODE='app';/* 'line' = LINE OA app, 'app' = Elexa + Map + Scan app */
-const APP=MODE==='app',START=APP?'x-elexa':'line';
+const APP=MODE==='app',START=APP?'x-scan':'line';
 const viewOK=v=>APP?/^(x-|cx-|w-)/.test(v):!/^(x-|cx-|w-)/.test(v);
 let EPOCH=0;
 const $=(s,r=document)=>r.querySelector(s);
@@ -1259,7 +1259,7 @@ V('a-notifs','admin',()=>{
 },{roles:ADM});
 
 /* ===== scenes: Elexa-style map feature, public web map, sticker scan, passport ===== */
-const SCENES=[['line','1','LINE OA · B2B'],['x-elexa','2','แอป Elexa · แมป'],['x-webmap','3','เว็บแมปสาธารณะ'],['x-scan','4','สแกนสติกเกอร์']];
+const SCENES=[['line','1','LINE OA · B2B'],['x-scan','2','สแกนสติกเกอร์'],['x-webmap','3','เว็บแมปสาธารณะ'],['x-elexa','4','แอป Elexa · แมป']];
 const scB=b0=>b0.indexOf('cx-')===0?(S.cxFrom==='x-scan'?'x-scan':S.cxFrom==='x-webmap'?'x-webmap':'x-elexa'):b0==='w-station'?'x-webmap':(b0==='x-report'||b0==='x-station')?'x-elexa':b0;
 function scenesHtml(){const b0=S.baseView||START,b=scB(b0);return SCENES.filter(s=>viewOK(s[0])).map((s,i)=>'<button class="'+(b===s[0]?'on':'')+'" data-go="'+s[0]+'"><b>'+(i+1)+'</b>'+s[2]+'</button>').join('')}
 function ctlHtml(){
