@@ -1,5 +1,11 @@
+<!doctype html>
+<html lang="th" data-mode="all">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#171717">
+<style>:root{color-scheme:light}body{margin:0;font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>ChargerXpert</title>
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
 /* Layout: prototype bar on top, then one of five shells (LINE phone stage, public site, customer app, admin sidebar app, QR passport). Yellow is the signature, black carries structure. */
@@ -592,12 +598,50 @@ button.lni{border:0;background:none;color:inherit;padding:0;display:grid;place-i
 .logo-m,.logo-m.big,.msearch .logo-m,.cxlg .logo-m,.cxph .logo-m{background:#111;color:var(--y)}.cxlg .logo-m{border:1.5px solid var(--y)}.vbolt,.lgb{background:#111;color:var(--y);border-color:#111}
 .cxpaper.cxpimg{padding:0;overflow:hidden}.cxpimg img{display:block;width:100%;height:auto}
 .g1{display:grid;grid-template-columns:1fr;gap:16px}
+
+/* ===== split apps: mode + responsive ===== */
+html[data-mode=line] .scenes{display:none}
+.mbar{display:none}.mclose{display:none}
+@media(max-width:700px){
+ html,body{overflow-x:hidden;max-width:100%}
+ body{background:#fff}
+ .mbar{display:flex;position:fixed;z-index:50;left:0;right:0;top:env(safe-area-inset-top,0px);height:44px;align-items:center;justify-content:space-between;gap:8px;padding:0 max(12px,env(safe-area-inset-right,0px)) 0 max(12px,env(safe-area-inset-left,0px));background:var(--ink);color:#fff}
+ .mbar .mt{font:600 14px var(--fd);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+ .mgear{flex:none;min-height:34px;padding:0 12px;border-radius:999px;border:1.5px solid var(--y);background:transparent;color:var(--y);font:600 12.5px var(--fb)}
+ .scenes{position:fixed;z-index:49;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 44px);height:46px;flex-wrap:nowrap;gap:6px;padding:6px max(8px,env(safe-area-inset-right,0px)) 6px max(8px,env(safe-area-inset-left,0px));background:#fff;border-bottom:1px solid var(--rule);max-width:none;margin:0}
+ .scenes button{flex:1 1 0;min-width:0;padding:2px 4px;font-size:12px;line-height:1.15;border-radius:10px}
+ .scenes button b{display:none}
+ .stagewrap{display:block;padding:0;max-width:none}
+ .device{position:fixed;left:0;right:0;bottom:0;top:calc(env(safe-area-inset-top,0px) + 44px);width:auto;max-width:none;height:auto;min-height:0;border:0;border-radius:0;box-shadow:none}
+ html[data-mode=app] .device,html[data-mode=all] .device{top:calc(env(safe-area-inset-top,0px) + 90px)}
+ .sbar{display:none}
+ .ctl{display:none}
+ .stagebg.ctl-open .ctl{display:block;position:fixed;inset:0;z-index:120;background:var(--mist);overflow:auto;padding:calc(env(safe-area-inset-top,0px) + 16px) max(16px,env(safe-area-inset-right,0px)) 32px max(16px,env(safe-area-inset-left,0px));max-width:none}
+ .mclose{display:inline-flex;align-self:flex-start}
+}
+@media(min-width:701px){
+ html[data-mode=app] .device,html[data-mode=all] .device{height:min(844px,calc(100vh - 104px))}
+ html[data-mode=line] .device{height:min(844px,calc(100vh - 56px))}
+}
+/* content always renders inside a <=392px screen: wrap strips instead of side-scrolling */
+.pnav{flex-wrap:wrap;overflow-x:visible}
+.side{flex-wrap:wrap;overflow-x:visible}.side button{flex:0 0 auto}
+.stp{overflow-x:visible}.stp li{flex:1 1 0;min-width:0;font-size:11px}
+.pnv{flex-wrap:wrap;overflow-x:visible}
+.mchips{flex-wrap:wrap;overflow-x:visible;gap:6px;pointer-events:none}.mchip{pointer-events:auto;padding:7px 12px;font-size:13px}
 </style>
-<div class="stagebg"><nav class="scenes" id="scenes" aria-label="เลือกส่วน"></nav><div class="stagewrap"><aside class="ctl" id="ctl"></aside><div class="device"><div class="sbar"><span id="clock">14:45</span><span class="sbi"><i></i><i></i><i></i><b></b></span></div><div class="screen"><div class="layer" id="chat-layer"></div><div class="layer" id="liff"></div><div id="modal-root"></div><div id="toast-root" class="toast-root" aria-live="polite"></div></div></div></div></div>
+</head>
+<body>
+
+<div class="stagebg"><div class="mbar" id="mbar"><b class="mt">ChargerXpert</b><button type="button" class="mgear" data-act="ctlToggle" aria-label="เมนูเดโม">เมนูเดโม</button></div><nav class="scenes" id="scenes" aria-label="เลือกส่วน"></nav><div class="stagewrap"><aside class="ctl" id="ctl"></aside><div class="device"><div class="sbar"><span id="clock">14:45</span><span class="sbi"><i></i><i></i><i></i><b></b></span></div><div class="screen"><div class="layer" id="chat-layer"></div><div class="layer" id="liff"></div><div id="modal-root"></div><div id="toast-root" class="toast-root" aria-live="polite"></div></div></div></div></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <script>
 (function(){
 'use strict';
+const MODE='all';/* 'line' = LINE OA app, 'app' = Elexa + Map + Scan app */
+const APP=MODE==='app',START=APP?'x-scan':'line';
+const viewOK=v=>MODE==='all'?true:APP?/^(x-|cx-|w-)/.test(v):!/^(x-|cx-|w-)/.test(v);
+let EPOCH=0;
 const $=(s,r=document)=>r.querySelector(s);
 const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const TM=['มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];
@@ -735,7 +779,7 @@ function seed(){
   roiHistory:[],forms:{}};
 }
 let db=seed();
-const S0=()=>({view:'line',param:null,role:null,after:null,selPkg:'std',formHead:0,hf:'all',cal:{y:2026,m:10},jobFilter:'all',dashMode:'month',closing:null,failLine:false,passMem:'live',lineStep:1,reg:null,roiName:'',est:{chargers:3,heads:6,yrs:3},roi:{role:'cpo',pkg:'std',chargers:3,heads:6,sess:8,kwhPer:30,price:8,days:365,dev:3,months:12,rec:60,share:30,visitPrice:12900}});
+const S0=()=>({view:START,param:null,role:null,after:null,selPkg:'std',formHead:0,hf:'all',cal:{y:2026,m:10},jobFilter:'all',dashMode:'month',closing:null,failLine:false,passMem:'live',lineStep:1,reg:null,roiName:'',est:{chargers:3,heads:6,yrs:3},roi:{role:'cpo',pkg:'std',chargers:3,heads:6,sess:8,kwhPer:30,price:8,days:365,dev:3,months:12,rec:60,share:30,visitPrice:12900}});
 let S=S0();
 const USER={admin:'Pimchanok Admin',inspector:'John Inspector',customer:'คุณสมชาย ใจดี'};
 
@@ -820,8 +864,9 @@ const V=(name,area,fn,o)=>{VIEWS[name]=Object.assign({area,fn},o||{})};
 const HOME={customer:'dashboard',admin:'a-dash',inspector:'a-jobs'};
 const VT={landing:'ChargerXpert',roi:'ROI Calculator',packages:'แพ็กเกจสมาชิก',register:'สมัครสมาชิก',login:'เข้าสู่ระบบ','link-line':'เชื่อมบัญชี LINE',dashboard:'แดชบอร์ด',stations:'สถานีของฉัน',station:'สถานี',charger:'เครื่องชาร์จ',history:'รายงานผลตรวจสอบ',schedule:'ตารางตรวจสอบ',membership:'สมาชิก',cert:'Digital Certificate',report:'รายงาน PDF',qr:'QR Code',passport:'Inspection Passport','a-dash':'ภาพรวมระบบ','a-jobs':'งานตรวจสอบ','a-job':'รายละเอียดงาน','a-form':'แบบฟอร์มตรวจสอบ','a-close':'Close Job','a-customers':'ลูกค้า','a-staff':'เจ้าหน้าที่','a-members':'สมาชิกและแพ็กเกจ','a-notifs':'LINE แจ้งเตือน'};
 const CNAV=[['dashboard','home','หน้าแรก'],['stations','pin','สถานี'],['schedule','cal','นัดตรวจ'],['history','file','รายงาน'],['membership','card','สมาชิก'],['roi','calc','ROI']];
-function go(v,p){S.view=v;S.param=p||null;S.top=true;render()}
+function go(v,p){if(!viewOK(v))return;S.view=v;S.param=p||null;S.top=true;render()}
 function render(){
+  if(!viewOK(S.view))S.view=START;
   let v=VIEWS[S.view]||VIEWS.landing,html='',area,notice='';
   if(v.roles&&!S.role){S.after={view:S.view,param:S.param};v=VIEWS.login;S.view='login';notice='<div class="wrap" style="padding-top:12px"><div class="box">'+ic('lock',16)+'<span>กรุณาเข้าสู่ระบบก่อนเปิดหน้านี้ ระบบจะพาไปต่อให้อัตโนมัติ</span></div></div>'}
   if(v.roles&&S.role&&!v.roles.includes(S.role)){
@@ -1172,7 +1217,7 @@ V('a-close','admin',id=>{
 },{roles:STAFF,nav:'a-jobs'});
 function closeDone(j,c){
   const r=c.rec,n=c.notif;
-  return '<div class="stack" style="margin-top:16px"><div class="box ok">'+ic('check',16)+'<span>ออกเอกสาร <b class="mono">'+r.docId+'</b> แล้ว สถานะงานเปลี่ยนเป็น Report Issued</span></div>'+(n.status==='Failed'?'<div class="box bad">'+ic('alert',16)+'<span>ส่ง LINE ล้มเหลว: '+esc(n.error)+' ระบบเก็บประวัติและพร้อมให้ส่งซ้ำ</span></div>':'')+'<div class="row">'+goBtn('Certificate','cert',r.docId,'y sm','file')+goBtn('PDF Report','report',r.docId,'o sm')+goBtn('QR Passport','passport',r.chargerId,'o sm','qr')+goBtn('ดูหมุดบนแมป','x-webmap','','o sm','map')+(n.status==='Failed'?act('Retry ส่ง LINE','retry',n.id,'sm k','refresh'):goBtn('ดูข้อความใน LINE','line','','k sm','chat','customer'))+'</div></div>';
+  return '<div class="stack" style="margin-top:16px"><div class="box ok">'+ic('check',16)+'<span>ออกเอกสาร <b class="mono">'+r.docId+'</b> แล้ว สถานะงานเปลี่ยนเป็น Report Issued</span></div>'+(n.status==='Failed'?'<div class="box bad">'+ic('alert',16)+'<span>ส่ง LINE ล้มเหลว: '+esc(n.error)+' ระบบเก็บประวัติและพร้อมให้ส่งซ้ำ</span></div>':'')+'<div class="row">'+goBtn('Certificate','cert',r.docId,'y sm','file')+goBtn('PDF Report','report',r.docId,'o sm')+goBtn('QR Passport','passport',r.chargerId,'o sm','qr')+(viewOK('x-webmap')?goBtn('ดูหมุดบนแมป','x-webmap','','o sm','map'):'')+(n.status==='Failed'?act('Retry ส่ง LINE','retry',n.id,'sm k','refresh'):goBtn('ดูข้อความใน LINE','line','','k sm','chat','customer'))+'</div></div>';
 }
 function runClose(j){
   const F=getForm(j),rec=buildRecord(j);
@@ -1189,7 +1234,9 @@ function runClose(j){
     ()=>({t:'หมวด 1–2 ถึง '+fmt(rec.next12)+' · หมวด 3 ถึง '+fmt(rec.next3)}),
     ()=>{const n=pushLine('report',{docId:rec.docId,jobId:j.id,station:rec.stationName,charger:rec.chargerId,heads:rec.heads.length,date:rec.date},{fail:S.failLine});c.notif=n;return n.status==='Sent'?{t:'ส่งสำเร็จ'}:{t:'Failed — '+n.error,bad:1}},
     ()=>{j.status='Report Issued';j.doc=rec.docId;audit('ออกเอกสาร '+rec.docId+' สำหรับ '+j.id+' (Report Issued)');return {t:'Job Status → Report Issued'}}];
+  const ep=EPOCH;
   const step=()=>{
+    if(ep!==EPOCH)return;
     if(S.view!=='a-close'){while(c.done<T.length){c.res[c.done]=T[c.done]();c.done++}c.finished=true;return}
     if(c.done>=T.length){c.finished=true;const s=$('#steps');if(s)s.innerHTML=stepsHtml();const d=$('#close-done');if(d)d.innerHTML=closeDone(j,c);return}
     c.res[c.done]=T[c.done]();c.done++;const s=$('#steps');if(s)s.innerHTML=stepsHtml();setTimeout(step,420);
@@ -1212,20 +1259,20 @@ V('a-notifs','admin',()=>{
 },{roles:ADM});
 
 /* ===== scenes: Elexa-style map feature, public web map, sticker scan, passport ===== */
-const SCENES=[['line','1','LINE OA · B2B'],['x-elexa','2','แอป Elexa · แมป'],['x-webmap','3','เว็บแมปสาธารณะ'],['x-scan','4','สแกนสติกเกอร์']];
+const SCENES=MODE==='all'?[['line','1','LINE OA · B2B'],['x-elexa','2','แอป Elexa · แมป'],['x-webmap','3','เว็บแมปสาธารณะ'],['x-scan','4','สแกนสติกเกอร์']]:[['line','1','LINE OA · B2B'],['x-scan','2','สแกนสติกเกอร์'],['x-webmap','3','เว็บแมปสาธารณะ'],['x-elexa','4','แอป Elexa · แมป']];
 const scB=b0=>b0.indexOf('cx-')===0?(S.cxFrom==='x-scan'?'x-scan':S.cxFrom==='x-webmap'?'x-webmap':'x-elexa'):b0==='w-station'?'x-webmap':(b0==='x-report'||b0==='x-station')?'x-elexa':b0;
-function scenesHtml(){const b0=S.baseView||'line',b=scB(b0);return SCENES.map(s=>'<button class="'+(b===s[0]?'on':'')+'" data-go="'+s[0]+'"><b>'+s[1]+'</b>'+s[2]+'</button>').join('')}
+function scenesHtml(){const b0=S.baseView||START,b=scB(b0);return SCENES.filter(s=>viewOK(s[0])).map((s,i)=>'<button class="'+(b===s[0]?'on':'')+'" data-go="'+s[0]+'"><b>'+(i+1)+'</b>'+s[2]+'</button>').join('')}
 function ctlHtml(){
-  const b0=S.baseView||'line',b=scB(b0);
-  const T={line:['ส่วนที่ 1 · LINE OA ของลูกค้าธุรกิจ','จำลองการใช้งานผ่านแชต LINE ของเจ้าของสถานี กดเมนูด้านล่างของแชตเพื่อขอนัดตรวจ ดูรายงาน และสมัครสมาชิก กด × เพื่อกลับมาที่แชต'],
-    'x-elexa':['ส่วนที่ 2 · แผนที่ในแอป Elexa','จำลองหน้าแผนที่ในแอป สถานีที่ผ่านการตรวจจะมีสัญลักษณ์สายฟ้าที่หมุด กด "ชาร์จมั่นใจ" เพื่อดูเฉพาะสถานีที่ตรวจแล้ว ลากแผนที่หรือกด + − เพื่อซูมได้'],
-    'x-webmap':['ส่วนที่ 3 · เว็บแผนที่สำหรับทุกคน','เปิดดูได้เลยโดยไม่ต้องล็อกอินหรือโหลดแอป แสดงเฉพาะสถานีที่ผ่านการตรวจ ค้นหาชื่อสถานี ลาก และซูมแผนที่ได้'],
-    'x-scan':['ส่วนที่ 4 · สแกน QR ที่สติกเกอร์','เลือกเครื่องชาร์จแล้วกดปุ่มสแกนเพื่อดูผลตรวจของเครื่องนั้น เหมือนที่ผู้ใช้ EV จะเห็นเมื่อสแกนสติกเกอร์จริง']};
-  const t=T[b]||T.line;
-  return '<div class="stack"><span class="pill y">Prototype · ข้อมูลทั้งหมดเป็นข้อมูลจำลอง</span><h1 style="font-size:26px">'+t[0]+'</h1><p class="mu">'+t[1]+'</p>'+
-  '<div class="box">'+ic('bolt',16)+'<span>อยากเห็นหมุดใหม่บนแผนที่: เปิดส่วนที่ 1 เลือกบทบาท Inspector แล้วปิดงาน JOB-2026-0001 จากนั้นกลับมาดูแผนที่ จะเห็นหมุดของ ABC Charging Station</span></div>'+
-  '<label class="f">บทบาทที่ใช้อยู่ (ส่วนที่ 1)<select class="in" data-chg="role">'+[['','Guest (ยังไม่เข้าสู่ระบบ)'],['customer','Customer · ABC Energy'],['admin','Admin'],['inspector','Inspector · John']].map(o=>'<option value="'+o[0]+'"'+((S.role||'')===o[0]?' selected':'')+'>'+o[1]+'</option>').join('')+'</select></label>'+
-  (b==='line'?'<p class="note"><b>ทดลองส่งแจ้งเตือน LINE</b></p><div class="row">'+act('เหรียญใกล้หมด','demoNotif','badge','o sm','bolt')+act('สรุปรายเดือน','demoNotif','monthly','o sm','chart')+act('ผู้ใช้แจ้งปัญหา','demoNotif','issue','o sm','alert')+act('ตั้งค่าแจ้งเตือน','nsetOpen','','ghostb sm','bell')+'</div>':'')+'<div class="row">'+act('แผนที่หน้าจอ','openMap','','o sm','map')+act('จำลองผู้ใช้ใหม่','newUser','','ghostb sm','userplus')+act('รีเซ็ตเดโม','resetDemo','','ghostb sm','refresh')+'</div></div>';
+  const b0=S.baseView||START,b=scB(b0);
+  const T={line:['LINE OA ของลูกค้าธุรกิจ','จำลองการใช้งานผ่านแชต LINE ของเจ้าของสถานี กดเมนูด้านล่างของแชตเพื่อขอนัดตรวจ ดูรายงาน และสมัครสมาชิก กด × เพื่อกลับมาที่แชต'],
+    'x-elexa':['แผนที่ในแอป Elexa','จำลองหน้าแผนที่ในแอป สถานีที่ผ่านการตรวจจะมีสัญลักษณ์สายฟ้าที่หมุด กด "ชาร์จมั่นใจ" เพื่อดูเฉพาะสถานีที่ตรวจแล้ว ลากแผนที่หรือกด + − เพื่อซูมได้'],
+    'x-webmap':['เว็บแผนที่สำหรับทุกคน','เปิดดูได้เลยโดยไม่ต้องล็อกอินหรือโหลดแอป แสดงเฉพาะสถานีที่ผ่านการตรวจ ค้นหาชื่อสถานี ลาก และซูมแผนที่ได้'],
+    'x-scan':['สแกน QR ที่สติกเกอร์','เลือกเครื่องชาร์จแล้วกดปุ่มสแกนเพื่อดูผลตรวจของเครื่องนั้น เหมือนที่ผู้ใช้ EV จะเห็นเมื่อสแกนสติกเกอร์จริง กดแจ้งปัญหาเพื่อลองส่งเรื่อง']};
+  const t=T[b]||T[START];
+  return '<div class="stack"><button type="button" class="btn o sm mclose" data-act="ctlToggle">ปิดเมนูเดโม</button><span class="pill y">Prototype · ข้อมูลทั้งหมดเป็นข้อมูลจำลอง</span><h1 style="font-size:26px">'+t[0]+'</h1><p class="mu">'+t[1]+'</p>'+
+  (APP?'':'<label class="f">บทบาทที่ใช้อยู่<select class="in" data-chg="role">'+[['','Guest (ยังไม่เข้าสู่ระบบ)'],['customer','Customer · ABC Energy'],['admin','Admin'],['inspector','Inspector · John']].map(o=>'<option value="'+o[0]+'"'+((S.role||'')===o[0]?' selected':'')+'>'+o[1]+'</option>').join('')+'</select></label>'+
+  '<p class="note"><b>ทดลองส่งแจ้งเตือน LINE</b></p><div class="row">'+act('เหรียญใกล้หมด','demoNotif','badge','o sm','bolt')+act('สรุปรายเดือน','demoNotif','monthly','o sm','chart')+act('ผู้ใช้แจ้งปัญหา','demoNotif','issue','o sm','alert')+act('ตั้งค่าแจ้งเตือน','nsetOpen','','ghostb sm','bell')+'</div>')+
+  '<div class="row">'+act('แผนที่หน้าจอ','openMap','','o sm','map')+(APP?'':act('จำลองผู้ใช้ใหม่','newUser','','ghostb sm','userplus'))+act('รีเซ็ตเดโม','resetDemo','','ghostb sm','refresh')+'</div></div>';
 }
 
 /* ---- sticker (matches the proposal artwork) ---- */
@@ -1979,7 +2026,7 @@ Object.assign(SCENE_ACT,{
     const note=(($('#is-note')||{}).value||'').trim(),contact=(($('#is-contact')||{}).value||'').trim();
     list.push({id:id,time:stamp(),kind:I.k,station:cx.station,charger:cx.charger,topic:top[0],note:note,contact:contact});
     audit('ผู้ใช้แจ้งปัญหา '+id+': '+top[0]+(cx.station?' ('+cx.station+')':''));
-    if(cx.charger==='EV-CH-001')pushLine('issue',{station:cx.station,charger:cx.charger,topic:top[0],date:TODAY,ref:cx.station});
+    if(!APP&&cx.charger==='EV-CH-001')pushLine('issue',{station:cx.station,charger:cx.charger,topic:top[0],date:TODAY,ref:cx.station});
     modal(T('ส่งเรื่องแล้ว','Report sent'),
       '<div style="text-align:center;padding:6px 0 4px"><div style="width:52px;height:52px;margin:0 auto 10px;border-radius:50%;background:#1E8E4A;color:#fff;display:grid;place-items:center">'+ic('check',28)+'</div>'+
       '<b>'+esc(T('ทีมงาน ChargerXpert ได้รับเรื่องของคุณแล้ว','The ChargerXpert team has received your report'))+'</b>'+
@@ -2002,17 +2049,19 @@ const MAP=[
  ['LINE OA Rich Menu','line','','',''],['Landing Page','landing','','',''],['ROI Calculator','roi','','',''],['Membership Packages','packages','','',''],['Registration','register','','',''],['Login','login','','',''],['LINE Account Linking','link-line','','',''],
  ['Member Dashboard','dashboard','','customer',''],['My Stations','stations','','customer',''],['Charger Management','charger','EV-CH-001','customer',''],['Inspection History','history','','customer',''],['Inspection Schedule','schedule','','customer',''],['Membership Management (ลูกค้า)','membership','','customer',''],
  ['Admin Dashboard','a-dash','','admin',''],['Customer Management','a-customers','','admin',''],['Staff Management','a-staff','','admin',''],['Job Management','a-jobs','','admin',''],['Membership / Packages (Admin)','a-members','','admin',''],['Inspection Form','a-form','JOB-2026-0001','inspector',''],['Close Job Workflow','a-close','JOB-2026-0001','inspector',''],
- ['Digital Inspection Certificate','cert','__LAST','customer',''],['PDF Report Preview','report','__LAST','customer',''],['LINE Notification Preview','a-notifs','','admin',''],['QR Code Page','qr','EV-CH-001','customer',''],['Digital Inspection Passport','passport','EV-CH-001','',''],['ส่วน 2 · แมปในแอป Elexa','x-elexa','','',''],['ส่วน 3 · เว็บแมปสาธารณะ','x-webmap','','',''],['ส่วน 4 · สแกนสติกเกอร์','x-scan','','','']];
+ ['Digital Inspection Certificate','cert','__LAST','customer',''],['PDF Report Preview','report','__LAST','customer',''],['LINE Notification Preview','a-notifs','','admin',''],['QR Code Page','qr','EV-CH-001','customer',''],['Digital Inspection Passport','passport','EV-CH-001','',''],['แมปในแอป Elexa','x-elexa','','',''],['เว็บแมปสาธารณะ','x-webmap','','',''],['สแกนสติกเกอร์','x-scan','','','']];
 function lastDoc(){const r=db.records.filter(x=>x.customerId==='C-001').sort((a,b)=>b.date.localeCompare(a.date)||b.docId.localeCompare(a.docId))[0];return r?r.docId:null}
 function openMap(){
-  modal('แผนที่หน้าจอ','<p class="note">กดเพื่อกระโดดไปยังหน้าจอ ระบบสลับบทบาทให้อัตโนมัติ</p><div class="g2" style="gap:8px">'+MAP.map((m,i)=>'<button class="btn o" style="justify-content:flex-start;text-align:left" data-act="mapGo" data-id="'+i+'"><span class="mono mu">'+String(i+1).padStart(2,'0')+'</span>'+m[0]+'</button>').join('')+'</div>',true);
+  modal('แผนที่หน้าจอ','<p class="note">กดเพื่อกระโดดไปยังหน้าจอ ระบบสลับบทบาทให้อัตโนมัติ</p><div class="g2" style="gap:8px">'+MAP.map((m,i)=>[m,i]).filter(x=>viewOK(x[0][1])).map((x,k)=>'<button class="btn o" style="justify-content:flex-start;text-align:left" data-act="mapGo" data-id="'+x[1]+'"><span class="mono mu">'+String(k+1).padStart(2,'0')+'</span>'+x[0][0]+'</button>').join('')+'</div>',true);
 }
 function newJobId(){const n=Math.max(...db.jobs.filter(j=>j.id.startsWith('JOB-2026-')).map(j=>parseInt(j.id.slice(9),10)))+1;return 'JOB-2026-'+String(n).padStart(4,'0')}
 function setPath(o,path,val){const k=path.split('.');let t=o;for(let i=0;i<k.length-1;i++)t=t[k[i]];t[k[k.length-1]]=val}
 const ACT={
   mclose:closeModal,openMap,
-  resetDemo(){db=seed();S=S0();closeModal();render();toast('รีเซ็ตข้อมูลเดโมแล้ว','ok')},
-  logout(){S.role=null;go('line')},closeLiff(){go(S.baseView||'line')},noop(){},
+  resetDemo(){modal('รีเซ็ตเดโม','<p>ข้อมูลทั้งหมดของแอปนี้จะกลับไปเป็นค่าเริ่มต้นเหมือนเปิดหน้าใหม่ และสิ่งที่ทำไว้จะหายทั้งหมด</p><div class="row" style="margin-top:12px"><button class="btn y" data-act="resetDemoGo">รีเซ็ตเลย</button><button class="btn o" data-act="mclose">ยกเลิก</button></div>')},
+  resetDemoGo(){EPOCH++;db=seed();S=S0();closeModal();document.querySelectorAll('.toast').forEach(t=>t.remove());document.querySelector('.stagebg')?.classList.remove('ctl-open');render();window.scrollTo(0,0);toast('รีเซ็ตข้อมูลเดโมแล้ว','ok')},
+  ctlToggle(){document.querySelector('.stagebg').classList.toggle('ctl-open')},
+  logout(){S.role=null;go(START)},closeLiff(){go(S.baseView||START)},noop(){},
   scroll(el){const t=document.getElementById(el.dataset.id);if(S.view!=='landing'){go('landing');setTimeout(()=>{const x=document.getElementById(el.dataset.id);if(x)x.scrollIntoView({behavior:'smooth'})},30)}else if(t)t.scrollIntoView({behavior:'smooth'})},
   mapGo(el){const m=MAP[+el.dataset.id];closeModal();if(m[3])S.role=m[3];else if(m[1]==='passport'){}let p=m[2]==='__LAST'?lastDoc():m[2];go(m[1],p)},
   pickPkg(el){S.selPkg=el.dataset.id;go('register')},
@@ -2121,3 +2170,6 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 render();
 })();
 </script>
+
+</body>
+</html>
